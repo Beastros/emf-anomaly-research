@@ -1,0 +1,101 @@
+{
+  "analysis": "Multi-station magnetometer wavefront velocity",
+  "event": "Phoenix Lights 1997-03-13",
+  "method": "Independent of eyewitness timestamps",
+  "reference": "TUC spike 03:32 UTC 6.333 sigma D-field",
+  "stations": [
+    "TUC",
+    "BOU",
+    "FRD",
+    "SIT",
+    "HON"
+  ],
+  "peaks": {
+    "TUC": {
+      "time": "1997-03-14T03:32:00+00:00",
+      "sigma": 6.333
+    },
+    "BOU": {
+      "time": "1997-03-14T00:30:00+00:00",
+      "sigma": NaN
+    },
+    "FRD": {
+      "time": "1997-03-14T05:25:00+00:00",
+      "sigma": 5.077
+    },
+    "SIT": {
+      "time": "1997-03-14T01:21:00+00:00",
+      "sigma": 4.697
+    },
+    "HON": {
+      "time": "1997-03-14T00:33:00+00:00",
+      "sigma": 4.818
+    }
+  },
+  "velocities": [
+    {
+      "from_station": "TUC",
+      "to_station": "FRD",
+      "to_name": "Fredericksburg VA",
+      "ref_peak_time": "03:32:00 UTC",
+      "other_peak_time": "05:25:00 UTC",
+      "dt_seconds": 6780.0,
+      "dt_minutes": 113.0,
+      "dist_km": 3087.2,
+      "wavefront_kmh": 1639.2,
+      "wavefront_kms": 0.455,
+      "direction": "propagating away from AZ",
+      "ref_sigma": 6.333,
+      "other_sigma": 5.077,
+      "interpretation": "SUPERSONIC \u2014 consistent with fast-moving EM field source, matches track speed range"
+    },
+    {
+      "from_station": "TUC",
+      "to_station": "SIT",
+      "to_name": "Sitka AK",
+      "ref_peak_time": "03:32:00 UTC",
+      "other_peak_time": "01:21:00 UTC",
+      "dt_seconds": -7860.0,
+      "dt_minutes": -131.0,
+      "dist_km": 3343.9,
+      "wavefront_kmh": 1531.5,
+      "wavefront_kms": 0.425,
+      "direction": "propagating toward AZ",
+      "ref_sigma": 6.333,
+      "other_sigma": 4.697,
+      "interpretation": "SUPERSONIC \u2014 consistent with fast-moving EM field source, matches track speed range"
+    },
+    {
+      "from_station": "TUC",
+      "to_station": "HON",
+      "to_name": "Honolulu HI",
+      "ref_peak_time": "03:32:00 UTC",
+      "other_peak_time": "00:33:00 UTC",
+      "dt_seconds": -10740.0,
+      "dt_minutes": -179.0,
+      "dist_km": 4806.6,
+      "wavefront_kmh": 1611.1,
+      "wavefront_kms": 0.448,
+      "direction": "propagating toward AZ",
+      "ref_sigma": 6.333,
+      "other_sigma": 4.818,
+      "interpretation": "SUPERSONIC \u2014 consistent with fast-moving EM field source, matches track speed range"
+    },
+    {
+      "from_station": "TUC",
+      "to_station": "BOU",
+      "to_name": "Boulder CO",
+      "ref_peak_time": "03:32:00 UTC",
+      "other_peak_time": "00:30:00 UTC",
+      "dt_seconds": -10920.0,
+      "dt_minutes": -182.0,
+      "dist_km": 1013.1,
+      "wavefront_kmh": 334.0,
+      "wavefront_kms": 0.093,
+      "direction": "propagating toward AZ",
+      "ref_sigma": 6.333,
+      "other_sigma": NaN,
+      "interpretation": "Subsonic propagation \u2014 could be pressure wave or ionospheric disturbance"
+    }
+  ]
+}

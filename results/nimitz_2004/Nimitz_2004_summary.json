@@ -1,0 +1,84 @@
+{
+  "event": "Nimitz_2004",
+  "date": "2004-11-14",
+  "description": "USS Nimitz carrier group encounter off San Diego. SPY-1 radar tracked object for 2 weeks. FLIR footage later declassified by DoD. Fire control system reportedly jammed.",
+  "velocity": {
+    "avg_kmh": 273.6,
+    "ref_max_kmh": 1900,
+    "ref_aircraft": "F/A-18 Super Hornet",
+    "segments_exceeding": 0,
+    "total_segments": 5,
+    "segments": [
+      {
+        "from": "USS Princeton SPY-1 radar cont",
+        "to": "Cmdr Fravor scrambled \u2014 visual",
+        "speed_kmh": 11.6,
+        "dist_km": 2.9,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Cmdr Fravor scrambled \u2014 visual",
+        "to": "Fravor visual \u2014 Tic Tac, no wi",
+        "speed_kmh": 21.5,
+        "dist_km": 3.6,
+        "dt_min": 10.0
+      },
+      {
+        "from": "Fravor visual \u2014 Tic Tac, no wi",
+        "to": "Object descends 80k ft to sea ",
+        "speed_kmh": 26.2,
+        "dist_km": 2.2,
+        "dt_min": 5.0
+      },
+      {
+        "from": "Object descends 80k ft to sea ",
+        "to": "Object relocates 60 miles inst",
+        "speed_kmh": 1308.9,
+        "dist_km": 43.6,
+        "dt_min": 2.0
+      },
+      {
+        "from": "Object relocates 60 miles inst",
+        "to": "Second intercept \u2014 FLIR footag",
+        "speed_kmh": 0.0,
+        "dist_km": 0.0,
+        "dt_min": 13.0
+      }
+    ]
+  },
+  "kp": {
+    "max_kp": 1.333,
+    "quiet": true,
+    "solar_possible": false
+  },
+  "magnetometer": {
+    "stations_fetched": [
+      "TUC",
+      "BOU",
+      "FRD",
+      "HON"
+    ],
+    "stations_failed": [],
+    "primary_correlation": 0.978,
+    "primary_lag_min": 0,
+    "peak_sigmas": {
+      "TUC": {
+        "peak_sigma": 2.396,
+        "peak_time": "2004-11-14T19:18:00+00:00"
+      },
+      "BOU": {
+        "peak_sigma": 2.328,
+        "peak_time": "2004-11-14T18:57:00+00:00"
+      },
+      "FRD": {
+        "peak_sigma": 3.854,
+        "peak_time": "2004-11-14T18:47:00+00:00"
+      },
+      "HON": {
+        "peak_sigma": 3.344,
+        "peak_time": "2004-11-14T19:19:00+00:00"
+      }
+    }
+  },
+  "verdict": "HIGH ANOMALY \u2014 High cross-station correlation during quiet Kp. Pattern consistent with Phoenix Lights. Non-solar localized EM disturbance."
+}

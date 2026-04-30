@@ -1,0 +1,25 @@
+{
+  "name": "Phoenix Lights",
+  "date": "1997-03-13",
+  "description": "Mass sighting over Arizona and Nevada. Two distinct events: Event A (V-formation, 19:30-20:30 MST) remains unexplained. Event B (22:00 MST) confirmed as A-10 flares.",
+  "reference_aircraft": "A-10 Warthog",
+  "reference_max_kmh": 706,
+  "witnesses": [
+    {"time": "1997-03-14T02:25:00Z", "lat": 36.04, "lon": -114.98, "desc": "Henderson NV — V-formation, 6-10 amber lights", "conf": 0.90},
+    {"time": "1997-03-14T02:45:00Z", "lat": 34.82, "lon": -112.47, "desc": "Paulden AZ — reddish-orange cluster", "conf": 0.85},
+    {"time": "1997-03-14T02:47:00Z", "lat": 34.60, "lon": -112.31, "desc": "Prescott Valley — 5 lights, tight V-shape", "conf": 0.90},
+    {"time": "1997-03-14T02:58:00Z", "lat": 34.17, "lon": -112.02, "desc": "Wickenburg — moving SE, total silence", "conf": 0.75},
+    {"time": "1997-03-14T03:03:00Z", "lat": 33.85, "lon": -112.57, "desc": "Glendale — massive, blocked stars", "conf": 0.92},
+    {"time": "1997-03-14T03:08:00Z", "lat": 33.45, "lon": -112.07, "desc": "Phoenix — Gov. Symington + Kurt Russell", "conf": 0.95},
+    {"time": "1997-03-14T03:14:00Z", "lat": 33.28, "lon": -111.79, "desc": "Chandler — low altitude, no sound", "conf": 0.82},
+    {"time": "1997-03-14T03:28:00Z", "lat": 32.22, "lon": -110.97, "desc": "Tucson edge — formation tracking south", "conf": 0.70},
+    {"time": "1997-03-14T05:00:00Z", "lat": 33.10, "lon": -112.30, "desc": "22:00 MST — A-10 LUU-2 flares EVENT-B EXPLAINED", "conf": -1}
+  ],
+  "notes": [
+    "FAA radar data erased 14 days post-event",
+    "NEXRAD S3 archive access denied for 1997",
+    "USGS TUC magnetometer shows 38 anomalies >2sigma during event",
+    "6.333 sigma D-field spike at 03:32 UTC — 4 min after Tucson sighting",
+    "Velocity calc shows 5/7 segments exceed A-10 maximum"
+  ]
+}

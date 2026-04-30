@@ -1,0 +1,28 @@
+{
+  "event": "Rendlesham_1980",
+  "date": "1980-12-26",
+  "method": "BGS/INTERMAGNET UK network",
+  "kp": {
+    "max_kp": 3.667,
+    "quiet": false
+  },
+  "stations_fetched": [],
+  "stations_failed": [
+    "HAD",
+    "ESK",
+    "LER",
+    "NGK",
+    "CLF"
+  ],
+  "halt_compass_malfunction_utc": "1980-12-27T02:44:00+00:00",
+  "compass_hits": [],
+  "total_halt_event_anomalies": 0,
+  "correlation": {
+    "value": 0.0,
+    "pair": [
+      "",
+      ""
+    ]
+  },
+  "note": "Halt's audio recording provides exact timestamps for compass anomalies. Any BGS anomaly within minutes of these timestamps constitutes independent instrument corroboration of a real EM event."
+}

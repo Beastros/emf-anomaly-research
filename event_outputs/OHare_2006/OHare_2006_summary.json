@@ -1,0 +1,63 @@
+{
+  "event": "OHare_2006",
+  "date": "2006-11-07",
+  "description": "United Airlines employees and pilots observed metallic disc hovering under clouds at O'Hare. Shot upward through cloud layer leaving circular hole. Multiple aviation-credentialed witnesses.",
+  "velocity": {
+    "avg_kmh": 1.6,
+    "ref_max_kmh": 500,
+    "ref_aircraft": "Commercial airliner",
+    "segments_exceeding": 0,
+    "total_segments": 3,
+    "segments": [
+      {
+        "from": "United ramp workers \u2014 metallic",
+        "to": "United flight crew \u2014 disc hove",
+        "speed_kmh": 0.0,
+        "dist_km": 0.0,
+        "dt_min": 5.0
+      },
+      {
+        "from": "United flight crew \u2014 disc hove",
+        "to": "Supervisor confirms sighting \u2014",
+        "speed_kmh": 0.0,
+        "dist_km": 0.0,
+        "dt_min": 5.0
+      },
+      {
+        "from": "Supervisor confirms sighting \u2014",
+        "to": "Object shoots upward through c",
+        "speed_kmh": 4.8,
+        "dist_km": 0.4,
+        "dt_min": 5.0
+      }
+    ]
+  },
+  "kp": {
+    "max_kp": 0.0,
+    "quiet": true,
+    "solar_possible": false
+  },
+  "magnetometer": {
+    "stations_fetched": [
+      "FRD",
+      "BOU"
+    ],
+    "stations_failed": [
+      "STJ",
+      "OTT"
+    ],
+    "primary_correlation": 0.9796,
+    "primary_lag_min": -21,
+    "peak_sigmas": {
+      "FRD": {
+        "peak_sigma": 2.149,
+        "peak_time": "2006-11-07T16:45:00+00:00"
+      },
+      "BOU": {
+        "peak_sigma": 2.711,
+        "peak_time": "2006-11-07T16:31:00+00:00"
+      }
+    }
+  },
+  "verdict": "HIGH ANOMALY \u2014 High cross-station correlation during quiet Kp. Pattern consistent with Phoenix Lights. Non-solar localized EM disturbance."
+}

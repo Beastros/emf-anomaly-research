@@ -1,0 +1,21 @@
+{
+  "name": "USS Nimitz Encounter",
+  "date": "2004-11-14",
+  "description": "Multiple F/A-18 pilots encountered unidentified object off San Diego coast. Tracked on multiple radar systems. Video footage (FLIR1) later declassified by DoD.",
+  "reference_aircraft": "F/A-18 Super Hornet",
+  "reference_max_kmh": 1900,
+  "witnesses": [
+    {"time": "2004-11-14T19:00:00Z", "lat": 32.50, "lon": -119.50, "desc": "Initial radar contact — USS Princeton SPY-1 radar", "conf": 0.99},
+    {"time": "2004-11-14T19:15:00Z", "lat": 32.45, "lon": -119.45, "desc": "Commander Fravor visual — Tic Tac shape, no wings", "conf": 0.98},
+    {"time": "2004-11-14T19:16:00Z", "lat": 32.44, "lon": -119.43, "desc": "Object descends from 80,000ft to sea level in seconds", "conf": 0.97},
+    {"time": "2004-11-14T19:17:00Z", "lat": 32.60, "lon": -119.00, "desc": "Object disappears — reappears 60 miles away instantaneously", "conf": 0.96},
+    {"time": "2004-11-14T19:30:00Z", "lat": 32.60, "lon": -119.00, "desc": "Second intercept — FLIR footage recorded", "conf": 0.99}
+  ],
+  "notes": [
+    "SPY-1 radar tracked object for 2 weeks before intercept",
+    "Object showed no IR exhaust signature",
+    "Instantaneous relocation 60 miles — no ballistic trajectory",
+    "USS Princeton fire control radar jammed during intercept",
+    "ATFLIR footage shows no heat signature from propulsion"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "event": "JAL1628_1986",
+  "date": "1986-11-17",
+  "pairs": [
+    {
+      "s1": "BRW",
+      "s2": "CMO",
+      "s1_name": "Barrow AK",
+      "s2_name": "College/Fairbanks",
+      "s1_peak": "05:55:00 UTC",
+      "s2_peak": "05:20:00 UTC",
+      "dt_seconds": -2100.0,
+      "dt_minutes": -35.0,
+      "dist_km": 802.7,
+      "velocity_kmh": 1376.0,
+      "direction": "S2 then S1",
+      "interpretation": "HYPERSONIC \u2014 fast EM source or Alfven wave",
+      "s1_sigma": 3.189,
+      "s2_sigma": 4.441
+    },
+    {
+      "s1": "BRW",
+      "s2": "SIT",
+      "s1_name": "Barrow AK",
+      "s2_name": "Sitka AK",
+      "s1_peak": "05:55:00 UTC",
+      "s2_peak": "08:24:00 UTC",
+      "dt_seconds": 8940.0,
+      "dt_minutes": 149.0,
+      "dist_km": 1869.5,
+      "velocity_kmh": 752.8,
+      "direction": "S1 then S2",
+      "interpretation": "Transonic/supersonic \u2014 fast atmospheric",
+      "s1_sigma": 3.189,
+      "s2_sigma": 5.612
+    },
+    {
+      "s1": "BRW",
+      "s2": "BOU",
+      "s1_name": "Barrow AK",
+      "s2_name": "Boulder CO",
+      "s1_peak": "05:55:00 UTC",
+      "s2_peak": "08:28:00 UTC",
+      "dt_seconds": 9180.0,
+      "dt_minutes": 153.0,
+      "dist_km": 4474.2,
+      "velocity_kmh": 1754.6,
+      "direction": "S1 then S2",
+      "interpretation": "HYPERSONIC \u2014 fast EM source or Alfven wave",
+      "s1_sigma": 3.189,
+      "s2_sigma": 3.887
+    },
+    {
+      "s1": "CMO",
+      "s2": "SIT",
+      "s1_name": "College/Fairbanks",
+      "s2_name": "Sitka AK",
+      "s1_peak": "05:20:00 UTC",
+      "s2_peak": "08:24:00 UTC",
+      "dt_seconds": 11040.0,
+      "dt_minutes": 184.0,
+      "dist_km": 1096.9,
+      "velocity_kmh": 357.7,
+      "direction": "S1 then S2",
+      "interpretation": "Transonic/supersonic \u2014 fast atmospheric",
+      "s1_sigma": 4.441,
+      "s2_sigma": 5.612
+    },
+    {
+      "s1": "CMO",
+      "s2": "BOU",
+      "s1_name": "College/Fairbanks",
+      "s2_name": "Boulder CO",
+      "s1_peak": "05:20:00 UTC",
+      "s2_peak": "08:28:00 UTC",
+      "dt_seconds": 11280.0,
+      "dt_minutes": 188.0,
+      "dist_km": 3854.6,
+      "velocity_kmh": 1230.2,
+      "direction": "S1 then S2",
+      "interpretation": "HYPERSONIC \u2014 fast EM source or Alfven wave",
+      "s1_sigma": 4.441,
+      "s2_sigma": 3.887
+    },
+    {
+      "s1": "SIT",
+      "s2": "BOU",
+      "s1_name": "Sitka AK",
+      "s2_name": "Boulder CO",
+      "s1_peak": "08:24:00 UTC",
+      "s2_peak": "08:28:00 UTC",
+      "dt_seconds": 240.0,
+      "dt_minutes": 4.0,
+      "dist_km": 2863.7,
+      "velocity_kmh": 42954.9,
+      "direction": "S1 then S2",
+      "interpretation": "EXTREME \u2014 magnetospheric coupling",
+      "s1_sigma": 5.612,
+      "s2_sigma": 3.887
+    }
+  ],
+  "known_peaks": {
+    "BRW": "1986-11-17T06:24:00+00:00",
+    "SIT": "1986-11-17T06:25:00+00:00",
+    "CMO": "1986-11-17T06:38:00+00:00"
+  },
+  "actual_peaks": {
+    "BRW": {
+      "time": "1986-11-17T05:55:00+00:00",
+      "sigma": 3.189
+    },
+    "CMO": {
+      "time": "1986-11-17T05:20:00+00:00",
+      "sigma": 4.441
+    },
+    "SIT": {
+      "time": "1986-11-17T08:24:00+00:00",
+      "sigma": 5.612
+    },
+    "BOU": {
+      "time": "1986-11-17T08:28:00+00:00",
+      "sigma": 3.887
+    }
+  }
+}

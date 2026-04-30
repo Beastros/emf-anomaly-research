@@ -1,0 +1,34 @@
+{
+  "event": "MH370",
+  "date": "2014-03-07",
+  "method": "INTERMAGNET + USGS multi-source",
+  "kp": {
+    "max_kp": 1.0,
+    "quiet": true
+  },
+  "stations_fetched": [],
+  "stations_failed": [
+    "CNB",
+    "API",
+    "KNY",
+    "IPM",
+    "CTA",
+    "HON",
+    "GUA"
+  ],
+  "total_anomalies_at_key_events": 0,
+  "event_anomalies": {
+    "Transponder OFF": [],
+    "Sharp turn-back": [],
+    "Last radar": [],
+    "Final arc": []
+  },
+  "correlation": {
+    "value": 0.0,
+    "lag_min": 0,
+    "pair": [
+      "",
+      ""
+    ]
+  }
+}

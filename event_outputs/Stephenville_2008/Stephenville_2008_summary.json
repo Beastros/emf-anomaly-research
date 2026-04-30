@@ -1,0 +1,81 @@
+{
+  "event": "Stephenville_2008",
+  "date": "2008-01-08",
+  "description": "Stephenville Texas \u2014 multiple pilot and civilian witnesses, FAA radar anomalies, F-16s scrambled. MUFON radar analysis found returns at 1900 mph.",
+  "velocity": {
+    "avg_kmh": 119.7,
+    "ref_max_kmh": 1900,
+    "ref_aircraft": "F-16 Fighting Falcon",
+    "segments_exceeding": 0,
+    "total_segments": 5,
+    "segments": [
+      {
+        "from": "Stephenville TX \u2014 pilot Steve ",
+        "to": "Constable Lee Roy Gaitan \u2014 fla",
+        "speed_kmh": 62.4,
+        "dist_km": 10.4,
+        "dt_min": 10.0
+      },
+      {
+        "from": "Constable Lee Roy Gaitan \u2014 fla",
+        "to": "Multiple Stephenville witnesse",
+        "speed_kmh": 174.1,
+        "dist_km": 14.5,
+        "dt_min": 5.0
+      },
+      {
+        "from": "Multiple Stephenville witnesse",
+        "to": "Glen Rose TX \u2014 heading toward ",
+        "speed_kmh": 131.6,
+        "dist_km": 32.9,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Glen Rose TX \u2014 heading toward ",
+        "to": "Near Granbury TX \u2014 F-16s inter",
+        "speed_kmh": 126.9,
+        "dist_km": 31.7,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Near Granbury TX \u2014 F-16s inter",
+        "to": "Fort Worth corridor \u2014 radar tr",
+        "speed_kmh": 103.7,
+        "dist_km": 25.9,
+        "dt_min": 15.0
+      }
+    ]
+  },
+  "kp": {
+    "max_kp": 3.333,
+    "quiet": false,
+    "solar_possible": true
+  },
+  "magnetometer": {
+    "stations_fetched": [
+      "SJG",
+      "FRD",
+      "BOU"
+    ],
+    "stations_failed": [
+      "DED"
+    ],
+    "primary_correlation": 0.9711,
+    "primary_lag_min": 1,
+    "peak_sigmas": {
+      "SJG": {
+        "peak_sigma": 4.294,
+        "peak_time": "2008-01-09T00:28:00+00:00"
+      },
+      "FRD": {
+        "peak_sigma": 3.793,
+        "peak_time": "2008-01-08T23:54:00+00:00"
+      },
+      "BOU": {
+        "peak_sigma": 3.291,
+        "peak_time": "2008-01-08T23:28:00+00:00"
+      }
+    }
+  },
+  "verdict": "MODERATE ANOMALY \u2014 Warrants deeper analysis. Some indicators present."
+}

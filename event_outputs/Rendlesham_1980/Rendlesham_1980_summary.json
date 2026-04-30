@@ -1,0 +1,53 @@
+{
+  "event": "Rendlesham_1980",
+  "date": "1980-12-26",
+  "description": "RAF Bentwaters UK \u2014 USAF personnel witnessed structured craft over 3 nights. Lt Col Halt made live audio recording noting compass and radiation anomalies in real time.",
+  "velocity": {
+    "avg_kmh": 1.4,
+    "ref_max_kmh": 500,
+    "ref_aircraft": "Known aircraft",
+    "segments_exceeding": 0,
+    "total_segments": 3,
+    "segments": [
+      {
+        "from": "Airman Burroughs \u2014 lights in R",
+        "to": "Penniston touches craft \u2014 geom",
+        "speed_kmh": 1.4,
+        "dist_km": 0.7,
+        "dt_min": 30.0
+      },
+      {
+        "from": "Penniston touches craft \u2014 geom",
+        "to": "Lt Col Halt \u2014 compass malfunct",
+        "speed_kmh": 1.4,
+        "dist_km": 0.7,
+        "dt_min": 30.0
+      },
+      {
+        "from": "Lt Col Halt \u2014 compass malfunct",
+        "to": "Halt audio recording \u2014 three s",
+        "speed_kmh": 1.4,
+        "dist_km": 0.7,
+        "dt_min": 30.0
+      }
+    ]
+  },
+  "kp": {
+    "max_kp": 3.333,
+    "quiet": false,
+    "solar_possible": true
+  },
+  "magnetometer": {
+    "stations_fetched": [],
+    "stations_failed": [
+      "HAD",
+      "ESK",
+      "LER",
+      "NGK"
+    ],
+    "primary_correlation": 0.0,
+    "primary_lag_min": 0,
+    "peak_sigmas": {}
+  },
+  "verdict": "LOW ANOMALY \u2014 No strong multi-sensor convergence detected. May require different station selection."
+}

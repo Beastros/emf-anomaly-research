@@ -1,0 +1,364 @@
+[
+  {
+    "event": "Stephenville_2008",
+    "date": "2008-01-08",
+    "description": "Stephenville Texas \u2014 multiple pilot and civilian witnesses, FAA radar anomalies, F-16s scrambled. MUFON radar analysis found returns at 1900 mph.",
+    "velocity": {
+      "avg_kmh": 119.7,
+      "ref_max_kmh": 1900,
+      "ref_aircraft": "F-16 Fighting Falcon",
+      "segments_exceeding": 0,
+      "total_segments": 5,
+      "segments": [
+        {
+          "from": "Stephenville TX \u2014 pilot Steve ",
+          "to": "Constable Lee Roy Gaitan \u2014 fla",
+          "speed_kmh": 62.4,
+          "dist_km": 10.4,
+          "dt_min": 10.0
+        },
+        {
+          "from": "Constable Lee Roy Gaitan \u2014 fla",
+          "to": "Multiple Stephenville witnesse",
+          "speed_kmh": 174.1,
+          "dist_km": 14.5,
+          "dt_min": 5.0
+        },
+        {
+          "from": "Multiple Stephenville witnesse",
+          "to": "Glen Rose TX \u2014 heading toward ",
+          "speed_kmh": 131.6,
+          "dist_km": 32.9,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Glen Rose TX \u2014 heading toward ",
+          "to": "Near Granbury TX \u2014 F-16s inter",
+          "speed_kmh": 126.9,
+          "dist_km": 31.7,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Near Granbury TX \u2014 F-16s inter",
+          "to": "Fort Worth corridor \u2014 radar tr",
+          "speed_kmh": 103.7,
+          "dist_km": 25.9,
+          "dt_min": 15.0
+        }
+      ]
+    },
+    "kp": {
+      "max_kp": 3.333,
+      "quiet": false,
+      "solar_possible": true
+    },
+    "magnetometer": {
+      "stations_fetched": [
+        "SJG",
+        "FRD",
+        "BOU"
+      ],
+      "stations_failed": [
+        "DED"
+      ],
+      "primary_correlation": 0.9711,
+      "primary_lag_min": 1,
+      "peak_sigmas": {
+        "SJG": {
+          "peak_sigma": 4.294,
+          "peak_time": "2008-01-09T00:28:00+00:00"
+        },
+        "FRD": {
+          "peak_sigma": 3.793,
+          "peak_time": "2008-01-08T23:54:00+00:00"
+        },
+        "BOU": {
+          "peak_sigma": 3.291,
+          "peak_time": "2008-01-08T23:28:00+00:00"
+        }
+      }
+    },
+    "verdict": "MODERATE ANOMALY \u2014 Warrants deeper analysis. Some indicators present."
+  },
+  {
+    "event": "Nimitz_2004",
+    "date": "2004-11-14",
+    "description": "USS Nimitz carrier group encounter off San Diego. SPY-1 radar tracked object for 2 weeks. FLIR footage later declassified by DoD. Fire control system reportedly jammed.",
+    "velocity": {
+      "avg_kmh": 273.6,
+      "ref_max_kmh": 1900,
+      "ref_aircraft": "F/A-18 Super Hornet",
+      "segments_exceeding": 0,
+      "total_segments": 5,
+      "segments": [
+        {
+          "from": "USS Princeton SPY-1 radar cont",
+          "to": "Cmdr Fravor scrambled \u2014 visual",
+          "speed_kmh": 11.6,
+          "dist_km": 2.9,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Cmdr Fravor scrambled \u2014 visual",
+          "to": "Fravor visual \u2014 Tic Tac, no wi",
+          "speed_kmh": 21.5,
+          "dist_km": 3.6,
+          "dt_min": 10.0
+        },
+        {
+          "from": "Fravor visual \u2014 Tic Tac, no wi",
+          "to": "Object descends 80k ft to sea ",
+          "speed_kmh": 26.2,
+          "dist_km": 2.2,
+          "dt_min": 5.0
+        },
+        {
+          "from": "Object descends 80k ft to sea ",
+          "to": "Object relocates 60 miles inst",
+          "speed_kmh": 1308.9,
+          "dist_km": 43.6,
+          "dt_min": 2.0
+        },
+        {
+          "from": "Object relocates 60 miles inst",
+          "to": "Second intercept \u2014 FLIR footag",
+          "speed_kmh": 0.0,
+          "dist_km": 0.0,
+          "dt_min": 13.0
+        }
+      ]
+    },
+    "kp": {
+      "max_kp": 1.333,
+      "quiet": true,
+      "solar_possible": false
+    },
+    "magnetometer": {
+      "stations_fetched": [
+        "TUC",
+        "BOU",
+        "FRD",
+        "HON"
+      ],
+      "stations_failed": [],
+      "primary_correlation": 0.978,
+      "primary_lag_min": 0,
+      "peak_sigmas": {
+        "TUC": {
+          "peak_sigma": 2.396,
+          "peak_time": "2004-11-14T19:18:00+00:00"
+        },
+        "BOU": {
+          "peak_sigma": 2.328,
+          "peak_time": "2004-11-14T18:57:00+00:00"
+        },
+        "FRD": {
+          "peak_sigma": 3.854,
+          "peak_time": "2004-11-14T18:47:00+00:00"
+        },
+        "HON": {
+          "peak_sigma": 3.344,
+          "peak_time": "2004-11-14T19:19:00+00:00"
+        }
+      }
+    },
+    "verdict": "HIGH ANOMALY \u2014 High cross-station correlation during quiet Kp. Pattern consistent with Phoenix Lights. Non-solar localized EM disturbance."
+  },
+  {
+    "event": "JAL1628_1986",
+    "date": "1986-11-17",
+    "description": "JAL Flight 1628 tracked UFO for 50 minutes over Alaska. FAA formally investigated and confirmed radar returns. Pilot described object size of two aircraft carriers.",
+    "velocity": {
+      "avg_kmh": 462.4,
+      "ref_max_kmh": 900,
+      "ref_aircraft": "Boeing 747-200",
+      "segments_exceeding": 0,
+      "total_segments": 5,
+      "segments": [
+        {
+          "from": "JAL 1628 first visual contact ",
+          "to": "Objects pace aircraft \u2014 Anchor",
+          "speed_kmh": 476.1,
+          "dist_km": 119.0,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Objects pace aircraft \u2014 Anchor",
+          "to": "Large object joins \u2014 estimated",
+          "speed_kmh": 470.1,
+          "dist_km": 117.5,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Large object joins \u2014 estimated",
+          "to": "Anchorage requests military in",
+          "speed_kmh": 464.0,
+          "dist_km": 116.0,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Anchorage requests military in",
+          "to": "Object disappears from radar a",
+          "speed_kmh": 458.0,
+          "dist_km": 114.5,
+          "dt_min": 15.0
+        },
+        {
+          "from": "Object disappears from radar a",
+          "to": "Fairbanks approach \u2014 object no",
+          "speed_kmh": 443.6,
+          "dist_km": 147.9,
+          "dt_min": 20.0
+        }
+      ]
+    },
+    "kp": {
+      "max_kp": 2.667,
+      "quiet": true,
+      "solar_possible": false
+    },
+    "magnetometer": {
+      "stations_fetched": [
+        "CMO",
+        "SIT",
+        "BRW"
+      ],
+      "stations_failed": [
+        "VIC"
+      ],
+      "primary_correlation": -0.208,
+      "primary_lag_min": 10,
+      "peak_sigmas": {
+        "CMO": {
+          "peak_sigma": 3.732,
+          "peak_time": "1986-11-17T06:38:00+00:00"
+        },
+        "SIT": {
+          "peak_sigma": 3.667,
+          "peak_time": "1986-11-17T06:25:00+00:00"
+        },
+        "BRW": {
+          "peak_sigma": 2.995,
+          "peak_time": "1986-11-17T06:24:00+00:00"
+        }
+      }
+    },
+    "verdict": "LOW ANOMALY \u2014 No strong multi-sensor convergence detected. May require different station selection."
+  },
+  {
+    "event": "OHare_2006",
+    "date": "2006-11-07",
+    "description": "United Airlines employees and pilots observed metallic disc hovering under clouds at O'Hare. Shot upward through cloud layer leaving circular hole. Multiple aviation-credentialed witnesses.",
+    "velocity": {
+      "avg_kmh": 1.6,
+      "ref_max_kmh": 500,
+      "ref_aircraft": "Commercial airliner",
+      "segments_exceeding": 0,
+      "total_segments": 3,
+      "segments": [
+        {
+          "from": "United ramp workers \u2014 metallic",
+          "to": "United flight crew \u2014 disc hove",
+          "speed_kmh": 0.0,
+          "dist_km": 0.0,
+          "dt_min": 5.0
+        },
+        {
+          "from": "United flight crew \u2014 disc hove",
+          "to": "Supervisor confirms sighting \u2014",
+          "speed_kmh": 0.0,
+          "dist_km": 0.0,
+          "dt_min": 5.0
+        },
+        {
+          "from": "Supervisor confirms sighting \u2014",
+          "to": "Object shoots upward through c",
+          "speed_kmh": 4.8,
+          "dist_km": 0.4,
+          "dt_min": 5.0
+        }
+      ]
+    },
+    "kp": {
+      "max_kp": 0.0,
+      "quiet": true,
+      "solar_possible": false
+    },
+    "magnetometer": {
+      "stations_fetched": [
+        "FRD",
+        "BOU"
+      ],
+      "stations_failed": [
+        "STJ",
+        "OTT"
+      ],
+      "primary_correlation": 0.9796,
+      "primary_lag_min": -21,
+      "peak_sigmas": {
+        "FRD": {
+          "peak_sigma": 2.149,
+          "peak_time": "2006-11-07T16:45:00+00:00"
+        },
+        "BOU": {
+          "peak_sigma": 2.711,
+          "peak_time": "2006-11-07T16:31:00+00:00"
+        }
+      }
+    },
+    "verdict": "HIGH ANOMALY \u2014 High cross-station correlation during quiet Kp. Pattern consistent with Phoenix Lights. Non-solar localized EM disturbance."
+  },
+  {
+    "event": "Rendlesham_1980",
+    "date": "1980-12-26",
+    "description": "RAF Bentwaters UK \u2014 USAF personnel witnessed structured craft over 3 nights. Lt Col Halt made live audio recording noting compass and radiation anomalies in real time.",
+    "velocity": {
+      "avg_kmh": 1.4,
+      "ref_max_kmh": 500,
+      "ref_aircraft": "Known aircraft",
+      "segments_exceeding": 0,
+      "total_segments": 3,
+      "segments": [
+        {
+          "from": "Airman Burroughs \u2014 lights in R",
+          "to": "Penniston touches craft \u2014 geom",
+          "speed_kmh": 1.4,
+          "dist_km": 0.7,
+          "dt_min": 30.0
+        },
+        {
+          "from": "Penniston touches craft \u2014 geom",
+          "to": "Lt Col Halt \u2014 compass malfunct",
+          "speed_kmh": 1.4,
+          "dist_km": 0.7,
+          "dt_min": 30.0
+        },
+        {
+          "from": "Lt Col Halt \u2014 compass malfunct",
+          "to": "Halt audio recording \u2014 three s",
+          "speed_kmh": 1.4,
+          "dist_km": 0.7,
+          "dt_min": 30.0
+        }
+      ]
+    },
+    "kp": {
+      "max_kp": 3.333,
+      "quiet": false,
+      "solar_possible": true
+    },
+    "magnetometer": {
+      "stations_fetched": [],
+      "stations_failed": [
+        "HAD",
+        "ESK",
+        "LER",
+        "NGK"
+      ],
+      "primary_correlation": 0.0,
+      "primary_lag_min": 0,
+      "peak_sigmas": {}
+    },
+    "verdict": "LOW ANOMALY \u2014 No strong multi-sensor convergence detected. May require different station selection."
+  }
+]

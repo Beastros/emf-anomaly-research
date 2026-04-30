@@ -1,0 +1,19 @@
+{
+  "event": "MH370",
+  "date": "2014-03-07",
+  "kp": {
+    "max_kp": 1.0,
+    "quiet": true
+  },
+  "stations_fetched": [],
+  "event_anomalies": {
+    "Transponder OFF": [],
+    "Sharp turn-back": [],
+    "Last radar contact": []
+  },
+  "correlation": {
+    "value": 0.0,
+    "lag_min": 0
+  },
+  "note_on_orbs_video": "Viral videos showing orbs circling MH370 are unverified and likely fabricated. This analysis uses only government instrument data."
+}

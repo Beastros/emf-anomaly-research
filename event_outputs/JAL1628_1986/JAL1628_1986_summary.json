@@ -1,0 +1,81 @@
+{
+  "event": "JAL1628_1986",
+  "date": "1986-11-17",
+  "description": "JAL Flight 1628 tracked UFO for 50 minutes over Alaska. FAA formally investigated and confirmed radar returns. Pilot described object size of two aircraft carriers.",
+  "velocity": {
+    "avg_kmh": 462.4,
+    "ref_max_kmh": 900,
+    "ref_aircraft": "Boeing 747-200",
+    "segments_exceeding": 0,
+    "total_segments": 5,
+    "segments": [
+      {
+        "from": "JAL 1628 first visual contact ",
+        "to": "Objects pace aircraft \u2014 Anchor",
+        "speed_kmh": 476.1,
+        "dist_km": 119.0,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Objects pace aircraft \u2014 Anchor",
+        "to": "Large object joins \u2014 estimated",
+        "speed_kmh": 470.1,
+        "dist_km": 117.5,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Large object joins \u2014 estimated",
+        "to": "Anchorage requests military in",
+        "speed_kmh": 464.0,
+        "dist_km": 116.0,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Anchorage requests military in",
+        "to": "Object disappears from radar a",
+        "speed_kmh": 458.0,
+        "dist_km": 114.5,
+        "dt_min": 15.0
+      },
+      {
+        "from": "Object disappears from radar a",
+        "to": "Fairbanks approach \u2014 object no",
+        "speed_kmh": 443.6,
+        "dist_km": 147.9,
+        "dt_min": 20.0
+      }
+    ]
+  },
+  "kp": {
+    "max_kp": 2.667,
+    "quiet": true,
+    "solar_possible": false
+  },
+  "magnetometer": {
+    "stations_fetched": [
+      "CMO",
+      "SIT",
+      "BRW"
+    ],
+    "stations_failed": [
+      "VIC"
+    ],
+    "primary_correlation": -0.208,
+    "primary_lag_min": 10,
+    "peak_sigmas": {
+      "CMO": {
+        "peak_sigma": 3.732,
+        "peak_time": "1986-11-17T06:38:00+00:00"
+      },
+      "SIT": {
+        "peak_sigma": 3.667,
+        "peak_time": "1986-11-17T06:25:00+00:00"
+      },
+      "BRW": {
+        "peak_sigma": 2.995,
+        "peak_time": "1986-11-17T06:24:00+00:00"
+      }
+    }
+  },
+  "verdict": "LOW ANOMALY \u2014 No strong multi-sensor convergence detected. May require different station selection."
+}

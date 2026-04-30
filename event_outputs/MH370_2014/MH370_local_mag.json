@@ -1,0 +1,21 @@
+{
+  "event": "MH370_2014",
+  "primary_event": "Transponder OFF",
+  "primary_time": "2014-03-07T17:21:00+00:00",
+  "stations": [
+    "CNB",
+    "KAK",
+    "KNY"
+  ],
+  "total_anomalies": 0,
+  "primary_hits": 0,
+  "primary_hit_details": [],
+  "correlation": {
+    "value": 0.0,
+    "lag_min": 0,
+    "pair": [
+      "",
+      ""
+    ]
+  }
+}

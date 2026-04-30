@@ -1,0 +1,1151 @@
+{
+  "meta": {
+    "event": "Phoenix Lights",
+    "date": "1997-03-13",
+    "generated": "2026-04-29T05:09:39.658018",
+    "description": "Mass sighting over Arizona and Nevada. Two distinct events: Event A (V-formation, 19:30-20:30 MST) remains unexplained. Event B (22:00 MST) confirmed as A-10 flares."
+  },
+  "track": {
+    "witnesses": 9,
+    "duration_min": 155.0,
+    "total_dist_km": 805.26,
+    "avg_speed_kmh": 561.1,
+    "max_speed_kmh": 855.0,
+    "heading_std_deg": 61.8,
+    "anomalous_segments": [],
+    "heading_reversals": [
+      {
+        "from": "Wickenburg \u00e2\u20ac\u201d moving SE, total silence",
+        "to": "Glendale \u00e2\u20ac\u201d massive, blocked stars",
+        "from_time": "1997-03-14 02:58:00+00:00",
+        "to_time": "1997-03-14 03:03:00+00:00",
+        "dist_km": 61.94,
+        "speed_kmh": 743.2,
+        "speed_kts": 401.3,
+        "heading": 235.1,
+        "dt_min": 5.0
+      },
+      {
+        "from": "Tucson edge \u00e2\u20ac\u201d formation tracking south",
+        "to": "22:00 MST \u00e2\u20ac\u201d A-10 LUU-2 flares EVENT-B EXPLAINED",
+        "from_time": "1997-03-14 03:28:00+00:00",
+        "to_time": "1997-03-14 05:00:00+00:00",
+        "dist_km": 158.35,
+        "speed_kmh": 103.3,
+        "speed_kts": 55.8,
+        "heading": 308.5,
+        "dt_min": 92.0
+      }
+    ]
+  },
+  "lenses": {
+    "magnetometer": 178,
+    "spaceweather": 1,
+    "nexrad": 22
+  },
+  "convergence": {
+    "events": 14,
+    "top": [
+      {
+        "time": "1997-03-14 03:25:00+00:00",
+        "lenses": [
+          "nexrad",
+          "magnetometer"
+        ],
+        "lens_count": 2,
+        "max_sigma": 6.333,
+        "position": {
+          "lat": 32.44714285714286,
+          "lon": -111.14571428571429
+        },
+        "anomalies": [
+          {
+            "time": "1997-03-14 03:15:00+00:00",
+            "station": "KFSX",
+            "sigma": 1.91,
+            "score": 0.637,
+            "lat": 33.20428571428572,
+            "lon": -111.73142857142858,
+            "field": "nexrad_null_KFSX",
+            "dist_to_station": 160.1,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:15:00+00:00",
+            "station": "KIWA",
+            "sigma": 2.78,
+            "score": 0.928,
+            "lat": 33.20428571428572,
+            "lon": -111.73142857142858,
+            "field": "nexrad_null_KIWA",
+            "dist_to_station": 11.0,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:15:00+00:00",
+            "station": "KEMX",
+            "sigma": 1.8,
+            "score": 0.6,
+            "lat": 33.20428571428572,
+            "lon": -111.73142857142858,
+            "field": "nexrad_null_KEMX",
+            "dist_to_station": 178.7,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:18:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.272,
+            "deviation": -0.165,
+            "value": 42310.4,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:20:00+00:00",
+            "station": "KFSX",
+            "sigma": 1.7,
+            "score": 0.567,
+            "lat": 32.825714285714284,
+            "lon": -111.43857142857144,
+            "field": "nexrad_null_KFSX",
+            "dist_to_station": 195.7,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:20:00+00:00",
+            "station": "KIWA",
+            "sigma": 2.52,
+            "score": 0.841,
+            "lat": 32.825714285714284,
+            "lon": -111.43857142857144,
+            "field": "nexrad_null_KIWA",
+            "dist_to_station": 55.8,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:20:00+00:00",
+            "station": "KEMX",
+            "sigma": 2.09,
+            "score": 0.698,
+            "lat": 32.825714285714284,
+            "lon": -111.43857142857144,
+            "field": "nexrad_null_KEMX",
+            "dist_to_station": 128.5,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:25:00+00:00",
+            "station": "KIWA",
+            "sigma": 2.23,
+            "score": 0.743,
+            "lat": 32.44714285714286,
+            "lon": -111.14571428571429,
+            "field": "nexrad_null_KIWA",
+            "dist_to_station": 105.6,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:25:00+00:00",
+            "station": "KEMX",
+            "sigma": 2.39,
+            "score": 0.797,
+            "lat": 32.44714285714286,
+            "lon": -111.14571428571429,
+            "field": "nexrad_null_KEMX",
+            "dist_to_station": 78.4,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:31:00+00:00",
+            "field": "TUC_D",
+            "sigma": 4.359,
+            "deviation": 0.095,
+            "value": 667.8,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:31:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.01,
+            "deviation": 0.115,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:32:00+00:00",
+            "field": "TUC_D",
+            "sigma": 6.333,
+            "deviation": 0.19,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:33:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.53,
+            "deviation": 0.18,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.592,
+            "deviation": 0.665,
+            "value": 25083.2,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.655,
+            "deviation": 0.17,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.01,
+            "deviation": 0.115,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:35:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.54,
+            "deviation": 0.755,
+            "value": 25083.3,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:35:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.177,
+            "deviation": 0.16,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          }
+        ],
+        "strength": 12.67
+      },
+      {
+        "time": "1997-03-14 03:31:00+00:00",
+        "lenses": [
+          "nexrad",
+          "magnetometer"
+        ],
+        "lens_count": 2,
+        "max_sigma": 6.333,
+        "position": null,
+        "anomalies": [
+          {
+            "time": "1997-03-14 03:25:00+00:00",
+            "station": "KIWA",
+            "sigma": 2.23,
+            "score": 0.743,
+            "lat": 32.44714285714286,
+            "lon": -111.14571428571429,
+            "field": "nexrad_null_KIWA",
+            "dist_to_station": 105.6,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:25:00+00:00",
+            "station": "KEMX",
+            "sigma": 2.39,
+            "score": 0.797,
+            "lat": 32.44714285714286,
+            "lon": -111.14571428571429,
+            "field": "nexrad_null_KEMX",
+            "dist_to_station": 78.4,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 03:31:00+00:00",
+            "field": "TUC_D",
+            "sigma": 4.359,
+            "deviation": 0.095,
+            "value": 667.8,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:31:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.01,
+            "deviation": 0.115,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:32:00+00:00",
+            "field": "TUC_D",
+            "sigma": 6.333,
+            "deviation": 0.19,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:33:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.53,
+            "deviation": 0.18,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.592,
+            "deviation": 0.665,
+            "value": 25083.2,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.655,
+            "deviation": 0.17,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:34:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.01,
+            "deviation": 0.115,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:35:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.54,
+            "deviation": 0.755,
+            "value": 25083.3,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:35:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.177,
+            "deviation": 0.16,
+            "value": 667.9,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:40:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.505,
+            "deviation": 0.745,
+            "value": 25083.4,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 03:41:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.685,
+            "deviation": 0.91,
+            "value": 25083.6,
+            "units": "nT",
+            "station": "TUC"
+          }
+        ],
+        "strength": 12.67
+      },
+      {
+        "time": "1997-03-14 02:30:00+00:00",
+        "lenses": [
+          "nexrad",
+          "magnetometer",
+          "spaceweather"
+        ],
+        "lens_count": 3,
+        "max_sigma": 4.121,
+        "position": {
+          "lat": 35.735,
+          "lon": -114.3525
+        },
+        "anomalies": [
+          {
+            "time": "1997-03-14 02:25:00+00:00",
+            "field": "Kp_confirmation",
+            "sigma": 3.0,
+            "value": 2.0,
+            "note": "Low Kp (2.0) \u2014 magnetometer anomalies confirmed NOT solar in origin"
+          },
+          {
+            "time": "1997-03-14 02:26:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.168,
+            "deviation": -0.145,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:27:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.178,
+            "deviation": -1.775,
+            "value": 25082.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:28:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.346,
+            "deviation": -1.91,
+            "value": 25082.3,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.387,
+            "deviation": -2.27,
+            "value": 25081.8,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 3.0,
+            "deviation": -0.21,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.947,
+            "deviation": -2.445,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.39,
+            "deviation": -0.2,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:31:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.354,
+            "deviation": -2.32,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.075,
+            "deviation": -2.295,
+            "value": 25081.4,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.221,
+            "deviation": -0.115,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:33:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.524,
+            "deviation": -0.11,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:34:00+00:00",
+            "field": "TUC_D",
+            "sigma": 4.121,
+            "deviation": -0.205,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:35:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.915,
+            "deviation": -0.195,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:36:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.598,
+            "deviation": -0.285,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:37:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.687,
+            "deviation": -0.27,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:38:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.197,
+            "deviation": -0.255,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:40:00+00:00",
+            "station": "KFSX",
+            "sigma": 1.77,
+            "score": 0.59,
+            "lat": 35.125,
+            "lon": -113.0975,
+            "field": "nexrad_null_KFSX",
+            "dist_to_station": 183.8,
+            "files_found": 0
+          }
+        ],
+        "strength": 12.36
+      },
+      {
+        "time": "1997-03-14 02:35:00+00:00",
+        "lenses": [
+          "nexrad",
+          "magnetometer",
+          "spaceweather"
+        ],
+        "lens_count": 3,
+        "max_sigma": 4.121,
+        "position": {
+          "lat": 35.43,
+          "lon": -113.725
+        },
+        "anomalies": [
+          {
+            "time": "1997-03-14 02:25:00+00:00",
+            "field": "Kp_confirmation",
+            "sigma": 3.0,
+            "value": 2.0,
+            "note": "Low Kp (2.0) \u2014 magnetometer anomalies confirmed NOT solar in origin"
+          },
+          {
+            "time": "1997-03-14 02:26:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.168,
+            "deviation": -0.145,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:27:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.178,
+            "deviation": -1.775,
+            "value": 25082.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:28:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.346,
+            "deviation": -1.91,
+            "value": 25082.3,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.387,
+            "deviation": -2.27,
+            "value": 25081.8,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 3.0,
+            "deviation": -0.21,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.947,
+            "deviation": -2.445,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.39,
+            "deviation": -0.2,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:31:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.354,
+            "deviation": -2.32,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.075,
+            "deviation": -2.295,
+            "value": 25081.4,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.221,
+            "deviation": -0.115,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:33:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.524,
+            "deviation": -0.11,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:34:00+00:00",
+            "field": "TUC_D",
+            "sigma": 4.121,
+            "deviation": -0.205,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:35:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.915,
+            "deviation": -0.195,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:36:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.598,
+            "deviation": -0.285,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:37:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.687,
+            "deviation": -0.27,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:38:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.197,
+            "deviation": -0.255,
+            "value": 667.1,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:40:00+00:00",
+            "station": "KFSX",
+            "sigma": 1.77,
+            "score": 0.59,
+            "lat": 35.125,
+            "lon": -113.0975,
+            "field": "nexrad_null_KFSX",
+            "dist_to_station": 183.8,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 02:45:00+00:00",
+            "station": "KFSX",
+            "sigma": 2.15,
+            "score": 0.716,
+            "lat": 34.82,
+            "lon": -112.47,
+            "field": "nexrad_null_KFSX",
+            "dist_to_station": 119.5,
+            "files_found": 0
+          },
+          {
+            "time": "1997-03-14 02:45:00+00:00",
+            "station": "KIWA",
+            "sigma": 1.76,
+            "score": 0.587,
+            "lat": 34.82,
+            "lon": -112.47,
+            "field": "nexrad_null_KIWA",
+            "dist_to_station": 185.5,
+            "files_found": 0
+          }
+        ],
+        "strength": 12.36
+      },
+      {
+        "time": "1997-03-14 02:25:00+00:00",
+        "lenses": [
+          "magnetometer",
+          "spaceweather"
+        ],
+        "lens_count": 2,
+        "max_sigma": 4.121,
+        "position": {
+          "lat": 36.04,
+          "lon": -114.98
+        },
+        "anomalies": [
+          {
+            "time": "1997-03-14 02:25:00+00:00",
+            "field": "Kp_confirmation",
+            "sigma": 3.0,
+            "value": 2.0,
+            "note": "Low Kp (2.0) \u2014 magnetometer anomalies confirmed NOT solar in origin"
+          },
+          {
+            "time": "1997-03-14 02:26:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.168,
+            "deviation": -0.145,
+            "value": 42310.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:27:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.178,
+            "deviation": -1.775,
+            "value": 25082.6,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:28:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.346,
+            "deviation": -1.91,
+            "value": 25082.3,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_H",
+            "sigma": 3.387,
+            "deviation": -2.27,
+            "value": 25081.8,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:29:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 3.0,
+            "deviation": -0.21,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.947,
+            "deviation": -2.445,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:30:00+00:00",
+            "field": "TUC_Z",
+            "sigma": 2.39,
+            "deviation": -0.2,
+            "value": 42310.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:31:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.354,
+            "deviation": -2.32,
+            "value": 25081.5,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_H",
+            "sigma": 2.075,
+            "deviation": -2.295,
+            "value": 25081.4,
+            "units": "nT",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:32:00+00:00",
+            "field": "TUC_D",
+            "sigma": 3.221,
+            "deviation": -0.115,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:33:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.524,
+            "deviation": -0.11,
+            "value": 667.3,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:34:00+00:00",
+            "field": "TUC_D",
+            "sigma": 4.121,
+            "deviation": -0.205,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          },
+          {
+            "time": "1997-03-14 02:35:00+00:00",
+            "field": "TUC_D",
+            "sigma": 2.915,
+            "deviation": -0.195,
+            "value": 667.2,
+            "units": "arcmin",
+            "station": "TUC"
+          }
+        ],
+        "strength": 8.24
+      }
+    ]
+  },
+  "null_return": [
+    {
+      "time": "1997-03-14 02:40:00+00:00",
+      "station": "KFSX",
+      "sigma": 1.77,
+      "score": 0.59,
+      "lat": 35.125,
+      "lon": -113.0975,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 183.8,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:45:00+00:00",
+      "station": "KFSX",
+      "sigma": 2.15,
+      "score": 0.716,
+      "lat": 34.82,
+      "lon": -112.47,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 119.5,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:50:00+00:00",
+      "station": "KFSX",
+      "sigma": 2.29,
+      "score": 0.764,
+      "lat": 34.482727272727274,
+      "lon": -112.2309090909091,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 95.2,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:55:00+00:00",
+      "station": "KFSX",
+      "sigma": 2.33,
+      "score": 0.777,
+      "lat": 34.28727272727273,
+      "lon": -112.0990909090909,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 88.6,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:00:00+00:00",
+      "station": "KFSX",
+      "sigma": 2.19,
+      "score": 0.73,
+      "lat": 34.042,
+      "lon": -112.24,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 112.5,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:05:00+00:00",
+      "station": "KFSX",
+      "sigma": 1.99,
+      "score": 0.664,
+      "lat": 33.690000000000005,
+      "lon": -112.36999999999999,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 145.9,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:10:00+00:00",
+      "station": "KFSX",
+      "sigma": 1.97,
+      "score": 0.657,
+      "lat": 33.39333333333334,
+      "lon": -111.97666666666666,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 149.6,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:15:00+00:00",
+      "station": "KFSX",
+      "sigma": 1.91,
+      "score": 0.637,
+      "lat": 33.20428571428572,
+      "lon": -111.73142857142858,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 160.1,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:20:00+00:00",
+      "station": "KFSX",
+      "sigma": 1.7,
+      "score": 0.567,
+      "lat": 32.825714285714284,
+      "lon": -111.43857142857144,
+      "field": "nexrad_null_KFSX",
+      "dist_to_station": 195.7,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:45:00+00:00",
+      "station": "KIWA",
+      "sigma": 1.76,
+      "score": 0.587,
+      "lat": 34.82,
+      "lon": -112.47,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 185.5,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:50:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.01,
+      "score": 0.671,
+      "lat": 34.482727272727274,
+      "lon": -112.2309090909091,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 142.5,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 02:55:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.16,
+      "score": 0.719,
+      "lat": 34.28727272727273,
+      "lon": -112.0990909090909,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 117.9,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:00:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.27,
+      "score": 0.756,
+      "lat": 34.042,
+      "lon": -112.24,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 99.0,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:05:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.39,
+      "score": 0.796,
+      "lat": 33.690000000000005,
+      "lon": -112.36999999999999,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 78.8,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:10:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.67,
+      "score": 0.89,
+      "lat": 33.39333333333334,
+      "lon": -111.97666666666666,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 30.8,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:15:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.78,
+      "score": 0.928,
+      "lat": 33.20428571428572,
+      "lon": -111.73142857142858,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 11.0,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:20:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.52,
+      "score": 0.841,
+      "lat": 32.825714285714284,
+      "lon": -111.43857142857144,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 55.8,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:25:00+00:00",
+      "station": "KIWA",
+      "sigma": 2.23,
+      "score": 0.743,
+      "lat": 32.44714285714286,
+      "lon": -111.14571428571429,
+      "field": "nexrad_null_KIWA",
+      "dist_to_station": 105.6,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:10:00+00:00",
+      "station": "KEMX",
+      "sigma": 1.62,
+      "score": 0.541,
+      "lat": 33.39333333333334,
+      "lon": -111.97666666666666,
+      "field": "nexrad_null_KEMX",
+      "dist_to_station": 209.1,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:15:00+00:00",
+      "station": "KEMX",
+      "sigma": 1.8,
+      "score": 0.6,
+      "lat": 33.20428571428572,
+      "lon": -111.73142857142858,
+      "field": "nexrad_null_KEMX",
+      "dist_to_station": 178.7,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:20:00+00:00",
+      "station": "KEMX",
+      "sigma": 2.09,
+      "score": 0.698,
+      "lat": 32.825714285714284,
+      "lon": -111.43857142857144,
+      "field": "nexrad_null_KEMX",
+      "dist_to_station": 128.5,
+      "files_found": 0
+    },
+    {
+      "time": "1997-03-14 03:25:00+00:00",
+      "station": "KEMX",
+      "sigma": 2.39,
+      "score": 0.797,
+      "lat": 32.44714285714286,
+      "lon": -111.14571428571429,
+      "field": "nexrad_null_KEMX",
+      "dist_to_station": 78.4,
+      "files_found": 0
+    }
+  ],
+  "verdict": {
+    "flags": [
+      "2 anomalous heading changes detected",
+      "201 total anomalies across 3 independent datasets",
+      "14 multi-dataset convergence events (simultaneous anomalies across independent sensors)"
+    ],
+    "conclusion": "Multiple independent anomalies detected. Conventional explanation faces significant challenges."
+  }
+}

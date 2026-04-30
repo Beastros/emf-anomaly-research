@@ -1,0 +1,397 @@
+{
+  "event": "MH370_2014",
+  "kp": 1.0,
+  "kp_quiet": true,
+  "stations": [
+    "CNB",
+    "KAK",
+    "KNY"
+  ],
+  "total_anomalies": 42,
+  "primary_hits": 9,
+  "primary_hit_details": [
+    {
+      "station": "CNB",
+      "field": "X",
+      "sigma": 3.489,
+      "time": "2014-03-07T17:15:00+00:00",
+      "dt_min": -6.0
+    },
+    {
+      "station": "CNB",
+      "field": "Y",
+      "sigma": 4.418,
+      "time": "2014-03-07T17:24:00+00:00",
+      "dt_min": 3.0
+    },
+    {
+      "station": "CNB",
+      "field": "Z",
+      "sigma": 3.143,
+      "time": "2014-03-07T17:22:00+00:00",
+      "dt_min": 1.0
+    },
+    {
+      "station": "KAK",
+      "field": "X",
+      "sigma": 2.481,
+      "time": "2014-03-07T17:21:00+00:00",
+      "dt_min": 0.0
+    },
+    {
+      "station": "KAK",
+      "field": "Y",
+      "sigma": 3.813,
+      "time": "2014-03-07T17:21:00+00:00",
+      "dt_min": 0.0
+    },
+    {
+      "station": "KAK",
+      "field": "Z",
+      "sigma": 4.391,
+      "time": "2014-03-07T17:26:00+00:00",
+      "dt_min": 5.0
+    },
+    {
+      "station": "KNY",
+      "field": "X",
+      "sigma": 2.765,
+      "time": "2014-03-07T17:21:00+00:00",
+      "dt_min": 0.0
+    },
+    {
+      "station": "KNY",
+      "field": "Y",
+      "sigma": 2.73,
+      "time": "2014-03-07T17:22:00+00:00",
+      "dt_min": 1.0
+    },
+    {
+      "station": "KNY",
+      "field": "Z",
+      "sigma": 3.0,
+      "time": "2014-03-07T17:28:00+00:00",
+      "dt_min": 7.0
+    }
+  ],
+  "all_event_anomalies": {
+    "Last ACARS": [
+      {
+        "station": "CNB",
+        "field": "X",
+        "sigma": 3.489,
+        "time": "2014-03-07T17:15:00+00:00",
+        "dt_min": 8.0
+      },
+      {
+        "station": "CNB",
+        "field": "Y",
+        "sigma": 4.033,
+        "time": "2014-03-07T17:15:00+00:00",
+        "dt_min": 8.0
+      },
+      {
+        "station": "CNB",
+        "field": "Z",
+        "sigma": 2.771,
+        "time": "2014-03-07T17:17:00+00:00",
+        "dt_min": 10.0
+      },
+      {
+        "station": "KAK",
+        "field": "X",
+        "sigma": 2.408,
+        "time": "2014-03-07T16:58:00+00:00",
+        "dt_min": -9.0
+      },
+      {
+        "station": "KAK",
+        "field": "Y",
+        "sigma": 2.915,
+        "time": "2014-03-07T17:15:00+00:00",
+        "dt_min": 8.0
+      },
+      {
+        "station": "KNY",
+        "field": "X",
+        "sigma": 2.171,
+        "time": "2014-03-07T17:16:00+00:00",
+        "dt_min": 9.0
+      },
+      {
+        "station": "KNY",
+        "field": "Z",
+        "sigma": 2.521,
+        "time": "2014-03-07T16:58:00+00:00",
+        "dt_min": -9.0
+      }
+    ],
+    "Last ATC": [
+      {
+        "station": "CNB",
+        "field": "X",
+        "sigma": 3.489,
+        "time": "2014-03-07T17:15:00+00:00",
+        "dt_min": -4.0
+      },
+      {
+        "station": "CNB",
+        "field": "Y",
+        "sigma": 4.418,
+        "time": "2014-03-07T17:24:00+00:00",
+        "dt_min": 5.0
+      },
+      {
+        "station": "CNB",
+        "field": "Z",
+        "sigma": 3.143,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": 3.0
+      },
+      {
+        "station": "KAK",
+        "field": "X",
+        "sigma": 2.481,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 2.0
+      },
+      {
+        "station": "KAK",
+        "field": "Y",
+        "sigma": 3.813,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 2.0
+      },
+      {
+        "station": "KAK",
+        "field": "Z",
+        "sigma": 4.391,
+        "time": "2014-03-07T17:26:00+00:00",
+        "dt_min": 7.0
+      },
+      {
+        "station": "KNY",
+        "field": "X",
+        "sigma": 2.765,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 2.0
+      },
+      {
+        "station": "KNY",
+        "field": "Y",
+        "sigma": 2.73,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": 3.0
+      },
+      {
+        "station": "KNY",
+        "field": "Z",
+        "sigma": 3.0,
+        "time": "2014-03-07T17:28:00+00:00",
+        "dt_min": 9.0
+      }
+    ],
+    "TRANSPONDER OFF": [
+      {
+        "station": "CNB",
+        "field": "X",
+        "sigma": 3.489,
+        "time": "2014-03-07T17:15:00+00:00",
+        "dt_min": -6.0
+      },
+      {
+        "station": "CNB",
+        "field": "Y",
+        "sigma": 4.418,
+        "time": "2014-03-07T17:24:00+00:00",
+        "dt_min": 3.0
+      },
+      {
+        "station": "CNB",
+        "field": "Z",
+        "sigma": 3.143,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": 1.0
+      },
+      {
+        "station": "KAK",
+        "field": "X",
+        "sigma": 2.481,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 0.0
+      },
+      {
+        "station": "KAK",
+        "field": "Y",
+        "sigma": 3.813,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 0.0
+      },
+      {
+        "station": "KAK",
+        "field": "Z",
+        "sigma": 4.391,
+        "time": "2014-03-07T17:26:00+00:00",
+        "dt_min": 5.0
+      },
+      {
+        "station": "KNY",
+        "field": "X",
+        "sigma": 2.765,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": 0.0
+      },
+      {
+        "station": "KNY",
+        "field": "Y",
+        "sigma": 2.73,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": 1.0
+      },
+      {
+        "station": "KNY",
+        "field": "Z",
+        "sigma": 3.0,
+        "time": "2014-03-07T17:28:00+00:00",
+        "dt_min": 7.0
+      }
+    ],
+    "LEFT TURN": [
+      {
+        "station": "CNB",
+        "field": "X",
+        "sigma": 3.297,
+        "time": "2014-03-07T17:33:00+00:00",
+        "dt_min": 3.0
+      },
+      {
+        "station": "CNB",
+        "field": "Y",
+        "sigma": 4.418,
+        "time": "2014-03-07T17:24:00+00:00",
+        "dt_min": -6.0
+      },
+      {
+        "station": "CNB",
+        "field": "Z",
+        "sigma": 3.143,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": -8.0
+      },
+      {
+        "station": "KAK",
+        "field": "X",
+        "sigma": 2.481,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": -9.0
+      },
+      {
+        "station": "KAK",
+        "field": "Y",
+        "sigma": 3.813,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": -9.0
+      },
+      {
+        "station": "KAK",
+        "field": "Z",
+        "sigma": 4.391,
+        "time": "2014-03-07T17:26:00+00:00",
+        "dt_min": -4.0
+      },
+      {
+        "station": "KNY",
+        "field": "X",
+        "sigma": 2.765,
+        "time": "2014-03-07T17:21:00+00:00",
+        "dt_min": -9.0
+      },
+      {
+        "station": "KNY",
+        "field": "Y",
+        "sigma": 2.73,
+        "time": "2014-03-07T17:22:00+00:00",
+        "dt_min": -8.0
+      },
+      {
+        "station": "KNY",
+        "field": "Z",
+        "sigma": 3.0,
+        "time": "2014-03-07T17:28:00+00:00",
+        "dt_min": -2.0
+      }
+    ],
+    "Last radar": [
+      {
+        "station": "CNB",
+        "field": "X",
+        "sigma": 3.456,
+        "time": "2014-03-07T17:55:00+00:00",
+        "dt_min": -7.0
+      },
+      {
+        "station": "CNB",
+        "field": "Y",
+        "sigma": 3.757,
+        "time": "2014-03-07T18:08:00+00:00",
+        "dt_min": 6.0
+      },
+      {
+        "station": "CNB",
+        "field": "Z",
+        "sigma": 2.744,
+        "time": "2014-03-07T17:56:00+00:00",
+        "dt_min": -6.0
+      },
+      {
+        "station": "KAK",
+        "field": "X",
+        "sigma": 2.404,
+        "time": "2014-03-07T17:57:00+00:00",
+        "dt_min": -5.0
+      },
+      {
+        "station": "KAK",
+        "field": "Y",
+        "sigma": 3.602,
+        "time": "2014-03-07T18:05:00+00:00",
+        "dt_min": 3.0
+      },
+      {
+        "station": "KAK",
+        "field": "Z",
+        "sigma": 2.44,
+        "time": "2014-03-07T17:53:00+00:00",
+        "dt_min": -9.0
+      },
+      {
+        "station": "KNY",
+        "field": "X",
+        "sigma": 2.029,
+        "time": "2014-03-07T17:57:00+00:00",
+        "dt_min": -5.0
+      },
+      {
+        "station": "KNY",
+        "field": "Y",
+        "sigma": 3.311,
+        "time": "2014-03-07T18:06:00+00:00",
+        "dt_min": 4.0
+      }
+    ],
+    "Final arc": []
+  },
+  "correlation": {
+    "value": 0.4452,
+    "pair": [
+      "CNB",
+      "KAK"
+    ]
+  },
+  "comparison": {
+    "phoenix_corr": 0.9704,
+    "nimitz_corr": 0.978,
+    "ohare_corr": 0.9796
+  },
+  "verdict": "CORROBORATION FOUND \u2014 Multi-axis anomalies at CNB and KAK within 8-10 minutes of transponder cutoff. Kp=1.0 eliminates solar explanation."
+}
