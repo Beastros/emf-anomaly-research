@@ -3,306 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phoenix Lights 1997 — EMF Anomaly Research</title>
+<title>EMF Anomaly Research</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M4LHPBSG83"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M4LHPBSG83');</script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-M4LHPBSG83');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#06090a;--bg2:#0d1214;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --green:#00ff41;--red:#ff2244;--amber:#ffaa00;--blue:#00aaff;
-  --white:#e8f0ec;--muted:rgba(232,240,236,0.55);--dim:rgba(232,240,236,0.28);
-  --mono:"Space Mono",monospace;--display:"Syne",sans-serif;
+  --bg:#0c0e0f;--bg2:#131618;--bg3:#1a1e21;
+  --border:#252a2e;--text:#cac6bc;--text-dim:#6a6760;
+  --text-bright:#e8e4d8;--accent:#5a91c0;--green:#6fa87a;
+  --warn:#b89555;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--white);font-family:var(--mono);font-size:14px;line-height:1.75;overflow-x:hidden;}
-body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.025) 3px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:9999;}
-
-.page{max-width:920px;margin:0 auto;padding:0 24px 120px;}
-
-/* HERO */
-.hero{padding:60px 0 48px;border-bottom:1px solid var(--border2);margin-bottom:64px;}
-.eyebrow{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
-.eyebrow::before{content:"";width:7px;height:7px;background:var(--green);border-radius:50%;flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,65,.5);}50%{opacity:.6;box-shadow:0 0 0 6px rgba(0,255,65,0);}}
-.hero h1{font-family:var(--display);font-size:clamp(44px,8vw,86px);font-weight:800;line-height:.95;letter-spacing:-0.03em;margin-bottom:20px;}
-.hero h1 em{font-style:normal;color:var(--green);}
-.hero-meta{display:flex;gap:28px;flex-wrap:wrap;font-size:11px;color:var(--dim);letter-spacing:0.06em;margin-bottom:24px;}
-.hero-meta span::before{content:"// ";color:var(--green);}
-.verdict{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(255,34,68,.35);background:rgba(255,34,68,.07);border-radius:2px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);}
-.verdict::before{content:"";width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse-r 1.5s ease-in-out infinite;}
-@keyframes pulse-r{0%,100%{opacity:1;}50%{opacity:.4;}}
-
-/* SECTION */
-.section{margin-bottom:80px;}
-.section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
-.section h2{font-family:var(--display);font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.05;margin-bottom:18px;}
-.section h2 .hl{color:var(--green);}
-.section h2 .hlr{color:var(--red);}
-.section h2 .hla{color:var(--amber);}
-
-/* LEDE — the one sentence that frames the image */
-.lede{font-size:16px;color:var(--white);line-height:1.6;margin-bottom:10px;max-width:68ch;font-family:var(--display);font-weight:700;}
-
-/* WHAT = plain explanation */
-.what{font-size:13px;color:var(--muted);max-width:70ch;margin-bottom:24px;line-height:1.7;}
-
-/* IMAGE */
-.fig{border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:28px 0;}
-.fig img{width:100%;display:block;background:#000;}
-.fig-cap{padding:12px 16px;background:var(--bg2);border-top:1px solid var(--border);font-size:11px;color:var(--dim);line-height:1.5;}
-.fig-cap b{color:var(--green);}
-
-/* WHY BOX */
-.why{margin:0 0 28px;padding:18px 22px;background:var(--bg2);border-radius:3px;border-left:3px solid var(--green);}
-.why.red{border-color:var(--red);background:rgba(255,34,68,.04);}
-.why.amber{border-color:var(--amber);background:rgba(255,170,0,.04);}
-.why-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
-.why.red .why-label{color:var(--red);}
-.why.amber .why-label{color:var(--amber);}
-.why p{font-size:13px;color:var(--muted);line-height:1.65;max-width:none;}
-.why p strong{color:var(--white);}
-
-/* STAT ROW */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:32px 0;}
-.stat{background:var(--bg2);padding:18px 16px;}
-.stat-val{font-family:var(--display);font-size:26px;font-weight:800;line-height:1;margin-bottom:6px;}
-.stat-val.g{color:var(--green);}
-.stat-val.r{color:var(--red);}
-.stat-val.a{color:var(--amber);}
-.stat-val.b{color:var(--blue);}
-.stat-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);line-height:1.4;}
-
-/* DIVIDER */
-hr{border:none;border-top:1px solid var(--border);margin:72px 0;}
-
-/* LIMITS */
-.limit-item{padding:16px 20px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);}
-.limit-item:first-child{border-top:1px solid var(--border);}
-.limit-item strong{color:var(--amber);}
-
-/* UAP BLOCK */
-.uap{background:var(--bg2);border:1px solid rgba(255,34,68,.2);border-radius:4px;padding:44px 36px;margin-top:80px;position:relative;overflow:hidden;}
-.uap::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--amber),var(--red));background-size:200% 100%;animation:sweep 4s linear infinite;}
-@keyframes sweep{0%{background-position:0 0}100%{background-position:200% 0}}
-.uap-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid rgba(255,34,68,.3);background:rgba(255,34,68,.08);border-radius:2px;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:24px;}
-.uap h2{font-family:var(--display);font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--red);margin-bottom:12px;}
-.uap .intro{font-size:13px;color:var(--muted);max-width:66ch;margin-bottom:36px;line-height:1.7;}
-
-/* TIMELINE */
-.tl{padding-left:24px;position:relative;}
-.tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--border2);}
-.tl-item{position:relative;margin-bottom:32px;}
-.tl-item::before{content:"";position:absolute;left:-21px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);}
-.tl-item.a::before{background:var(--amber);box-shadow:0 0 8px var(--amber);}
-.tl-item.g::before{background:var(--green);box-shadow:0 0 8px var(--green);}
-.tl-time{font-size:10px;letter-spacing:0.1em;color:var(--red);margin-bottom:3px;}
-.tl-item.a .tl-time{color:var(--amber);}
-.tl-item.g .tl-time{color:var(--green);}
-.tl-title{font-size:14px;color:var(--white);font-weight:700;margin-bottom:4px;font-family:var(--display);}
-.tl-body{font-size:12px;color:var(--muted);line-height:1.6;}
-
-/* PROFILE TABLE */
-.profile{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px;}
-.profile tr{border-bottom:1px solid var(--border);}
-.profile tr:last-child{border-bottom:none;}
-.profile td{padding:10px 14px;}
-.profile td:first-child{color:var(--dim);width:46%;}
-.profile td:last-child{color:var(--amber);font-weight:700;text-align:right;}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;font-size:11px;color:var(--dim);}
-footer a{color:var(--green);text-decoration:none;}
-
-@media(max-width:600px){
-  .page{padding:0 16px 80px;}
-  .uap{padding:28px 20px;}
-  .stats{grid-template-columns:1fr 1fr;}
-  .hero h1{font-size:42px;}
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-weight:300;line-height:1.75;max-width:920px;margin:0 auto;padding:3rem 2rem 6rem;}
+a{color:inherit;text-decoration:none;}a:hover{color:var(--accent);}
+header{border-bottom:1px solid var(--border);padding-bottom:2rem;margin-bottom:2.5rem;}
+.report-id{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;
+  color:var(--text-dim);text-transform:uppercase;margin-bottom:1rem;}
+h1{font-family:var(--sans);font-weight:500;font-size:1.35rem;color:var(--text-bright);
+  line-height:1.35;margin-bottom:0.75rem;max-width:680px;}
+.subtitle{font-size:0.875rem;color:var(--text-dim);line-height:1.6;max-width:620px;}
+.meta{display:flex;gap:2rem;margin-top:1.25rem;flex-wrap:wrap;
+  font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);}
+.meta span{color:var(--text);}
+nav{display:flex;gap:1.5rem;flex-wrap:wrap;font-family:var(--mono);
+  font-size:0.72rem;margin-bottom:3rem;}
+nav a{color:var(--text-dim);transition:color 0.15s;}nav a:hover{color:var(--accent);}
+section{margin-bottom:4rem;}
+.sec-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
+  color:var(--text-dim);text-transform:uppercase;margin-bottom:0.4rem;}
+h2{font-family:var(--sans);font-weight:500;font-size:1.05rem;
+  color:var(--text-bright);margin-bottom:0.9rem;line-height:1.35;}
+p{font-size:0.875rem;margin-bottom:0.75rem;max-width:680px;}
+.finding{border-left:2px solid var(--border);padding-left:1.5rem;margin-bottom:3rem;}
+.fid{font-family:var(--mono);font-size:0.68rem;color:var(--accent);
+  letter-spacing:0.07em;margin-bottom:0.3rem;}
+.finding h2{font-size:0.95rem;margin-bottom:0.6rem;}.finding p{font-size:0.875rem;}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);
+  font-size:0.76rem;margin:1.25rem 0;}
+thead th{text-align:left;padding:0.45rem 0.75rem;background:var(--bg3);
+  color:var(--text-dim);font-weight:400;letter-spacing:0.04em;
+  border-bottom:1px solid var(--border);}
+tbody td{padding:0.45rem 0.75rem;border-bottom:1px solid var(--bg3);vertical-align:top;}
+tbody tr:hover{background:var(--bg2);}
+.r{text-align:right;}.hi{color:var(--green);}.dim{color:var(--text-dim);}
+.warn{color:var(--warn);}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border);margin:1.25rem 0;}
+.stat{background:var(--bg2);padding:0.85rem 1rem;}
+.slabel{font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);
+  letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.25rem;}
+.snum{font-family:var(--mono);font-size:1.05rem;color:var(--text-bright);font-weight:500;}
+.sunit{font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);margin-top:0.15rem;}
+.fig{margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border);}
+.fig img{width:100%;display:block;}
+.figcap{padding:0.55rem 1rem;font-family:var(--mono);font-size:0.67rem;
+  color:var(--text-dim);border-top:1px solid var(--border);}
+.notice{background:var(--bg3);border-left:2px solid var(--warn);
+  padding:0.85rem 1rem;margin:1rem 0;font-size:0.82rem;color:var(--text-dim);}
+.notice strong{color:var(--warn);font-weight:500;}
+.formula{background:var(--bg3);border:1px solid var(--border);
+  padding:1rem 1.25rem;margin:1rem 0;font-family:var(--mono);
+  font-size:0.77rem;overflow-x:auto;line-height:1.9;color:var(--text);}
+code{font-family:var(--mono);font-size:0.8em;background:var(--bg3);
+  padding:0.1em 0.3em;border-radius:2px;color:var(--text-bright);}
+ul.plain{font-size:0.875rem;padding-left:1.2rem;line-height:2;}
+footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
+  font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);line-height:1.9;}
 </style>
 </head>
 <body>
-<div class="page">
-
-<!-- HERO -->
-<header class="hero">
-  <div class="eyebrow">EMF Anomaly Research &mdash; Field Report 001</div>
-  <h1>Phoenix Lights<br><em>1997</em></h1>
-  <div class="hero-meta">
-    <span>March 13&ndash;14, 1997</span>
-    <span>Nevada&ndash;Arizona corridor</span>
-    <span>155 minutes</span>
-    <span>1,000+ witnesses</span>
+<header>
+  <div class="report-id">EMF Anomaly Research &mdash; Public Report &mdash; 2026-04-30</div>
+  <h1>Cross-Correlation of Public Sensor Data Against Documented Anomalous Events</h1>
+  <p class="subtitle">Analysis using publicly accessible government archives: USGS magnetometer network, GFZ Potsdam Kp index, NOAA NEXRAD. All results are reproducible from source data.</p>
+  <div class="meta">
+    <div>Code: <span><a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a></span></div>
+    <div>Contact: <span>emfproj@proton.me</span></div>
   </div>
-  <div class="verdict">&#9632; High anomaly &mdash; multiple independent sensors</div>
 </header>
+<nav>
+  <a href="#method">Method</a><a href="#events">Events</a>
+  <a href="#phoenix">Phoenix 1997</a><a href="#nimitz">Nimitz 2004</a>
+  <a href="#ohare">O&#39;Hare 2006</a><a href="#jal">JAL 1628</a>
+  <a href="#mh370">MH370</a><a href="#signatures">Signatures</a>
+  <a href="#limits">Limits</a>
+</nav>
+<section id="method">
+  <div class="sec-label">Method</div>
+  <h2>Anomaly Convergence Score (ACS)</h2>
+  <p>For each event, sensor data is retrieved from public APIs across a &#177;2-hour window. Each stream is scored against a rolling 20-minute baseline using a sigma deviation metric. A solar gate (GFZ Kp index) down-weights periods of elevated geomagnetic activity. Cross-station Pearson correlation identifies whether independent stations responded together.</p>
+  <p>A convergence event is logged when two or more independent sensor streams exceed the 2.0&#963; threshold within a &#177;10-minute window.</p>
+  <div class="formula">ACS(t) = &#8721; [ w&#8345; &times; &#963;&#8345;(t) &times; G(Kp) &times; N(s,t) ]
 
-
-<!-- FINDING 1: THE TRACK -->
-<div class="section">
-  <div class="section-label">// Finding 01 &mdash; Formation track</div>
-  <h2>Something crossed <span class="hl">720 km of Arizona</span> that night</h2>
-
-  <p class="lede">Using nine timestamped witness locations, we computed the velocity of the formation across each leg of its track.</p>
-  <p class="what">The colored lines on the map show speed per segment. Green = below A-10 cruise speed. Amber = within A-10 range. Red = faster than the A-10's maximum. The red circles are "convergence events" &mdash; moments where multiple independent sensors flagged anomalies at the same time and place. The bar charts on the right show speed and heading for each segment.</p>
-
-  <div class="fig">
-    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png" alt="Phoenix Lights formation track map with speed and convergence data">
-    <div class="fig-cap"><b>Fig 1.</b> Formation track Nevada&rarr;Arizona with computed segment velocities. Red segments exceed the A-10 Warthog maximum speed of 706 km/h. Red circles are multi-sensor convergence events. Bottom panel: full event timeline showing speed over time, witness markers, and convergence windows. The large red zone near Tucson is where the magnetic field spike landed.</div>
-  </div>
-
-  <div class="why amber">
-    <div class="why-label">Why this is interesting</div>
-    <p>The US Air Force's official explanation was A-10 Warthogs dropping flares during a training exercise. The A-10's maximum speed is 706 km/h. <strong>Four of eight tracked segments exceeded that &mdash; with a peak of 855 km/h.</strong> The formation also made an anomalous heading reversal near Wickenburg, briefly traveling southwest at 743 km/h before resuming its southeast track. Note: these velocities are derived from witness timestamps and carry inherent uncertainty &mdash; but even with generous margins, several segments are difficult to explain with the A-10 attribution.</p>
-  </div>
-</div>
-
-
-<!-- FINDING 2: THE LOCKSTEP -->
-<div class="section">
-  <div class="section-label">// Finding 02 &mdash; Two-station magnetometer correlation</div>
-  <h2>Two government instruments <span class="hl">1,013 km apart</span> moved in near-perfect lockstep</h2>
-
-  <p class="lede">This is the most unusual finding. Look at the two lines in the chart below.</p>
-  <p class="what">A magnetometer measures tiny fluctuations in Earth's magnetic field &mdash; essentially a very precise compass. There is one in Tucson, Arizona (TUC) and one in Boulder, Colorado (BOU). They are 1,013 km apart, operated by different USGS field offices, with independent atomic clocks. They have no connection to each other beyond both measuring the planet.<br><br>The red line is Tucson. The green line is Boulder. The shaded window is the Phoenix Lights event. Watch what happens to both lines during that window.</p>
-
-  <div class="fig">
-    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png" alt="Phoenix Lights multi-station magnetometer wavefront analysis">
-    <div class="fig-cap"><b>Fig 2.</b> Multi-station magnetometer wavefront analysis &mdash; 5 panels. <b>Top:</b> all 5 stations normalized D-field over the full day &mdash; TUC and BOU visibly track together during the event window. <b>Second panel:</b> TUC (red) vs BOU (green) zoomed &mdash; correlation 0.9704 at lag &minus;1 minute, implied velocity &gt;60,000 km/h. No eyewitness timestamps used. <b>Third panel:</b> sigma anomaly scores &mdash; only TUC spikes at 03:32 UTC; Alaska, Hawaii, and Virginia stay flat. <b>Bottom:</b> station network map and summary. Red vertical line throughout = 03:32 UTC, last sighting, moment of the 6.333&sigma; spike.</div>
-  </div>
-
-  <div class="why red">
-    <div class="why-label">Why this is weird</div>
-    <p>Their correlation during the event window was <strong>0.9704 out of a maximum of 1.0.</strong> The time lag between them was one minute &mdash; essentially simultaneous across 1,013 km. The implied propagation velocity: <strong>over 60,000 km/h.</strong> For reference, the International Space Station orbits at 28,000 km/h.<br><br>Crucially: the stations in Alaska, Hawaii, and Virginia showed <em>nothing</em>. If this were a solar storm or global geomagnetic event, all stations would move together. It didn't &mdash; it was localized to the Arizona&ndash;Colorado corridor. The sun is not the explanation.</p>
-  </div>
-</div>
-
-
-<!-- FINDING 3: THE SPIKE -->
-<div class="section">
-  <div class="section-label">// Finding 03 &mdash; Terminal anomaly</div>
-  <h2>The magnetic field <span class="hlr">spiked 6.333&sigma;</span> four minutes after the last sighting</h2>
-
-  <p class="lede">Look at panel 3 of the chart above &mdash; the anomaly score graph. Every station is background noise. Then at 03:32 UTC, one station fires.</p>
-  <p class="what">Sigma (&sigma;) is a measure of how far a reading deviates from its own recent baseline. Scientists generally flag anything above 3&sigma; as highly anomalous. The Tucson magnetometer's D-field (compass declination axis) hit <strong>6.333&sigma;</strong> &mdash; more than double the threshold for "highly anomalous." This is the largest single reading of the night, on the most directionally sensitive axis. It arrived four minutes after the last reported visual sighting of the formation near Tucson.</p>
-
-  <div class="stats">
-    <div class="stat"><div class="stat-val r">6.333&sigma;</div><div class="stat-label">D-field peak &mdash; TUC Tucson AZ &mdash; 03:32 UTC</div></div>
-    <div class="stat"><div class="stat-val g">0.9704</div><div class="stat-label">TUC&ndash;BOU correlation &mdash; 1,013 km apart</div></div>
-    <div class="stat"><div class="stat-val g">Kp 2.0</div><div class="stat-label">Solar activity &mdash; quiet &mdash; sun eliminated</div></div>
-    <div class="stat"><div class="stat-val a">4 / 8</div><div class="stat-label">Speed segments exceeding A-10 max (706 km/h)</div></div>
-    <div class="stat"><div class="stat-val r">14</div><div class="stat-label">Multi-sensor convergence events</div></div>
-    <div class="stat"><div class="stat-val b">201</div><div class="stat-label">Total individual anomaly readings</div></div>
-  </div>
-
-  <div class="why">
-    <div class="why-label">The solar elimination test</div>
-    <p>Before any magnetometer finding means anything, we check the Kp index &mdash; a global measure of solar storm activity published by the German Research Centre for Geosciences, running continuously since 1932. On March 13&ndash;14 1997, <strong>Kp was 2.0 &mdash; firmly quiet.</strong> A geomagnetic storm capable of producing a 6.333&sigma; reading would have registered at Kp 5&ndash;9 and disturbed every station on Earth simultaneously. This did neither. Solar activity is eliminated as a cause.</p>
-  </div>
-</div>
-
-
-<!-- FINDING 4: RADAR -->
-<div class="section">
-  <div class="section-label">// Finding 04 &mdash; Radar</div>
-  <h2>No civilian agency <span class="hla">officially reported tracking it</span></h2>
-
-  <p class="what">One important caveat: NEXRAD is a <em>weather</em> radar network &mdash; it detects atmospheric returns, not necessarily aircraft. When we queried the NOAA S3 archive for the 1997 event window, all three stations returned AccessDenied. Pre-2008 NEXRAD data is not publicly accessible. We cannot independently verify a null return from raw files &mdash; and we're saying that plainly rather than claiming "nothing detected."<br><br>What is on the record: no FAA radar facility, no civilian agency, officially reported tracking anything during the Phoenix Lights event. That's the accurate claim. The magnetometer findings stand independently of the radar question.</p>
-
-  <div class="why amber">
-    <div class="why-label">What this does and doesn't mean</div>
-    <p>The absence of official civilian radar detection is notable but not conclusive. Military radar records are classified. NEXRAD wasn't designed to track aircraft. The honest position: <strong>something was observed by over a thousand people across 720 km of American airspace, and the public record contains no radar tracking of it.</strong> Draw your own conclusions from that gap.</p>
-  </div>
-</div>
-
-
-<!-- HONEST LIMITS -->
-<div class="section">
-  <div class="section-label">// Honest limits</div>
-  <h2>What this data <span class="hl">does and doesn't</span> prove</h2>
-
-  <div class="limit-item"><strong>Classified military activity</strong> &mdash; The US military operates classified aircraft and electronic warfare systems with extraordinary performance characteristics that generate strong EM fields. We cannot access classified flight records. This remains the most credible conventional explanation that survives the full dataset &mdash; though the 1,013 km simultaneous correlation is extremely difficult to attribute to any known EW system.</div>
-  <div class="limit-item"><strong>Ionospheric disturbance</strong> &mdash; Traveling ionospheric disturbances can affect multiple magnetometers. However these are associated with solar activity, which was confirmed absent. A spontaneous large-amplitude TID during Kp 2.0 conditions coinciding exactly with the event window would itself require explanation.</div>
-  <div class="limit-item"><strong>Witness timestamp uncertainty</strong> &mdash; Velocity calculations come from human-reported times and locations. The speed figures carry margin of error. "855 km/h" is an estimate, not a precision measurement.</div>
-  <div class="limit-item"><strong>What the data does show clearly:</strong> The A-10 flare explanation is inconsistent with the magnetometer record. Flares do not produce 6.333&sigma; D-field anomalies at government observatories. They do not simultaneously disturb compass readings in Colorado. The instruments registered something the official explanation does not account for.</div>
-</div>
-
-
-<hr>
-
-
-<!-- UAP SPECULATION -->
-<div class="uap">
-  <div class="uap-badge">&#9888; Speculative &mdash; data-grounded hypothesis</div>
-  <h2>If the instruments are telling the truth &mdash; what was here</h2>
-  <p class="intro">The following reconstructs the event strictly from sensor data. No claims about origin or nature. One question only: if something physical caused these readings, what does its behavior profile look like?</p>
-
-  <div class="tl">
-    <div class="tl-item a">
-      <div class="tl-time">02:25 UTC &mdash; Henderson, Nevada</div>
-      <div class="tl-title">Entry into sensor range</div>
-      <div class="tl-body">Magnetometer anomaly window opens. Kp 2.0 confirmed quiet. Whatever this is, it is not the sun.</div>
-    </div>
-    <div class="tl-item a">
-      <div class="tl-time">02:30&ndash;02:47 UTC &mdash; Prescott / Paulden AZ</div>
-      <div class="tl-title">High-speed traverse &mdash; estimated 794&ndash;855 km/h</div>
-      <div class="tl-body">Velocity estimates exceed A-10 maximum on multiple segments. Three independent sensors flag convergence. The object moves faster than the aircraft the Air Force attributed.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-time">02:58 UTC &mdash; Wickenburg AZ</div>
-      <div class="tl-title">Anomalous heading reversal &mdash; southwest at 743 km/h</div>
-      <div class="tl-body">Formation reverses direction before resuming southeast. No official radar detection. No sound. Thousands of people below.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-time">03:03&ndash;03:14 UTC &mdash; Phoenix metropolitan area</div>
-      <div class="tl-title">Low-altitude pass over major population center</div>
-      <div class="tl-body">Thousands of witnesses across Glendale, Phoenix, Chandler observe a silent formation estimated at over one mile across. No agency officially reported tracking it on radar.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-time">03:28&ndash;03:31 UTC &mdash; Tucson approach</div>
-      <div class="tl-title">Last visual contacts &mdash; field building</div>
-      <div class="tl-body">TUC&ndash;BOU correlation has been running at 0.9704 for the entire duration. 1,013 km of Earth's magnetic field moving as a single synchronized unit across two states for over an hour.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-time">03:32:00 UTC &mdash; Terminal event, Tucson</div>
-      <div class="tl-title">&#9889; PEAK EMF OUTPUT &mdash; 6.333&sigma; &mdash; OBJECT GONE</div>
-      <div class="tl-body">D-field at TUC spikes to 6.333 standard deviations. Four minutes after the last visual sighting. Boulder CO registers the same disturbance propagating at over 60,000 km/h. The sustained field that synchronized two states for 70 minutes collapses at a point near Tucson. No witness reports seeing it leave. The field goes quiet.</div>
-    </div>
-    <div class="tl-item g">
-      <div class="tl-time">03:33 UTC onward</div>
-      <div class="tl-title">Field returns to baseline. Event closed.</div>
-      <div class="tl-body">TUC returns to normal. BOU decouples. The 70-minute synchronization ends. No further anomalies attributable to the event.</div>
-    </div>
-  </div>
-
-  <table class="profile">
-    <tr><td>Track length</td><td>~720 km &mdash; Henderson NV to Tucson AZ</td></tr>
-    <tr><td>Sensor contact duration</td><td>~67 minutes (02:25&ndash;03:32 UTC)</td></tr>
-    <tr><td>Average estimated velocity</td><td>561 km/h</td></tr>
-    <tr><td>Peak estimated velocity</td><td>855 km/h (21% above A-10 maximum)</td></tr>
-    <tr><td>Civilian radar detection</td><td>None on official record</td></tr>
-    <tr><td>EM field spatial extent</td><td>&gt;1,013 km &mdash; AZ and CO simultaneously</td></tr>
-    <tr><td>Peak EMF output</td><td>6.333&sigma; D-field &mdash; 03:32:00 UTC &mdash; Tucson AZ</td></tr>
-    <tr><td>Departure propagation speed</td><td>&gt;60,787 km/h &mdash; consistent with EM radiation</td></tr>
-    <tr><td>Solar activity</td><td>Kp 2.0 &mdash; QUIET &mdash; sun eliminated</td></tr>
+  &#963;&#8345;(t)  = |x - mean(20-min window)| / std(20-min window)
+  G(Kp)    = 1.0 if Kp &lt; 3.0  (solar ELIMINATED)
+             0.2 if Kp &ge; 3.0  (solar POSSIBLE)
+  N(s,t)   = 1 &minus; (files_present / expected) within coverage radius
+  Weights  : magnetometer 1.0 | NEXRAD 0.8 | Kp index 0.6
+  Threshold: &sigma; &gt; 2.0 to flag anomaly</div>
+  <p>Cross-station propagation velocity is estimated as station_separation / time_lag at peak Pearson r.</p>
+</section>
+<section id="events">
+  <div class="sec-label">Overview</div>
+  <h2>Events Analyzed</h2>
+  <table>
+    <thead><tr><th>Event</th><th>Date (UTC)</th><th>Kp</th><th>Solar</th><th>Stations</th><th>r</th><th>Peak &sigma;</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td>Phoenix Lights</td><td class="r">1997-03-13</td><td class="r">2.0</td><td class="hi">QUIET</td><td>TUC, BOU</td><td class="r hi">0.9704</td><td class="r">6.33</td><td class="hi">HIGH ANOMALY</td></tr>
+      <tr><td>USS Nimitz</td><td class="r">2004-11-14</td><td class="r">1.333</td><td class="hi">QUIET</td><td>TUC, BOU</td><td class="r hi">0.978</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
+      <tr><td>O&#39;Hare Airport</td><td class="r">2006-11-07</td><td class="r">0.0</td><td class="hi">QUIET</td><td>FRD, BOU</td><td class="r hi">0.9796</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
+      <tr><td>JAL Flight 1628</td><td class="r">1986-11-17</td><td class="r">2.667</td><td class="hi">QUIET</td><td>SIT, BOU</td><td class="r dim">&mdash;</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
+      <tr><td>Stephenville TX</td><td class="r">2008-01-08</td><td class="r">3.333</td><td class="warn">ACTIVE</td><td>ABN, BOU</td><td class="r">0.9711</td><td class="r dim">&mdash;</td><td class="warn">INCONCLUSIVE</td></tr>
+      <tr><td>MH370</td><td class="r">2014-03-07</td><td class="r">1.0</td><td class="hi">QUIET</td><td>CNB, KAK, KNY</td><td class="r">0.4452</td><td class="r">4.42</td><td class="hi">ANOMALY (control)*</td></tr>
+    </tbody>
   </table>
-
-  <div class="why red" style="margin-top:8px">
-    <div class="why-label">The bottom line</div>
-    <p>Something was here. It went from Nevada to Arizona in 67 minutes. It generated an electromagnetic field large enough to simultaneously affect government instruments in two different states. It departed with a spike measurable at 6.333 standard deviations above baseline at a government observatory. No agency tracked it. The field collapsed. It was gone.<br><br><strong>Every number above is derived from publicly available government data. Reproduce it yourself: github.com/Beastros/emf-anomaly-research</strong></p>
+  <p class="dim" style="font-family:var(--mono);font-size:0.72rem">* MH370 added as control case expecting null result.</p>
+</section>
+<section id="phoenix">
+  <div class="sec-label">Event 01</div>
+  <h2>Phoenix Lights &mdash; 1997-03-13</h2>
+  <div class="finding">
+    <div class="fid">Finding 01 &mdash; Formation track</div>
+    <h2>Eight witness-reported track segments. Four exceed the A-10 Warthog maximum speed of 706 km/h.</h2>
+    <p>Witness timestamps and reported positions allow a rough track reconstruction across approximately 560 km from Paulden to Tucson, AZ. Speed estimates carry significant uncertainty due to imprecise timestamps.</p>
+    <div class="fig">
+      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png" alt="Phoenix Lights track map" loading="lazy">
+      <div class="figcap">Fig. 1 &mdash; Witness-reported positions and estimated track segments. Speeds derived from witness timestamps.</div>
+    </div>
+    <table>
+      <thead><tr><th>#</th><th>From</th><th>To</th><th class="r">Est. speed (km/h)</th><th class="r">A-10 max</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Paulden</td><td>Prescott</td><td class="r">282</td><td class="r dim">706</td><td class="dim">within envelope</td></tr>
+        <tr><td>2</td><td>Prescott</td><td>Dewey</td><td class="r warn">855</td><td class="r dim">706</td><td class="warn">exceeds max</td></tr>
+        <tr><td>3</td><td>Dewey</td><td>Glendale</td><td class="r warn">780</td><td class="r dim">706</td><td class="warn">exceeds max</td></tr>
+        <tr><td>4</td><td>Glendale</td><td>Phoenix</td><td class="r">391</td><td class="r dim">706</td><td class="dim">within envelope</td></tr>
+        <tr><td>5</td><td>Phoenix</td><td>Chandler</td><td class="r warn">712</td><td class="r dim">706</td><td class="warn">marginally exceeds</td></tr>
+        <tr><td>6</td><td>Chandler</td><td>Casa Grande</td><td class="r warn">741</td><td class="r dim">706</td><td class="warn">exceeds max</td></tr>
+        <tr><td>7</td><td>Casa Grande</td><td>Maricopa</td><td class="r">398</td><td class="r dim">706</td><td class="dim">within envelope</td></tr>
+        <tr><td>8</td><td>Maricopa</td><td>Tucson</td><td class="r">244</td><td class="r dim">706</td><td class="dim">within envelope</td></tr>
+      </tbody>
+    </table>
+    <p>Speed estimates are order-of-magnitude figures. Outlier segments are notable but not independently verifiable from this data alone.</p>
   </div>
-</div>
-
-
+  <div class="finding">
+    <div class="fid">Finding 02 &mdash; Two-station lockstep</div>
+    <h2>Two magnetometer stations 1,013 km apart moved in near-perfect synchrony during the event window.</h2>
+    <p>USGS magnetometers at Tucson, AZ (TUC) and Boulder, CO (BOU) are independent instruments on separate data acquisition systems. During the Phoenix Lights window their D-component traces show a Pearson correlation of 0.9704 at a lag of &minus;1 minute. The implied propagation velocity exceeds 60,000 km/h, inconsistent with known atmospheric mechanisms.</p>
+    <div class="fig">
+      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png" alt="TUC-BOU magnetometer correlation" loading="lazy">
+      <div class="figcap">Fig. 2 &mdash; D-component time series, TUC and BOU, 1997-03-13. Shaded region marks reported sighting window. Cross-correlation peak at lag = &minus;1 min.</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="slabel">Pearson r</div><div class="snum">0.9704</div><div class="sunit">TUC&ndash;BOU D-component</div></div>
+      <div class="stat"><div class="slabel">Lag at peak r</div><div class="snum">&minus;1 min</div><div class="sunit">BOU leads TUC</div></div>
+      <div class="stat"><div class="slabel">Station separation</div><div class="snum">1,013 km</div><div class="sunit">TUC to BOU</div></div>
+      <div class="stat"><div class="slabel">Implied velocity</div><div class="snum">&gt;60,787</div><div class="sunit">km/h at 1-min resolution</div></div>
+      <div class="stat"><div class="slabel">Kp index</div><div class="snum">2.0</div><div class="sunit">solar ELIMINATED</div></div>
+      <div class="stat"><div class="slabel">D-field peak</div><div class="snum">6.33&sigma;</div><div class="sunit">TUC, 03:32 UTC</div></div>
+    </div>
+  </div>
+  <div class="finding">
+    <div class="fid">Finding 03 &mdash; Terminal spike</div>
+    <h2>A 6.33&sigma; field deviation at Tucson occurred 4 minutes after the final reported sighting.</h2>
+    <p>At 03:32 UTC the TUC D-component reached 6.333 standard deviations above the 20-minute rolling baseline. BOU responded 1 minute later.</p>
+    <table>
+      <thead><tr><th>Metric</th><th class="r">Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Magnetometer anomalies</td><td class="r">178</td><td class="dim">&ge;2.0&sigma; threshold</td></tr>
+        <tr><td>Convergence events</td><td class="r">14</td><td class="dim">&ge;2 independent streams, &plusmn;10 min window</td></tr>
+        <tr><td>Total anomalies (all lenses)</td><td class="r">201</td><td class="dim">magnetometer + radar + solar</td></tr>
+        <tr><td>Peak D-field deviation</td><td class="r">6.333&sigma;</td><td class="dim">TUC, 03:32 UTC</td></tr>
+        <tr><td>Relative to last sighting</td><td class="r">+4 min</td><td class="dim">at TUC station</td></tr>
+        <tr><td>BOU response</td><td class="r">+1 min</td><td class="dim">after TUC peak</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="finding">
+    <div class="fid">Finding 04 &mdash; Radar</div>
+    <h2>Pre-2008 NEXRAD archive is inaccessible. No radar finding can be made for this event.</h2>
+    <div class="notice">
+      <strong>AccessDenied:</strong> NOAA S3 bucket <code>s3://noaa-nexrad-level2/</code> returns <code>AccessDenied</code> for all 1997 queries. The pre-2008 archive has not been publicly released. This analysis cannot determine whether the object appeared or did not appear on radar. NEXRAD is weather surveillance radar and does not track aircraft.
+    </div>
+  </div>
+</section>
+<section id="nimitz">
+  <div class="sec-label">Event 02</div>
+  <h2>USS Nimitz &mdash; 2004-11-14</h2>
+  <p>Pattern consistent with Phoenix Lights Type 1 signature: high cross-station correlation at near-zero lag during quiet solar conditions.</p>
+  <div class="stats">
+    <div class="stat"><div class="slabel">Kp</div><div class="snum">1.333</div><div class="sunit">solar ELIMINATED</div></div>
+    <div class="stat"><div class="slabel">TUC&ndash;BOU r</div><div class="snum">0.978</div><div class="sunit">lag = 0 min</div></div>
+    <div class="stat"><div class="slabel">Relocation segment</div><div class="snum">1,308 km/h</div><div class="sunit">instantaneous (est.)</div></div>
+    <div class="stat"><div class="slabel">TUC spike</div><div class="snum">+1 min</div><div class="sunit">after relocation event</div></div>
+  </div>
+  <p>Zero lag at 1,013 km separation implies either propagation velocity beyond measurement resolution or a simultaneous regional field response.</p>
+</section>
+<section id="ohare">
+  <div class="sec-label">Event 03</div>
+  <h2>O&#39;Hare Airport &mdash; 2006-11-07</h2>
+  <p>Kp was exactly 0.0, the minimum possible value, providing the cleanest solar elimination in the dataset.</p>
+  <div class="stats">
+    <div class="stat"><div class="slabel">Kp</div><div class="snum">0.0</div><div class="sunit">solar ELIMINATED</div></div>
+    <div class="stat"><div class="slabel">FRD&ndash;BOU r</div><div class="snum">0.9796</div><div class="sunit">lag = &minus;21 min</div></div>
+    <div class="stat"><div class="slabel">BOU spike</div><div class="snum">+1 min</div><div class="sunit">after reported object ascent</div></div>
+  </div>
+  <p>Fredericksburg, VA (FRD) and Boulder, CO (BOU) produced r = 0.9796 with FRD leading BOU by 21 minutes. BOU spiked 1 minute after witnesses described the object departing upward through the cloud deck. Classified Type 1.</p>
+</section>
+<section id="jal">
+  <div class="sec-label">Event 04</div>
+  <h2>JAL Flight 1628 &mdash; 1986-11-17</h2>
+  <p>Type 2 signature: propagating wavefront with velocity consistent with 747 cruise speed, followed by a high-velocity terminal spike attributed to magnetospheric coupling.</p>
+  <div class="stats">
+    <div class="stat"><div class="slabel">Kp</div><div class="snum">2.667</div><div class="sunit">solar ELIMINATED</div></div>
+    <div class="stat"><div class="slabel">Alaska wavefront</div><div class="snum">829 km/h</div><div class="sunit">avg &mdash; matches 747 cruise</div></div>
+    <div class="stat"><div class="slabel">SIT&ndash;BOU terminal</div><div class="snum">42,954 km/h</div><div class="sunit">magnetospheric coupling</div></div>
+  </div>
+  <p>The 829 km/h wavefront velocity across Alaska stations matches 747 cruise speed, consistent with a disturbance co-moving with the aircraft. Pattern: PROPAGATING WAVEFRONT, distinct from Type 1 events.</p>
+</section>
+<section id="mh370">
+  <div class="sec-label">Event 05 &mdash; Control Case</div>
+  <h2>MH370 &mdash; 2014-03-07</h2>
+  <p>Added as a control case expecting a null result. Nine magnetometer anomalies across three independent stations cluster at or within 5 minutes of 17:21 UTC, the exact minute the transponder went offline.</p>
+  <div class="notice">
+    <strong>Previously unreported.</strong> Kp = 1.0 (solar eliminated). Cross-station correlation (0.4452) is substantially lower than the UAP events, suggesting a different mechanism or more localized disturbance.
+  </div>
+  <table>
+    <thead><tr><th>Station</th><th>Location</th><th>Component</th><th class="r">Deviation (&sigma;)</th><th class="r">dt from 17:21 UTC (min)</th></tr></thead>
+    <tbody>
+      <tr><td>KAK</td><td>Kakioka, Japan</td><td>X</td><td class="r">2.481</td><td class="r hi">0.0</td></tr>
+      <tr><td>KAK</td><td>Kakioka, Japan</td><td>Y</td><td class="r">3.813</td><td class="r hi">0.0</td></tr>
+      <tr><td>KNY</td><td>Kanoya, Japan</td><td>X</td><td class="r">2.765</td><td class="r hi">0.0</td></tr>
+      <tr><td>CNB</td><td>Canberra, Australia</td><td>Y</td><td class="r">4.418</td><td class="r">+3</td></tr>
+      <tr><td>KAK</td><td>Kakioka, Japan</td><td>Z</td><td class="r">4.391</td><td class="r">+5</td></tr>
+    </tbody>
+  </table>
+  <div class="stats">
+    <div class="stat"><div class="slabel">Kp</div><div class="snum">1.0</div><div class="sunit">solar ELIMINATED</div></div>
+    <div class="stat"><div class="slabel">Hits at 17:21 UTC</div><div class="snum">9</div><div class="sunit">across 3 stations</div></div>
+    <div class="stat"><div class="slabel">Total anomalies</div><div class="snum">42</div><div class="sunit">full disappearance sequence</div></div>
+    <div class="stat"><div class="slabel">CNB&ndash;KAK r</div><div class="snum">0.4452</div><div class="sunit">lower than UAP events (&gt;0.97)</div></div>
+    <div class="stat"><div class="slabel">Final arc 00:11 UTC</div><div class="snum">0 hits</div><div class="sunit">field quiet after sequence</div></div>
+  </div>
+  <p>The field goes quiet at the final arc position. The reduced correlation relative to UAP events is noted and likely significant.</p>
+</section>
+<section id="signatures">
+  <div class="sec-label">Pattern Analysis</div>
+  <h2>Two Distinct EM Signatures</h2>
+  <table>
+    <thead><tr><th>Type</th><th>Characteristics</th><th>Events</th><th class="r">r</th><th class="r">Lag</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Type 1</strong><br><span class="dim">Simultaneous regional</span></td>
+        <td>Stations respond together across 1,000+ km. Near-zero lag. High r.</td>
+        <td>Phoenix, Nimitz, O&#39;Hare</td>
+        <td class="r hi">&gt;0.97</td><td class="r">0&ndash;1 min</td>
+      </tr>
+      <tr>
+        <td><strong>Type 2</strong><br><span class="dim">Propagating wavefront</span></td>
+        <td>Sequential station peaks. Velocity tracks event geometry.</td>
+        <td>JAL 1628, MH370</td>
+        <td class="r">0.44&ndash;var</td><td class="r">min&ndash;hrs</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Phoenix, Nimitz, and O&#39;Hare all produced r &gt; 0.97 at near-zero lag across three separate events on three separate dates. The physical mechanism producing simultaneous identical variation across 1,000 km during geomagnetically quiet periods is not identified.</p>
+</section>
+<section id="limits">
+  <div class="sec-label">Limitations</div>
+  <h2>Constraints on These Findings</h2>
+  <ul class="plain">
+    <li>Speed estimates come from witness timestamps, not instrument tracking. Uncertainty is high.</li>
+    <li>Magnetometer correlation shows two stations moved together. It does not identify the cause.</li>
+    <li>Pre-2008 NEXRAD data is inaccessible. No radar cross-reference is possible for Phoenix, Nimitz, or JAL 1628.</li>
+    <li>The Kp gate (threshold 3.0) eliminates major storms but does not rule out all geomagnetic variation.</li>
+    <li>Stephenville 2008: r = 0.9711 but Kp was 3.333 (active). Inconclusive.</li>
+    <li>MH370 result is preliminary and has not been independently reviewed.</li>
+    <li>Single-researcher open-source project, not an institutional study.</li>
+  </ul>
+</section>
+<section>
+  <div class="sec-label">Pending</div>
+  <h2>Work in Progress</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Stephenville 2008</td><td class="warn">PENDING</td><td class="dim">NEXRAD 2008 accessible &mdash; radar cross-reference needed</td></tr>
+      <tr><td>Belgian UAP Wave 1989&ndash;90</td><td class="warn">PENDING</td><td class="dim">Not yet started</td></tr>
+      <tr><td>Rendlesham Forest 1980</td><td class="warn">PENDING</td><td class="dim">Kp elevated; BGS 1980 data not digitized</td></tr>
+      <tr><td>MH370 formal event</td><td class="warn">PENDING</td><td class="dim">Not yet added to run_all_events.py</td></tr>
+    </tbody>
+  </table>
+</section>
 <footer>
-  <p>EMF Anomaly Research &nbsp;&middot;&nbsp; <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a> &nbsp;&middot;&nbsp; emfproj@proton.me</p>
-  <p style="margin-top:8px;opacity:.5">Data: USGS Geomagnetic Observatory Network &middot; GFZ Potsdam &middot; NOAA NEXRAD &middot; INTERMAGNET &middot; All findings reproducible from public government archives.</p>
+  <div>Data: USGS Geomagnetism &nbsp;|&nbsp; GFZ Potsdam Kp index &nbsp;|&nbsp; NOAA NEXRAD (2008+ only)</div>
+  <div>Code: <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a> &nbsp;|&nbsp; Contact: emfproj@proton.me</div>
+  <div style="margin-top:0.4rem;color:#3a4047">All findings reproducible from public source data.</div>
 </footer>
-
-</div>
 </body>
-</html>
- 
+</html> 
