@@ -1,791 +1,867 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phoenix Lights 1997 — Sensor Analysis Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>GPS Tsunami Detection â€” Live Monitor</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=JetBrains+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:       #06090a;
-    --bg2:      #0d1214;
-    --bg3:      #111618;
-    --border:   rgba(255,255,255,0.07);
-    --border2:  rgba(255,255,255,0.13);
-    --green:    #00ff41;
-    --green2:   #00cc33;
-    --red:      #ff2244;
-    --amber:    #ffaa00;
-    --blue:     #00aaff;
-    --white:    #e8f0ec;
-    --muted:    rgba(232,240,236,0.45);
-    --mono:     'Space Mono', monospace;
-    --display:  'Syne', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: var(--mono);
-    font-size: 15px;
-    line-height: 1.75;
-    overflow-x: hidden;
-  }
-
-  /* ── SCAN LINES OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.04) 2px,
-      rgba(0,0,0,0.04) 4px
-    );
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  /* ── LAYOUT ── */
-  .wrapper {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 28px 120px;
-  }
-
-  /* ── HEADER ── */
-  .masthead {
-    border-bottom: 1px solid var(--border2);
-    padding: 48px 0 40px;
-    margin-bottom: 64px;
-  }
-
-  .masthead-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .masthead-label::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,65,0.4); }
-    50%       { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0,255,65,0); }
-  }
-
-  h1 {
-    font-family: var(--display);
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    margin-bottom: 24px;
-  }
-
-  h1 span { color: var(--green); }
-
-  .masthead-meta {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  .masthead-meta span { display: flex; align-items: center; gap: 6px; }
-  .masthead-meta span::before { content: '//'; color: var(--green); font-weight: 700; }
-
-  /* ── SUMMARY STATS ── */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-bottom: 64px;
-  }
-
-  .stat {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px 18px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stat::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-
-  .stat.green::after  { background: var(--green); }
-  .stat.red::after    { background: var(--red); }
-  .stat.amber::after  { background: var(--amber); }
-  .stat.blue::after   { background: var(--blue); }
-
-  .stat-value {
-    font-family: var(--display);
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat.green .stat-value { color: var(--green); }
-  .stat.red   .stat-value { color: var(--red); }
-  .stat.amber .stat-value { color: var(--amber); }
-  .stat.blue  .stat-value { color: var(--blue); }
-
-  .stat-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ── SECTIONS ── */
-  section { margin-bottom: 72px; }
-
-  .section-tag {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 10px;
-    font-family: var(--mono);
-  }
-
-  h2 {
-    font-family: var(--display);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-
-  p {
-    color: rgba(232,240,236,0.8);
-    margin-bottom: 18px;
-    max-width: 72ch;
-  }
-
-  strong { color: var(--white); font-weight: 700; }
-
-  /* ── IMAGE BLOCKS ── */
-  .figure {
-    margin: 36px 0;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    background: var(--bg2);
-  }
-
-  .figure img {
-    width: 100%;
-    display: block;
-  }
-
-  .figure-caption {
-    padding: 14px 18px;
-    font-size: 12px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-  }
-
-  .figure-caption strong { color: var(--green); }
-
-  /* ── CALLOUT BOXES ── */
-  .callout {
-    border-left: 3px solid var(--green);
-    background: rgba(0,255,65,0.04);
-    padding: 20px 24px;
-    margin: 28px 0;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .callout.red   { border-color: var(--red);   background: rgba(255,34,68,0.04); }
-  .callout.amber { border-color: var(--amber);  background: rgba(255,170,0,0.04); }
-  .callout.blue  { border-color: var(--blue);   background: rgba(0,170,255,0.04); }
-
-  .callout p { margin-bottom: 0; max-width: none; }
-
-  /* ── DATA TABLE ── */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin: 28px 0;
-  }
-
-  .data-table th {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green);
-    border-bottom: 1px solid var(--border2);
-    padding: 10px 16px;
-    text-align: left;
-    font-family: var(--mono);
-    font-weight: 400;
-  }
-
-  .data-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    color: rgba(232,240,236,0.75);
-    vertical-align: top;
-  }
-
-  .data-table tr:last-child td { border-bottom: none; }
-
-  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-  .tag {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 2px;
-    font-size: 11px;
-    font-family: var(--mono);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-
-  .tag-green { background: rgba(0,255,65,0.12); color: var(--green); }
-  .tag-red   { background: rgba(255,34,68,0.12); color: var(--red); }
-  .tag-amber { background: rgba(255,170,0,0.12); color: var(--amber); }
-
-  /* ── DIVIDER ── */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 64px 0;
-  }
-
-  /* ── UAP SPECULATION SECTION ── */
-  .uap-section {
-    background: var(--bg2);
-    border: 1px solid rgba(255,34,68,0.25);
-    border-radius: 6px;
-    padding: 48px 40px;
-    margin-top: 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .uap-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--red), var(--amber), var(--red));
-    background-size: 200% 100%;
-    animation: sweep 4s linear infinite;
-  }
-
-  @keyframes sweep {
-    0% { background-position: 0 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  .uap-warning {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,34,68,0.1);
-    border: 1px solid rgba(255,34,68,0.3);
-    border-radius: 3px;
-    padding: 6px 14px;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 28px;
-  }
-
-  .uap-section h2 { color: var(--red); }
-
-  .timeline {
-    margin: 36px 0;
-    position: relative;
-    padding-left: 28px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px; top: 8px; bottom: 8px;
-    width: 1px;
-    background: var(--border2);
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 28px;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 7px;
-    width: 8px;
-    height: 8px;
-    background: var(--red);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--red);
-  }
-
-  .timeline-item.amber::before { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
-  .timeline-item.green::before { background: var(--green); box-shadow: 0 0 8px var(--green); }
-
-  .timeline-time {
-    font-size: 11px;
-    color: var(--red);
-    letter-spacing: 0.1em;
-    font-family: var(--mono);
-    margin-bottom: 4px;
-  }
-
-  .timeline-item.amber .timeline-time { color: var(--amber); }
-  .timeline-item.green  .timeline-time { color: var(--green); }
-
-  .timeline-desc {
-    font-size: 14px;
-    color: var(--white);
-    font-family: var(--mono);
-    margin-bottom: 4px;
-  }
-
-  .timeline-data {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .spec-box {
-    background: rgba(255,34,68,0.05);
-    border: 1px solid rgba(255,34,68,0.15);
-    border-radius: 4px;
-    padding: 24px 28px;
-    margin: 28px 0;
-  }
-
-  .spec-box h3 {
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--red);
-    margin-bottom: 14px;
-  }
-
-  .spec-metric {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-
-  .spec-metric:last-child { border-bottom: none; }
-  .spec-metric-label { color: var(--muted); }
-  .spec-metric-value { color: var(--amber); font-family: var(--mono); font-weight: 700; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  footer a { color: var(--green); text-decoration: none; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .wrapper { padding: 0 16px 80px; }
-    .uap-section { padding: 32px 20px; }
-    h1 { font-size: 34px; }
-  }
+:root {
+  --bg:#060d18; --surface:#0c1829; --surface2:#112236; --surface3:#162d47;
+  --border:#1e3a5f; --accent:#00c8ff; --accent2:#00ff9d;
+  --warn:#ffa726; --danger:#ff4a4a; --dim:#6a9cc0;
+  --text:#cce4ff; --text-hi:#eaf5ff;
+  --font-d:'Orbitron',monospace; --font-m:'JetBrains Mono',monospace; --font-b:'IBM Plex Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:14px;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,200,255,0.012) 2px,rgba(0,200,255,0.012) 4px);pointer-events:none;z-index:9999}
+header{border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,#091422 0%,var(--bg) 100%);position:sticky;top:0;z-index:100}
+.header-left h1{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.12em;color:var(--text-hi)}
+.header-left p{font-family:var(--font-m);font-size:10px;color:var(--dim);letter-spacing:.05em;margin-top:3px}
+.live-badge{display:flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:11px;color:var(--accent2);letter-spacing:.1em}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.tab-nav{display:flex;border-bottom:1px solid var(--border);padding:0 32px;background:var(--surface)}
+.tab-btn{font-family:var(--font-m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:12px 24px;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.tab-btn:hover{color:var(--text)} .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-pane{display:none} .tab-pane.active{display:block}
+.main{max-width:1400px;margin:0 auto;padding:28px 32px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px}
+.sw-panel{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px}
+.sw-header{padding:13px 20px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sw-title{font-family:var(--font-d);font-size:11px;letter-spacing:.15em;color:var(--text-hi)}
+.sw-badge{font-family:var(--font-m);font-size:10px;letter-spacing:.12em;padding:4px 12px;border-radius:2px;font-weight:500;transition:all .3s}
+.sw-badge.clear{background:rgba(0,255,157,.15);color:var(--accent2);border:1px solid rgba(0,255,157,.3)}
+.sw-badge.active{background:rgba(255,167,38,.15);color:var(--warn);border:1px solid rgba(255,167,38,.3)}
+.sw-badge.gated{background:rgba(255,74,74,.15);color:var(--danger);border:1px solid rgba(255,74,74,.4)}
+.sw-body{padding:18px 20px;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+.sw-score-label{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.sw-score-value{font-family:var(--font-d);font-size:34px;font-weight:900;line-height:1;margin-bottom:10px;transition:color .5s}
+.sw-bar-track{width:100%;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;margin-bottom:5px}
+.sw-bar-fill{height:100%;border-radius:3px;transition:width .8s ease,background .5s;min-width:2px}
+.sw-bar-labels{display:flex;justify-content:space-between;font-family:var(--font-m);font-size:9px;color:var(--dim)}
+.sw-channels{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sw-channel{background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:11px 13px;transition:border-color .3s}
+.sw-channel.contributing{border-color:var(--warn)}
+.sw-ch-name{font-family:var(--font-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.sw-ch-value{font-family:var(--font-m);font-size:19px;font-weight:500;color:var(--text-hi);margin-bottom:5px;line-height:1}
+.sw-ch-unit{font-size:10px;color:var(--dim);font-weight:300}
+.sw-ch-bar{height:3px;background:var(--surface3);border-radius:2px;overflow:hidden}
+.sw-ch-fill{height:100%;border-radius:2px;background:var(--accent);transition:width .6s ease,background .3s}
+.sw-ch-status{font-family:var(--font-m);font-size:9px;margin-top:4px;letter-spacing:.05em}
+.sw-ch-status.ok{color:var(--accent2)} .sw-ch-status.warn{color:var(--warn)} .sw-ch-status.bad{color:var(--danger)}
+.sw-footer{padding:6px 20px;border-top:1px solid var(--border);font-family:var(--font-m);font-size:9px;color:var(--dim);display:flex;justify-content:space-between}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:15px 17px}
+.stat-label{font-family:var(--font-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.stat-value{font-family:var(--font-m);font-size:26px;font-weight:500;color:var(--accent);line-height:1;margin-bottom:3px}
+.stat-sub{font-size:11px;color:var(--dim)}
+.section-title{font-family:var(--font-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.perf-grid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px}
+.perf-cell{padding:13px 15px;border-right:1px solid var(--border);background:var(--surface)}
+.perf-cell:last-child{border-right:none}
+.perf-label{font-family:var(--font-m);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:5px}
+.perf-value{font-family:var(--font-m);font-size:20px;font-weight:500;color:var(--text-hi)}
+.perf-unit{font-size:11px;color:var(--dim)}
+.outcome-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.outcome-chip{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:9px 16px;text-align:center;min-width:65px}
+.outcome-chip .val{font-family:var(--font-m);font-size:22px;font-weight:500;line-height:1;margin-bottom:3px}
+.outcome-chip .lbl{font-family:var(--font-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.outcome-chip.tp .val{color:var(--accent2)} .outcome-chip.tn .val{color:var(--accent)}
+.outcome-chip.fp .val{color:var(--danger)}  .outcome-chip.fn .val{color:var(--warn)}
+.outcome-chip.geo .val{color:var(--dim)}
+.data-table{width:100%;border-collapse:collapse;font-family:var(--font-m);font-size:12px}
+.data-table th{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:9px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface2);font-weight:400;white-space:nowrap}
+.data-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tbody tr:hover{background:var(--surface2)}
+.det-badge{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;padding:3px 8px;border-radius:2px}
+.det-badge.detected{background:rgba(0,255,157,.12);color:var(--accent2);border:1px solid rgba(0,255,157,.25)}
+.det-badge.silent{background:rgba(106,156,192,.1);color:var(--dim);border:1px solid var(--border)}
+.det-badge.gated{background:rgba(255,74,74,.1);color:var(--danger);border:1px solid rgba(255,74,74,.2)}
+.reason-tag{font-family:var(--font-m);font-size:10px;padding:2px 8px;border-radius:2px;background:var(--surface2);border:1px solid var(--border);color:var(--dim)}
+.delta-pos{color:var(--accent2)} .delta-neg{color:var(--danger)}
+.poll-status.ok{color:var(--accent2)} .poll-status.err{color:var(--danger)}
+.empty-state{text-align:center;padding:40px 24px;color:var(--dim)}
+.empty-icon{font-size:28px;margin-bottom:10px}
+.empty-title{font-family:var(--font-m);font-size:13px;margin-bottom:5px;color:var(--text)}
+.empty-sub{font-size:12px}
+.map-wrap{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px;position:relative}
+#alert-banner{border-bottom:1px solid rgba(255,74,74,0.38);padding:11px 32px;background:rgba(255,40,40,0.1);animation:alert-bg-pulse 3s ease-in-out infinite}
+@keyframes alert-bg-pulse{0%,100%{background:rgba(255,40,40,0.10)}50%{background:rgba(255,40,40,0.20)}}
+@keyframes pulse-red{0%,100%{opacity:1;box-shadow:0 0 12px #ff4a4a}50%{opacity:.3;box-shadow:0 0 3px #ff4a4a}}@keyframes dyfi-pulse{0%,100%{opacity:0.65}50%{opacity:0.1}}.dyfi-ping-ring{animation:dyfi-pulse 2.5s ease-in-out infinite}
+@keyframes ev-ring-anim{0%,100%{opacity:.55}50%{opacity:.12}}
+.ev-ring{animation:ev-ring-anim 2.2s ease-in-out infinite}
+.ev-ring2{animation:ev-ring-anim 2.2s ease-in-out infinite;animation-delay:.7s}
+.ev-ring3{animation:ev-ring-anim 2.2s ease-in-out infinite;animation-delay:1.4s}
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E6L8R0GG76"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E6L8R0GG76');
+</script>
 </head>
 <body>
-
-<div class="wrapper">
-
-  <!-- MASTHEAD -->
-  <header class="masthead">
-    <div class="masthead-label">EMF Anomaly Research — Field Report 001</div>
-    <h1>Phoenix Lights<br><span>1997</span></h1>
-    <div class="masthead-meta">
-      <span>Date: March 13–14, 1997</span>
-      <span>Location: Nevada–Arizona corridor</span>
-      <span>Duration: 155 minutes</span>
-      <span>Status: HIGH ANOMALY</span>
-    </div>
-  </header>
-
-  <!-- STATS -->
-  <div class="stats-grid">
-    <div class="stat red">
-      <div class="stat-value">6.333σ</div>
-      <div class="stat-label">D-field peak deviation</div>
-    </div>
-    <div class="stat green">
-      <div class="stat-value">0.9704</div>
-      <div class="stat-label">Cross-station correlation</div>
-    </div>
-    <div class="stat amber">
-      <div class="stat-value">14</div>
-      <div class="stat-label">Convergence events</div>
-    </div>
-    <div class="stat blue">
-      <div class="stat-value">201</div>
-      <div class="stat-label">Total anomalies</div>
-    </div>
-    <div class="stat green">
-      <div class="stat-value">Kp 2.0</div>
-      <div class="stat-label">Solar activity — quiet</div>
-    </div>
-    <div class="stat amber">
-      <div class="stat-value">4/8</div>
-      <div class="stat-label">Speed segments exceeding A-10 max</div>
-    </div>
+<header>
+  <div class="header-left">
+    <h1>GPS TSUNAMI DETECTION</h1>
+    <p>GPS/GLONASS/Galileo &middot; DART &middot; Digisonde foF2 &middot; Space weather &middot; 8-channel fusion &middot; Pacific basin</p>
   </div>
-
-
-  <!-- SECTION 1: WHAT HAPPENED -->
-  <section>
-    <div class="section-tag">// 01 — Event overview</div>
-    <h2>What happened that night</h2>
-    <p>On the evening of March 13, 1997, something crossed the sky above the American Southwest. Starting near Henderson, Nevada just before 8pm local time, and traveling southeast through Arizona over the next two and a half hours, it was observed by over a thousand independent witnesses — including airline pilots, police officers, military personnel, and the governor of Arizona himself.</p>
-    <p>It made no sound. It appeared as a massive V-shaped formation of lights, estimated by multiple credentialed witnesses to span over a mile across. It blocked out the stars as it passed overhead. And then, near Tucson, it was gone.</p>
-    <p>The US Air Force's official explanation: flares dropped by A-10 Warthog aircraft during a training exercise at the Barry Goldwater Range. That explanation has significant problems — not the least of which is that the A-10's maximum speed is 706 km/h, and our analysis found four of the eight tracked segments exceeded that speed, with one reaching 855 km/h. A-10s also appear on radar. What we found on radar that night is a different story.</p>
-
-    <div class="callout amber">
-      <p><strong>On the methodology:</strong> everything in this report is derived from publicly available government data — USGS magnetometer archives, GFZ Potsdam geomagnetic indices, and NOAA NEXRAD radar records. Every finding can be independently reproduced. Source code and data at <strong>github.com/Beastros/emf-anomaly-research</strong>.</p>
-    </div>
-  </section>
-
-
-  <!-- SECTION 2: SOLAR GATE -->
-  <section>
-    <div class="section-tag">// 02 — The solar elimination test</div>
-    <h2>First: ruling out the sun</h2>
-    <p>Earth's magnetic field fluctuates constantly. Solar storms can cause massive global disruptions that would look like anomalies in any data. So before we interpret anything, we check the Kp index — a global measure of geomagnetic disturbance published by the German Research Centre for Geosciences, which has tracked solar activity continuously since 1932.</p>
-    <p>On the night of March 13–14 1997, the Kp index was <strong>2.0</strong>. That's the "quiet" category. A geomagnetic storm capable of producing the anomalies we found would have registered at minimum Kp 5–6, and would have been visible globally across every magnetometer station on Earth simultaneously.</p>
-    <p>What we found was not global. It was concentrated in Arizona. The sun had nothing to do with it.</p>
-
-    <div class="callout green">
-      <p><strong>Kp = 2.0 — QUIET.</strong> Solar activity eliminated as an explanation for all magnetometer anomalies reported in this analysis. This conclusion is based on independent live data from GFZ Potsdam, not derived from the event.</p>
-    </div>
-  </section>
-
-
-  <!-- SECTION 3: MAGNETOMETER -->
-  <section>
-    <div class="section-tag">// 03 — The magnetometer signature</div>
-    <h2>What the ground sensors recorded</h2>
-    <p>The USGS operates a network of magnetometer stations across the United States. These are precision scientific instruments that measure tiny fluctuations in Earth's magnetic field — down to a single nanotesla — and have been running continuously for decades. They have no connection to aviation systems. They don't know what aircraft are in the sky. They just measure the planet.</p>
-    <p>The station closest to the Phoenix Lights track is <strong>TUC</strong>, located in Tucson, Arizona. On the night of March 13–14, it recorded the following across all three field components:</p>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Field component</th>
-          <th>What it measures</th>
-          <th>Peak anomaly</th>
-          <th>Anomaly count</th>
-          <th>Peak time UTC</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>D — Declination</strong></td>
-          <td>Compass direction (rotation)</td>
-          <td><span class="tag tag-red">6.333σ</span></td>
-          <td>58 readings &gt;2σ</td>
-          <td>03:32 UTC</td>
-        </tr>
-        <tr>
-          <td><strong>H — Horizontal</strong></td>
-          <td>Field strength in horizontal plane</td>
-          <td><span class="tag tag-amber">4.606σ</span></td>
-          <td>72 readings &gt;2σ</td>
-          <td>05:02 UTC</td>
-        </tr>
-        <tr>
-          <td><strong>Z — Vertical</strong></td>
-          <td>Field strength in vertical plane</td>
-          <td><span class="tag tag-amber">5.338σ</span></td>
-          <td>48 readings &gt;2σ</td>
-          <td>04:55 UTC</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>The D-field — compass declination — is the most sensitive to a laterally moving electromagnetic source. It measures the rotational component of the field. At 03:32 UTC, it registered <strong>6.333 standard deviations</strong> above its baseline. To put that in context: 3 standard deviations is considered highly anomalous. 6.333 is extraordinary.</p>
-    <p>The timing of that peak: <strong>four minutes after the last reported sighting</strong> of the Phoenix Lights formation, near Tucson. The instruments spiked when the object departed.</p>
-  </section>
-
-
-  <!-- SECTION 4: WAVEFRONT CHART -->
-  <section>
-    <div class="section-tag">// 04 — The two-station finding</div>
-    <h2>One thousand kilometers apart. Moving in lockstep.</h2>
-    <p>The most striking finding in this entire analysis isn't the spike at Tucson. It's what happened 1,013 kilometers away in Boulder, Colorado — simultaneously.</p>
-    <p>We compared the Tucson magnetometer (TUC) against the Boulder magnetometer (BOU) minute-by-minute during the event window. These are two completely independent government instruments in different states, maintained by different USGS field offices, with their own independent atomic clocks. They have no connection to each other beyond both measuring Earth's magnetic field.</p>
-    <p>During the Phoenix Lights event window, their D-field readings correlated at <strong>0.9704</strong>. That's out of a maximum possible correlation of 1.0. They were moving in near-perfect lockstep.</p>
-    <p>The time lag between them was <strong>minus one minute</strong> — essentially simultaneous. The implied propagation velocity: <strong>over 60,000 km/h</strong>. For reference, the International Space Station orbits at 28,000 km/h. The speed of sound at altitude is roughly 1,100 km/h.</p>
-    <p>60,000+ km/h is not a physical object moving through air. It's a field large enough to encompass both Arizona and Colorado simultaneously — or a field disturbance propagating at near-electromagnetic speeds.</p>
-
-    <div class="figure">
-      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png" alt="Phoenix Lights wavefront analysis — TUC and BOU correlation chart">
-      <div class="figure-caption">
-        <strong>Figure 1.</strong> Multi-station magnetometer wavefront analysis, Phoenix Lights 1997-03-14. Panel 2 (second from top) shows TUC (red) and BOU (green) D-field normalized — two lines moving in near-perfect unison across 1,013km during the event window. The red vertical line marks 03:32 UTC — the last reported sighting and the moment of the 6.333σ spike. Panel 3 shows sigma scores for all five stations: only TUC shows the anomalous spike, confirming the disturbance was regional (AZ–CO) but not global. No eyewitness timestamps were used in this calculation.
-      </div>
-    </div>
-
-    <div class="callout red">
-      <p><strong>This is the key finding.</strong> Two independent government magnetometer stations 1,013km apart showed 0.9704 correlation during a specific 70-minute window on an otherwise unremarkable night, during confirmed quiet geomagnetic conditions. The stations in Alaska, Hawaii, and Virginia showed no such correlation during the same window — confirming the disturbance was localized to the Arizona–Colorado corridor, not a solar or global event.</p>
-    </div>
-  </section>
-
-
-  <!-- SECTION 5: FORMATION MAP -->
-  <section>
-    <div class="section-tag">// 05 — The formation track</div>
-    <h2>Speed, heading, and convergence</h2>
-    <p>Using timestamped witness reports from nine documented sighting locations — cross-referenced against confidence-weighted credibility scores — we computed the velocity of the formation across each segment of its track from Henderson, Nevada to Tucson, Arizona.</p>
-    <p>The A-10 Warthog has a maximum speed of 706 km/h. Four of the eight tracked segments exceeded this. The peak was 855 km/h. Averaged across the full track: 561 km/h. The object also showed two anomalous heading reversals — one near Wickenburg where it briefly traveled southwest at 743 km/h before resuming its southeast track.</p>
-
-    <div class="figure">
-      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png" alt="Phoenix Lights formation track map with speed and convergence events">
-      <div class="figure-caption">
-        <strong>Figure 2.</strong> Phoenix Lights formation track with computed velocities (km/h per segment), NEXRAD radar coverage circles, witness positions (triangles — red = high confidence, amber = moderate), and convergence event zones (red circles, size proportional to anomaly strength). Green = below A-10 cruise speed, amber = within A-10 range, red = exceeds A-10 maximum. The 6.333σ convergence event near Tucson corresponds to the terminal spike at last sighting.
-      </div>
-    </div>
-
-    <p>The convergence map overlays all sensor findings simultaneously. The large red circle near Tucson represents the peak convergence event — where the magnetometer anomaly (6.333σ), the null radar return, and the quiet Kp reading all flagged within the same 10-minute window at the same location. That's three independent datasets agreeing on the same moment from completely different measurement approaches.</p>
-  </section>
-
-
-  <!-- SECTION 6: RADAR -->
-  <section>
-    <div class="section-tag">// 06 — What radar didn't find</div>
-    <h2>Three radar stations. Nothing detected.</h2>
-    <p>The Phoenix metropolitan area is blanketed by NEXRAD weather radar coverage. The stations KFSX (Flagstaff), KIWA (Phoenix), and KEMX (Tucson) provide overlapping spherical coverage across the entire event corridor. If an object with any appreciable radar cross-section were present — aircraft, balloons, anything — it would appear in the archive.</p>
-    <p>We queried the NOAA NEXRAD S3 archive for all three stations during the event window. The result: zero files returned. No radar returns. Not weak returns — nothing at all. The archive access for 1997 data returned AccessDenied on the S3 bucket, which is independently consistent with official records showing no radar tracking of the Phoenix Lights event by civilian systems.</p>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Station</th>
-          <th>Location</th>
-          <th>Coverage radius</th>
-          <th>Archive files</th>
-          <th>Null return score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>KFSX</strong></td>
-          <td>Flagstaff AZ</td>
-          <td>230 km</td>
-          <td><span class="tag tag-red">0</span></td>
-          <td>0.777</td>
-        </tr>
-        <tr>
-          <td><strong>KIWA</strong></td>
-          <td>Phoenix AZ</td>
-          <td>230 km</td>
-          <td><span class="tag tag-red">0</span></td>
-          <td>0.928</td>
-        </tr>
-        <tr>
-          <td><strong>KEMX</strong></td>
-          <td>Tucson AZ</td>
-          <td>230 km</td>
-          <td><span class="tag tag-red">0</span></td>
-          <td>0.797</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>A-10 aircraft conducting flare exercises would absolutely appear on radar. Commercial airliners at altitude appear on radar. Weather balloons appear on radar. The combination of a visually reported formation over a major metropolitan area with zero radar returns, while magnetometers simultaneously recorded significant anomalies 1,013 kilometers apart, is a physically unusual combination that has no ready conventional explanation.</p>
-  </section>
-
-
-  <!-- SECTION 7: WHAT IT DOESN'T PROVE -->
-  <section>
-    <div class="section-tag">// 07 — Honest limits</div>
-    <h2>What this data does and doesn't show</h2>
-    <p>This analysis is careful about what it claims. The findings are real — they come from government instruments, they're reproducible, and they're genuinely anomalous. But anomalous data doesn't automatically imply extraordinary causes.</p>
-    <p>The remaining conventional explanations we cannot fully exclude:</p>
-
-    <div class="callout amber">
-      <p><strong>Classified military aircraft or electronic warfare.</strong> The US military operates classified programs with extraordinary performance characteristics. Electronic warfare systems generate strong EM fields. We cannot access classified flight records. This is the most credible conventional explanation that survives contact with the full dataset — though the simultaneous 1,013km correlation is extremely difficult to explain with any known EW system.</p>
-    </div>
-
-    <div class="callout blue">
-      <p><strong>Unusual ionospheric event.</strong> Traveling ionospheric disturbances (TIDs) can produce multi-station magnetic signatures. However, TIDs are associated with solar or auroral activity — neither was present. A spontaneous large-amplitude TID during perfectly quiet conditions, coinciding precisely in time and geography with 1,100 visual witnesses, would itself require explanation.</p>
-    </div>
-
-    <p>What can be said with confidence: <strong>the data is inconsistent with the A-10 flare explanation.</strong> A-10s appear on radar. They don't produce 6.333σ magnetometer spikes. They don't simultaneously disturb compass readings in Colorado. The official explanation doesn't fit the instruments.</p>
-  </section>
-
-
-  <hr class="divider">
-
-
-  <!-- SECTION 8: SPECULATIVE UAP NARRATIVE -->
-  <div class="uap-section">
-
-    <div class="uap-warning">
-      ⚠ Speculative interpretation — data-grounded hypothesis
-    </div>
-
-    <div class="section-tag" style="color:var(--red)">// 08 — If the data is telling the truth</div>
-    <h2>What the instruments suggest was here</h2>
-
-    <p style="color:rgba(232,240,236,0.8)">The following is a speculative reconstruction based strictly on what the sensors recorded. It makes no claims about origin, intent, or nature. It simply asks: <em>if something physical caused these readings, what would its behavior have looked like?</em></p>
-
-    <p style="color:rgba(232,240,236,0.8)">The answer the data suggests is striking.</p>
-
-    <!-- TIMELINE -->
-    <div class="timeline" style="margin-top:36px">
-
-      <div class="timeline-item amber">
-        <div class="timeline-time">02:25 UTC — Henderson, Nevada</div>
-        <div class="timeline-desc">First sensor contact — formation enters Arizona corridor</div>
-        <div class="timeline-data">Magnetometer anomaly window opens. Kp = 2.0 confirmed quiet. No solar activity. Whatever begins here, it is not the sun.</div>
-      </div>
-
-      <div class="timeline-item amber">
-        <div class="timeline-time">02:30–02:47 UTC — Prescott / Paulden AZ</div>
-        <div class="timeline-desc">High-speed traverse — 794–855 km/h</div>
-        <div class="timeline-data">Velocity segments exceed A-10 maximum (706 km/h). Three-dataset convergence event registered. The object is moving faster than the aircraft the Air Force says it was.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">02:58 UTC — Wickenburg AZ</div>
-        <div class="timeline-desc">Anomalous heading reversal — 235.1° at 743 km/h</div>
-        <div class="timeline-data">Formation briefly reverses bearing — moving southwest at high speed before resuming southeast track. No known conventional aircraft executes this maneuver at this speed without radar signature.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">03:03–03:14 UTC — Phoenix metropolitan area</div>
-        <div class="timeline-desc">Low-altitude traverse of major population center</div>
-        <div class="timeline-data">Thousands of witnesses across Glendale, Phoenix, and Chandler observe the formation at low altitude. Estimated span: greater than one mile. Speed: 770 km/h over Glendale. Silent. No NEXRAD return from KIWA (null score: 0.928).</div>
-      </div>
-
-      <div class="timeline-item red">
-        <div class="timeline-time">03:28 UTC — Tucson approach</div>
-        <div class="timeline-desc">Last visual contact. Field disturbance intensifying.</div>
-        <div class="timeline-data">D-field anomaly at TUC already elevated across all three axes. Something is generating a sustained electromagnetic disturbance large enough to affect both Arizona and Colorado simultaneously. The TUC-BOU correlation has been running at 0.9704 for the entire event window — 1,013 km of magnetic field moving as a single unit.</div>
-      </div>
-
-      <div class="timeline-item red" style="--red:#ff2244">
-        <div class="timeline-time">03:32 UTC — Terminal event</div>
-        <div class="timeline-desc">⚡ EM DISCHARGE — 6.333σ PEAK — OBJECT GONE</div>
-        <div class="timeline-data">D-field at TUC spikes to 6.333 standard deviations — the largest anomaly of the night. Four minutes after the last visual sighting. BOU in Colorado shows the echo of the same disturbance at near-instantaneous propagation speed (&gt;60,000 km/h). The sustained field that had been affecting two states simultaneously collapses at a point near Tucson. The object is no longer visible to any witness. The radar shows nothing. The field goes quiet.</div>
-      </div>
-
-      <div class="timeline-item green">
-        <div class="timeline-time">03:33 UTC onward — Post-departure</div>
-        <div class="timeline-desc">Field returns to baseline. Event closed.</div>
-        <div class="timeline-data">TUC slowly returns toward normal. BOU decouples from TUC correlation. The disturbance that held two magnetometer stations 1,013 km apart in lockstep for 70 minutes is over. No further anomalies attributable to the event.</div>
-      </div>
-
-    </div>
-
-    <!-- SPEC METRICS BOX -->
-    <div class="spec-box">
-      <h3>Reconstructed object profile — sensor-derived characteristics</h3>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Track length</span>
-        <span class="spec-metric-value">~720 km (Henderson NV → Tucson AZ)</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Duration of sensor contact</span>
-        <span class="spec-metric-value">~67 minutes (02:25–03:32 UTC)</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Average computed velocity</span>
-        <span class="spec-metric-value">561 km/h (sub-A-10 cruise to supersonic)</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Peak velocity</span>
-        <span class="spec-metric-value">855 km/h (exceeds A-10 max by 21%)</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Radar cross-section</span>
-        <span class="spec-metric-value">Effectively zero — 3 stations, 0 returns</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">EM field spatial extent</span>
-        <span class="spec-metric-value">&gt;1,013 km (AZ–CO simultaneously affected)</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Peak EMF output at departure</span>
-        <span class="spec-metric-value">6.333σ D-field anomaly — 03:32:00 UTC — Tucson AZ</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Departure field propagation speed</span>
-        <span class="spec-metric-value">&gt;60,787 km/h — consistent with EM radiation</span>
-      </div>
-      <div class="spec-metric">
-        <span class="spec-metric-label">Solar activity at time of event</span>
-        <span class="spec-metric-value">Kp = 2.0 — QUIET. No geomagnetic storm.</span>
-      </div>
-    </div>
-
-    <p style="color:rgba(232,240,236,0.7)">The instruments describe something that moved at speeds inconsistent with known conventional aircraft, produced no radar return despite crossing one of the most radar-dense corridors in the United States, generated an electromagnetic field large enough to simultaneously disturb sensors in two different states with near-perfect correlation, and departed with a field discharge measurable as a 6.333σ spike at a government observatory.</p>
-
-    <p style="color:rgba(232,240,236,0.7)">What it was, where it came from, and who or what was operating it — the sensors don't say. What they say is that something was here. It went from Nevada to Arizona in 67 minutes. It stopped near Tucson. And then the field collapsed, the radar stayed empty, and it was gone.</p>
-
-    <div class="callout red" style="margin-top:32px">
-      <p><strong>Reproduce this yourself.</strong> Every data point in this report is fetched live from public government APIs. The code is open source. Clone the repository, run the scripts, and verify the numbers independently. The instruments don't lie — and they've been sitting in public archives, unexamined, for 29 years. <strong>github.com/Beastros/emf-anomaly-research</strong></p>
-    </div>
-
+  <div class="live-badge"><div class="pulse"></div>LIVE &middot; 15 MIN POLL</div>
+</header>
+<div id="alert-banner" style="display:none">
+  <div style="display:flex;align-items:center;gap:16px;max-width:1400px;margin:0 auto">
+    <div style="width:10px;height:10px;border-radius:50%;background:#ff4a4a;flex-shrink:0;animation:pulse-red 1.5s ease-in-out infinite"></div>
+    <span style="font-family:var(--font-d);font-size:11px;letter-spacing:.14em;color:#ff4a4a" id="alert-title">DETECTION ACTIVE</span>
+    <span style="font-family:var(--font-m);font-size:11px;color:#ffaaaa;flex:1" id="alert-detail"></span>
+    <span style="font-family:var(--font-m);font-size:10px;color:#ff7675;letter-spacing:.1em;border:1px solid rgba(255,74,74,0.4);padding:3px 10px;border-radius:2px;white-space:nowrap">FAST POLL &middot; 2 MIN CYCLES</span>
   </div>
-
-
-  <!-- FOOTER -->
-  <footer>
-    <p>EMF Anomaly Research &nbsp;·&nbsp; <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a> &nbsp;·&nbsp; emfproj@proton.me</p>
-    <p style="margin-top:8px">Data sources: USGS Geomagnetic Observatory Network · GFZ Potsdam · NOAA NEXRAD · INTERMAGNET</p>
-    <p style="margin-top:8px; font-size:11px; opacity:0.4">All findings are derived from publicly available government archives. This report makes no claims about the nature or origin of the observed phenomenon. Reproduce independently at the link above.</p>
-  </footer>
-
 </div>
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
+  <button class="tab-btn" onclick="showTab('events',this)">Events</button>
+  <button class="tab-btn" onclick="showTab('polllog',this)">Poll Log</button>
+  <button class="tab-btn" onclick="showTab('about',this)">About</button>
+</nav>
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="tab-pane active">
+<div class="main">
+  <div class="sw-panel">
+    <div class="sw-header">
+      <span class="sw-title">SPACE WEATHER QUALITY</span>
+      <span class="sw-badge" id="sw-badge">LOADING</span>
+    </div>
+    <div class="sw-body">
+      <div>
+        <div class="sw-score-label">Contamination score</div>
+        <div class="sw-score-value" id="sw-score-val">--</div>
+        <div class="sw-bar-track"><div class="sw-bar-fill" id="sw-bar" style="width:0%"></div></div>
+        <div class="sw-bar-labels"><span>0.0 clean</span><span>0.5 gate</span><span>1.0</span></div>
+      </div>
+      <div class="sw-channels">
+        <div class="sw-channel" id="sw-ch-kp">
+          <div class="sw-ch-name">Kp Index</div>
+          <div class="sw-ch-value" id="sw-kp-val">--</div>
+          <div class="sw-ch-bar"><div class="sw-ch-fill" id="sw-kp-bar" style="width:0%"></div></div>
+          <div class="sw-ch-status ok" id="sw-kp-st">loading</div>
+        </div>
+        <div class="sw-channel" id="sw-ch-bz">
+          <div class="sw-ch-name">IMF Bz</div>
+          <div class="sw-ch-value" id="sw-bz-val">--</div>
+          <div class="sw-ch-bar"><div class="sw-ch-fill" id="sw-bz-bar" style="width:0%"></div></div>
+          <div class="sw-ch-status ok" id="sw-bz-st">loading</div>
+        </div>
+        <div class="sw-channel" id="sw-ch-spd">
+          <div class="sw-ch-name">Solar Wind</div>
+          <div class="sw-ch-value" id="sw-spd-val">--</div>
+          <div class="sw-ch-bar"><div class="sw-ch-fill" id="sw-spd-bar" style="width:0%"></div></div>
+          <div class="sw-ch-status ok" id="sw-spd-st">loading</div>
+        </div>
+        <div class="sw-channel" id="sw-ch-xr">
+          <div class="sw-ch-name">GOES X-Ray</div>
+          <div class="sw-ch-value" id="sw-xr-val">--</div>
+          <div class="sw-ch-bar"><div class="sw-ch-fill" id="sw-xr-bar" style="width:0%"></div></div>
+          <div class="sw-ch-status ok" id="sw-xr-st">loading</div>
+        </div>
+      </div>
+    </div>
+    <div class="sw-footer">
+      <span id="sw-flags">Fetching NOAA SWPC feeds...</span>
+      <span id="sw-time"></span>
+    </div>
+  </div>
+
+  <!-- Sensor Stack Summary -->
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:20px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">GPS TEC</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">L1/L2 carrier</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">GLONASS/GAL</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">Multi-constellation</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">dTEC/dt</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">Wave-front rate</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Space Wx</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● LIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">4 NOAA feeds</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">DART</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">28 buoys</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Ionosonde</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">GIRO foF2 5-sta</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center">
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">ShakeMap</div>
+      <div style="font-family:var(--font-m);font-size:11px;color:var(--accent2)">● ACTIVE</div>
+      <div style="font-family:var(--font-m);font-size:9px;color:var(--dim);margin-top:4px">Focal mechanism</div>
+    </div>
+  </div>
+
+  <p class="section-title">Pipeline Status</p>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-label">Total Polls</div><div class="stat-value" id="st-polls">--</div><div class="stat-sub">USGS API calls since launch</div></div>
+    <div class="stat-card"><div class="stat-label">Candidates Queued</div><div class="stat-value" id="st-queued">--</div><div class="stat-sub">Pacific Mw6.5+ events</div></div>
+    <div class="stat-card"><div class="stat-label">Events Scored</div><div class="stat-value" id="st-scored">--</div><div class="stat-sub">Predictions vs ground truth</div></div>
+    <div class="stat-card"><div class="stat-label">Last Poll</div><div class="stat-value" id="st-last" style="font-size:16px;padding-top:5px">--</div><div class="stat-sub" id="st-last-sub">--</div></div>
+  </div>
+
+  <p class="section-title">Station Network &middot; Pacific Basin</p>
+  <div class="map-wrap">
+    <svg id="pmap" style="width:100%;display:block"></svg>
+    <div id="mtt" style="position:absolute;display:none;background:#0c1829;border:1px solid #1e3a5f;border-radius:3px;padding:6px 10px;font-size:11px;color:#cce4ff;pointer-events:none;z-index:10;max-width:200px;line-height:1.5"></div>
+    <div style="position:absolute;bottom:10px;left:10px;background:rgba(4,14,26,0.92);border:1px solid #1e3a5f;border-radius:4px;padding:9px 13px;font-family:var(--font-m);font-size:9px;color:#4a7a94;line-height:2.2">
+      <div style="display:flex;align-items:center;gap:3px;margin-bottom:1px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#00c8ff"></span><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#a55eea"></span><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#f9ca24;margin-right:5px"></span>GPS anchor station</div>
+      <div><svg width="13" height="13" style="vertical-align:middle;margin-right:6px;overflow:visible"><circle cx="6" cy="6" r="5" fill="none" stroke="#ff4a4a" stroke-width="1.2"/><line x1="6" y1="0" x2="6" y2="12" stroke="#ff4a4a" stroke-width="1.5"/><line x1="0" y1="6" x2="12" y2="6" stroke="#ff4a4a" stroke-width="1.5"/></svg>Active detection</div>
+      <div><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid #0abde3;margin-right:6px;vertical-align:middle"></span>DART buoy</div>
+      <div><span style="display:inline-block;width:7px;height:7px;border:2px solid #ffd32a;transform:rotate(45deg);margin-right:7px;vertical-align:middle"></span>Ionosonde</div>
+      <div><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid #ff9f43;margin-right:6px;vertical-align:middle"></span>DYFI felt ping</div>
+      <div><span style="display:inline-block;width:14px;height:2px;background:#c0392b;margin-right:6px;vertical-align:middle;opacity:0.85"></span>Subduction zone</div>
+      <div><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:1.5px solid #ffa726;margin-right:6px;vertical-align:middle"></span>Near-miss seismic</div>
+    </div>
+  </div>
+
+    <p class="section-title">Performance Metrics</p>
+  <div class="perf-grid">
+    <div class="perf-cell"><div class="perf-label">True Positive Rate</div><div class="perf-value" id="perf-tpr">--</div></div>
+    <div class="perf-cell"><div class="perf-label">False Alarm Rate</div><div class="perf-value" id="perf-fpr">--</div></div>
+    <div class="perf-cell"><div class="perf-label">Mean Lead Time</div><div class="perf-value" id="perf-lead">-- <span class="perf-unit">min</span></div></div>
+    <div class="perf-cell"><div class="perf-label">Median Lead Time</div><div class="perf-value" id="perf-med">-- <span class="perf-unit">min</span></div></div>
+    <div class="perf-cell"><div class="perf-label">Amplitude Error</div><div class="perf-value" id="perf-amp">--</div></div>
+  </div>
+
+  <p class="section-title">Outcome Breakdown</p>
+  <div class="outcome-row">
+    <div class="outcome-chip tp"><div class="val" id="oc-tp">0</div><div class="lbl">TP</div></div>
+    <div class="outcome-chip tn"><div class="val" id="oc-tn">0</div><div class="lbl">TN</div></div>
+    <div class="outcome-chip fp"><div class="val" id="oc-fp">0</div><div class="lbl">FP</div></div>
+    <div class="outcome-chip fn"><div class="val" id="oc-fn">0</div><div class="lbl">FN</div></div>
+    <div class="outcome-chip geo"><div class="val" id="oc-geo">0</div><div class="lbl">GEO</div></div>
+    <div class="outcome-chip geo"><div class="val" id="oc-total">0</div><div class="lbl">Scored</div></div>
+  </div>
+</div>
+</div>
+
+<!-- EVENTS -->
+<div id="tab-events" class="tab-pane">
+<div class="main">
+  <p class="section-title">Scored Events</p>
+  <div class="card">
+    <div id="events-body">
+      <div class="empty-state">
+        <div class="empty-icon">🌊</div>
+        <div class="empty-title">No scored events yet</div>
+        <div class="empty-sub">Pipeline active - monitoring Pacific basin</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div id="tab-about" class="tab-pane">
+  <div style="max-width:780px;margin:48px auto;padding:0 32px;font-family:var(--font-s);color:var(--text);line-height:1.8">
+
+    <h2 style="font-family:var(--font-h);font-size:18px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin:0 0 24px">How It Works</h2>
+
+    <p style="margin:0 0 20px">When a large underwater earthquake occurs, it displaces the seafloor and shoves the entire water column upward. That displacement sends a pressure wave not just across the ocean surface as a tsunami &mdash; it also propagates upward through the atmosphere all the way to the <strong style="color:var(--accent2)">ionosphere</strong>, a layer of charged particles approximately 300&nbsp;km above the Earth where GPS satellite signals pass through.</p>
+
+    <p style="margin:0 0 20px">That pressure wave slightly disturbs the electron density in the ionosphere. GPS receivers on the ground are sensitive enough to measure it as a change in <strong style="color:var(--accent2)">Total Electron Content (TEC)</strong> &mdash; the integrated number of electrons along the signal path. This phenomenon has been documented in the scientific literature. This pipeline attempts to detect it automatically, in real time, and fuse it with independent physical measurements to produce a calibrated confidence score.</p>
+
+    <h2 style="font-family:var(--font-h);font-size:18px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin:32px 0 16px">The 8-Channel Sensor Stack</h2>
+
+    <div style="display:grid;gap:12px;margin-bottom:28px">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">GPS / GLONASS / GALILEO TEC</div>
+        <div style="font-size:13px;color:var(--dim)">RINEX observation files downloaded from NASA CDDIS for anchor stations across the Pacific. L1/L2 carrier phase differencing extracts TEC perturbations per satellite arc. Multi-constellation agreement adds confidence.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">dTEC/dt &mdash; Wave-Front Rate</div>
+        <div style="font-size:13px;color:var(--dim)">The time derivative of TEC. A tsunami-generated atmospheric gravity wave produces a characteristic onset rate distinct from background ionospheric drift. Corroboration adds +0.05 to combined confidence.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">DART Ocean Pressure Buoys</div>
+        <div style="font-size:13px;color:var(--dim)">28 NOAA NDBC deep-ocean pressure sensors across the Pacific. A 3-sigma anomaly in bottom pressure within the expected tsunami travel-time window adds up to +0.45. Negative DART reduces confidence.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">GIRO Digisonde foF2</div>
+        <div style="font-size:13px;color:var(--dim)">5 ionosonde stations monitored via the Global Ionosphere Radio Observatory DIDBase API. Independent foF2 perturbation confirmation adds +0.12.</div>
+        <div style="margin-bottom:20px">
+          <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">DYFI Crowdsourced Felt Reports The <code>dyfi_poller.py</code> module independently monitors Mw&nbsp;5.0+ Pacific events every 15&nbsp;min and renders felt-shaking pings on the map as amber pulsing rings sized by MMI.</div>
+          <div style="font-size:13px;color:var(--dim)">USGS &ldquo;Did You Feel It&rdquo; reports fetched from the event detail API. Available 5&ndash;15 min post-earthquake, before ShakeMap moment tensor is finalized. High response counts with elevated Modified Mercalli Intensity (MMI&nbsp;&ge;&nbsp;6) add +0.04; moderate reports add +0.02. Fail-open: no data = no penalty. Biased toward US/Japan/NZ populations &mdash; abstains below 20 responses.</div>
+        </div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">Space Weather Quality Gate</div>
+        <div style="font-size:13px;color:var(--dim)">4 NOAA SWPC feeds &mdash; Kp index, IMF Bz, solar wind speed, GOES X-ray flux. Geomagnetic storms produce ionospheric disturbances that mimic tsunami signals. Elevated space weather reduces TEC reliability weighting.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.08em;color:var(--accent2);margin-bottom:6px">ShakeMap Focal Mechanism</div>
+        <div style="font-size:13px;color:var(--dim)">USGS moment tensor API. Strike-slip earthquakes do not displace the water column and cannot generate tsunamis. Events below a tsunamigenic index of 0.25 are skipped entirely. Above that threshold the index scales the TEC contribution as a prior.</div>
+      </div>
+    </div>
+
+    <h2 style="font-family:var(--font-h);font-size:18px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin:32px 0 16px">Why It Could Matter</h2>
+
+    <p style="margin:0 0 20px">Current operational tsunami warning relies primarily on DART buoys &mdash; physical sensors on the ocean floor that must wait for the wave to pass over them. The ionospheric signal travels through the atmosphere and may arrive at GPS stations before the wave reaches the nearest buoy. If that timing advantage holds on live events, even 20&ndash;30 minutes of additional warning time has real consequences for coastal communities.</p>
+
+    <h2 style="font-family:var(--font-h);font-size:18px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin:32px 0 16px">Validation</h2>
+
+    <p style="margin:0 0 8px">Backtested against 9 historical Pacific events:</p>
+    <div style="font-family:var(--font-m);font-size:12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:20px">
+      <div style="color:var(--accent2);margin-bottom:8px">TP=4 &nbsp; TN=5 &nbsp; FP=0 &nbsp; FN=0 &nbsp;&mdash;&nbsp; TPR=1.00 &nbsp; FPR=0.00</div>
+      <div style="color:var(--dim)">Tohoku 2011 Mw9.1 &middot; Chile 2010 Mw8.8 &middot; Kuril 2006 Mw8.3 &middot; Haida Gwaii 2012 Mw7.7 correctly detected.<br>Sumatra strike-slip 2012 &middot; Okhotsk deep 2013 &middot; Kermadec 2011 &middot; Tohoku foreshock 2011 &middot; Samoa 2009 correctly rejected.</div>
+    </div>
+
+    <p style="margin:0;color:var(--dim)">Every live prediction is automatically scored against NOAA tide gauge data 24 hours after the event. Calibration tracks confidence bucket accuracy over time.</p>
+
+  </div>
+</div>
+
+<!-- POLL LOG -->
+<div id="tab-polllog" class="tab-pane">
+<div class="main">
+  <p class="section-title">Poll History <span style="font-size:9px;color:var(--dim);margin-left:4px">(last 50)</span></p>
+  <div class="card" style="margin-bottom:24px">
+    <div id="poll-body">
+      <div class="empty-state"><div class="empty-icon">📡</div><div class="empty-title">No poll data</div></div>
+    </div>
+  </div>
+  <p class="section-title">Recent Seismic Activity - Did Not Qualify <span style="font-size:9px;color:var(--dim);margin-left:4px">(last 50)</span></p>
+  <div class="card">
+    <div id="seismic-body">
+      <div class="empty-state">
+        <div class="empty-icon">🌍</div>
+        <div class="empty-title">No near-miss events</div>
+        <div class="empty-sub">Mw5.5+ events that did not meet qualifying threshold appear here</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:14px 32px;display:flex;justify-content:space-between;margin-top:32px">
+  <a href="https://github.com/Beastros/gps-tsunami-detection" style="font-family:var(--font-m);font-size:10px;color:var(--dim);text-decoration:none">github.com/Beastros/gps-tsunami-detection</a>
+  <span style="font-family:var(--font-m);font-size:10px;color:var(--dim)">Research monitoring &middot; not an operational warning system &middot; Scientific inquiries: <a href="mailto:mthhorn@gmail.com" style="color:var(--dim);text-decoration:none">mthhorn@gmail.com</a></span>
+</footer>
+
+<script>
+function showTab(name,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function el(id){return document.getElementById(id)}
+function swColor(s){return s>=0.5?'var(--danger)':s>=0.3?'var(--warn)':'var(--accent2)'}
+
+async function fetchDict(url,key){
+  try{const d=await(await fetch(url)).json();for(let i=d.length-1;i>=0;i--){const v=d[i][key];if(v!=null&&!isNaN(+v))return+v;}}catch(e){}return null;
+}
+async function fetchList(url,col){
+  try{const d=await(await fetch(url)).json();for(let i=d.length-1;i>=0;i--){const r=d[i];if(!Array.isArray(r)||r.length<=col)continue;const v=r[col];if(v!=null&&v!==''&&!isNaN(+v))return+v;}}catch(e){}return null;
+}
+async function fetchXray(){
+  try{const d=await(await fetch('https://services.swpc.noaa.gov/json/goes/primary/xrays-7-day.json')).json();for(let i=d.length-1;i>=0;i--)if(d[i].energy==='0.1-0.8nm'&&d[i].flux!=null)return+d[i].flux;}catch(e){}return null;
+}
+
+async function loadSW(){
+  const[kp,speed,bz,xray]=await Promise.all([
+    fetchDict('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json','Kp'),
+    fetchList('https://services.swpc.noaa.gov/products/solar-wind/plasma-7-day.json',2),
+    fetchList('https://services.swpc.noaa.gov/products/solar-wind/mag-7-day.json',3),
+    fetchXray()
+  ]);
+  let score=0,flags=[];
+  if(kp>=6){score+=0.6;flags.push('Kp='+kp.toFixed(1)+' (storm)');}
+  else if(kp>=4){score+=0.4;flags.push('Kp='+kp.toFixed(1)+' (active)');}
+  if(bz!=null&&bz<-10){score+=0.3;flags.push('Bz='+bz.toFixed(1)+'nT');}
+  if(speed!=null&&speed>600){score+=0.2;flags.push('SW='+speed.toFixed(0)+'km/s');}
+  if(xray!=null&&xray>=1e-5){score+=0.2;flags.push('X-ray='+xray.toExponential(1));}
+  score=Math.min(score,1.0);
+  const gated=score>=0.5;
+  el('sw-score-val').textContent=score.toFixed(2);
+  el('sw-score-val').style.color=swColor(score);
+  el('sw-bar').style.width=(score*100)+'%';
+  el('sw-bar').style.background=swColor(score);
+  const b=el('sw-badge');
+  if(gated){b.textContent='GATED';b.className='sw-badge gated';}
+  else if(score>=0.3){b.textContent='ACTIVE';b.className='sw-badge active';}
+  else{b.textContent='CLEAR';b.className='sw-badge clear';}
+  // Kp
+  el('sw-kp-val').textContent=kp!=null?kp.toFixed(1):'--';
+  el('sw-kp-bar').style.width=kp!=null?Math.min(kp/9*100,100)+'%':'0%';
+  el('sw-kp-bar').style.background=kp>=6?'var(--danger)':kp>=4?'var(--warn)':'var(--accent)';
+  el('sw-kp-st').textContent=kp!=null?(kp>=6?'storm':kp>=4?'active':'quiet'):'unavailable';
+  el('sw-kp-st').className='sw-ch-status '+(kp>=6?'bad':kp>=4?'warn':'ok');
+  if(kp>=4)el('sw-ch-kp').classList.add('contributing');
+  // Bz
+  el('sw-bz-val').innerHTML=bz!=null?bz.toFixed(1)+'<span class="sw-ch-unit"> nT</span>':'--';
+  el('sw-bz-bar').style.width=bz!=null?Math.min(Math.abs(bz)/30*100,100)+'%':'0%';
+  el('sw-bz-bar').style.background=bz<-10?'var(--danger)':bz<-5?'var(--warn)':'var(--accent)';
+  el('sw-bz-st').textContent=bz!=null?(bz<-10?'southward':bz<0?'slightly south':'northward'):'unavailable';
+  el('sw-bz-st').className='sw-ch-status '+(bz<-10?'bad':bz<-5?'warn':'ok');
+  if(bz<-10)el('sw-ch-bz').classList.add('contributing');
+  // Speed
+  el('sw-spd-val').innerHTML=speed!=null?speed.toFixed(0)+'<span class="sw-ch-unit"> km/s</span>':'--';
+  el('sw-spd-bar').style.width=speed!=null?Math.min(speed/900*100,100)+'%':'0%';
+  el('sw-spd-bar').style.background=speed>600?'var(--danger)':speed>450?'var(--warn)':'var(--accent)';
+  el('sw-spd-st').textContent=speed!=null?(speed>600?'fast':speed>450?'elevated':'nominal'):'unavailable';
+  el('sw-spd-st').className='sw-ch-status '+(speed>600?'bad':speed>450?'warn':'ok');
+  if(speed>600)el('sw-ch-spd').classList.add('contributing');
+  // X-ray
+  const xLabel=xray!=null?xray.toExponential(1):'--';
+  const xClass=xray>=1e-4?'X-class':xray>=1e-5?'M-class':xray>=1e-6?'C-class':'B-class';
+  el('sw-xr-val').textContent=xLabel;
+  el('sw-xr-bar').style.width=xray!=null?Math.max(Math.min((Math.log10(xray)+8)/4*100,100),0)+'%':'0%';
+  el('sw-xr-bar').style.background=xray>=1e-4?'var(--danger)':xray>=1e-5?'var(--warn)':'var(--accent)';
+  el('sw-xr-st').textContent=xray!=null?xClass:'unavailable';
+  el('sw-xr-st').className='sw-ch-status '+(xray>=1e-4?'bad':xray>=1e-5?'warn':'ok');
+  if(xray>=1e-5)el('sw-ch-xr').classList.add('contributing');
+  el('sw-flags').textContent=flags.length?'Factors: '+flags.join(' | '):'No contamination factors active';
+  el('sw-time').textContent='Updated '+new Date().toUTCString();
+}
+
+// SVG map projection helpers (matches viewBox 0 0 960 480)
+// x: 150E=229, 180=366, 150W=503  => 137px per 30deg => 4.5667 px/deg
+// y: 60N=37, 30N=147, EQ=258, 30S=369 => 111px per 30deg => 3.7 px/deg
+function lonToSvgX(lon){var l=lon<0?lon+360:lon;return(l-150)*(137/30)+229;}
+function latToSvgY(lat){return 258-lat*(111/30);}
+
+const BASE='https://raw.githubusercontent.com/Beastros/gps-tsunami-detection/main/';
+function fmtDate(ts){if(!ts)return'--';const d=new Date(ts);if(isNaN(d))return'--';return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});}
+
+async function loadPipeline(){
+  try{
+    const[pr,lr,qr]=await Promise.all([fetch(BASE+'poll_log.json'),fetch(BASE+'running_log.json'),fetch(BASE+'event_queue.json')]);
+    if(pr.ok)renderPoll(await pr.json());
+    if(lr.ok)renderLog(await lr.json());
+    if(qr.ok)updateAlertBanner(await qr.json());
+  }catch(e){console.error(e);}
+}
+
+function renderPoll(d){
+  el('st-polls').textContent=d.total_polls??'--';
+  const polls=d.polls||[];
+  if(polls.length){
+    const last=polls[polls.length-1];
+    const t=new Date(last.ts);
+    el('st-last').textContent=isNaN(t)?'--':t.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+    el('st-last-sub').textContent=isNaN(t)?'--':t.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    const rows=polls.slice(-50).reverse().map(p=>{
+      const ok=!p.error;
+      return '<tr><td>'+fmtDate(p.ts)+'</td><td>'+(p.new_candidates??0)+'</td><td>'+(p.total_queued??'--')+'</td><td>'+(p.scored??'--')+'</td><td><span class="poll-status '+(ok?'ok':'err')+'">'+(ok?'OK':'ERR')+'</span></td></tr>';
+    }).join('');
+    el('poll-body').innerHTML='<table class="data-table"><thead><tr><th>Time (UTC)</th><th>New</th><th>Queued</th><th>Scored</th><th>Status</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+  const rs=d.recent_seismicity||[];
+  if(rs.length){
+    const rows=rs.slice(-50).reverse().map(e=>{
+      const delta=e.delta!=null?e.delta:null;
+      const dStr=delta!=null?'<span class="'+(delta>=0?'delta-pos':'delta-neg')+'">'+(delta>=0?'+':'')+delta.toFixed(1)+'</span>':'--';
+      return '<tr><td>'+fmtDate(e.ts)+'</td><td style="font-family:var(--font-m)">Mw '+(e.mag!=null?e.mag.toFixed(1):'--')+'</td><td>'+( e.place||'--')+'</td><td>'+(e.depth!=null?e.depth+'km':'--')+'</td><td><span class="reason-tag">'+(e.reason||'--')+'</span></td><td style="font-family:var(--font-m)">'+dStr+'</td></tr>';
+    }).join('');
+    el('seismic-body').innerHTML='<table class="data-table"><thead><tr><th>Time (UTC)</th><th>Mag</th><th>Location</th><th>Depth</th><th>Reason</th><th title="Delta from qualifying threshold">Delta Mw</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    renderSeismicOnMap(rs);
+    // Render near-miss events on the Pacific map
+    var grp=document.getElementById('seismic-markers');
+    if(grp){
+      grp.innerHTML='';
+      var recent=rs.slice(-60);
+      var now=Date.now();
+      recent.forEach(function(e){
+        if(e.lat==null||e.lon==null) return;
+        var x=lonToSvgX(e.lon), y=latToSvgY(e.lat);
+        if(x<0||x>960||y<0||y>480) return;
+        var mag=e.mag||5.5;
+        var r=Math.max(2.5, (mag-4.5)*2.2);
+        var age=(now-new Date(e.ts).getTime())/(1000*3600);
+        var op=Math.max(0.25, 0.75-age/48);
+        var nearMiss=(e.delta!=null&&e.delta>-0.5&&e.delta<=0);
+        var stroke=nearMiss?'#ffa726':'#c0702a';
+        var sw=nearMiss?1.5:1.0;
+        var g=document.createElementNS('http://www.w3.org/2000/svg','g');
+        var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1));
+        c.setAttribute('r',r.toFixed(1));
+        c.setAttribute('fill','none'); c.setAttribute('stroke',stroke);
+        c.setAttribute('stroke-width',sw); c.setAttribute('opacity',op.toFixed(2));
+        var t=document.createElementNS('http://www.w3.org/2000/svg','title');
+        t.textContent='Mw '+(mag.toFixed?mag.toFixed(1):mag)+' '+( e.place||'')+' ('+( e.reason||'filtered')+')';
+        c.appendChild(t); g.appendChild(c);
+        if(nearMiss){
+          var c2=document.createElementNS('http://www.w3.org/2000/svg','circle');
+          c2.setAttribute('cx',x.toFixed(1)); c2.setAttribute('cy',y.toFixed(1));
+          c2.setAttribute('r',(r+2.5).toFixed(1));
+          c2.setAttribute('fill','none'); c2.setAttribute('stroke','#ffa726');
+          c2.setAttribute('stroke-width','0.6'); c2.setAttribute('opacity',(op*0.4).toFixed(2));
+          g.appendChild(c2);
+        }
+        grp.appendChild(g);
+      });
+    }
+  }
+}
+
+function renderLog(d){
+  // running_log.json uses scored_events key
+  const events = d.scored_events || d.events || [];
+  const summary = d.summary || {};
+  el('st-scored').textContent = events.length;
+  if(!events.length) return;
+
+  // Outcome counts â€” scorer uses TRUE_POSITIVE etc.
+  const tp  = summary.true_positives  ?? events.filter(e=>e.outcome==='TRUE_POSITIVE').length;
+  const tn  = summary.true_negatives  ?? events.filter(e=>['TRUE_NEGATIVE','CORRECT_ABSTENTION_NO_ANCHOR'].includes(e.outcome)).length;
+  const fp  = summary.false_positives ?? events.filter(e=>e.outcome==='FALSE_POSITIVE').length;
+  const fn  = summary.false_negatives ?? events.filter(e=>['FALSE_NEGATIVE','GEOMETRY_LIMITED_MISS'].includes(e.outcome)).length;
+  const geo = events.filter(e=>e.outcome==='GEOMETRY_LIMITED_MISS').length;
+
+  el('oc-tp').textContent=tp; el('oc-tn').textContent=tn;
+  el('oc-fp').textContent=fp; el('oc-fn').textContent=fn;
+  el('oc-geo').textContent=geo; el('oc-total').textContent=events.length;
+
+  // Performance â€” prefer summary fields
+  el('perf-tpr').textContent = summary.tpr!=null ? summary.tpr.toFixed(2) : (tp+fn>0?(tp/(tp+fn)).toFixed(2):'--');
+  el('perf-fpr').textContent = summary.fpr!=null ? summary.fpr.toFixed(2) : (fp+tn>0?(fp/(fp+tn)).toFixed(2):'--');
+  if(summary.mean_lead_time_min!=null){
+    el('perf-lead').innerHTML = summary.mean_lead_time_min.toFixed(0)+'<span class="perf-unit"> min</span>';
+    el('perf-med').innerHTML  = (summary.median_lead_time_min||'--')+'<span class="perf-unit"> min</span>';
+  }
+  if(summary.mean_amplitude_error_pct!=null)
+    el('perf-amp').textContent = summary.mean_amplitude_error_pct.toFixed(1)+'%';
+
+  // Events table
+  const rows = events.slice().reverse().map(e=>{
+    // scored events have fields at top level (from scorer.py)
+    const det = e.algo_detected ?? false;
+    const gated = e.space_weather_gated ?? false;
+    const bc  = det ? 'detected' : gated ? 'gated' : 'silent';
+
+    // Confidence bar
+    const conf = e.combined_confidence;
+    let confCell = '<span style="color:var(--dim)">--</span>';
+    if(conf!=null){
+      const pct = Math.round(conf*100);
+      const col = conf>=0.7?'var(--accent2)':conf>=0.35?'var(--warn)':'var(--dim)';
+      confCell = '<div style="display:flex;align-items:center;gap:5px">'
+        +'<div style="width:52px;height:5px;background:var(--surface3);border-radius:3px;overflow:hidden">'
+        +'<div style="width:'+pct+'%;height:100%;background:'+col+';border-radius:3px"></div></div>'
+        +'<span style="font-family:var(--font-m);font-size:11px;color:'+col+'">'+conf.toFixed(2)+'</span></div>';
+    }
+
+    // DART status
+    const ds = e.dart_status_prediction;
+    const di = ds==='confirmed'?'\u25CF':ds==='negative'?'\u25CB':ds==='pending'?'~':'\u2014';
+    const dc = ds==='confirmed'?'var(--accent)':ds==='negative'?'var(--dim)':'var(--dim)';
+    const dScore = e.dart_score_prediction;
+    const dTip = 'DART: '+(ds||'n/a')+(dScore!=null?' ('+dScore.toFixed(2)+')':'');
+
+    // Space weather
+    const sw = e.space_weather_score;
+    const swTxt = sw!=null?sw.toFixed(2):'--';
+    const swCol = sw>=0.5?'var(--danger)':sw>=0.3?'var(--warn)':'var(--accent2)';
+
+    // Outcome label
+    const outMap = {'TRUE_POSITIVE':'TP','TRUE_NEGATIVE':'TN','FALSE_POSITIVE':'FP',
+      'FALSE_NEGATIVE':'FN','GEOMETRY_LIMITED_MISS':'GEO','CORRECT_ABSTENTION_NO_ANCHOR':'TN'};
+    const outLabel = outMap[e.outcome] || (e.outcome||'--');
+    const outCol = outLabel==='TP'?'var(--accent2)':outLabel==='FP'?'var(--danger)':
+                   outLabel==='FN'?'var(--warn)':'var(--dim)';
+
+    return '<tr>'
+      +'<td>'+fmtDate(e.quake_utc)+'</td>'
+      +'<td>'+( e.place||'--')+'</td>'
+      +'<td style="font-family:var(--font-m)">Mw '+(e.magnitude!=null?e.magnitude.toFixed(1):'--')+'</td>'
+      +'<td>'+confCell+'</td>'
+      +'<td><span class="det-badge '+bc+'">'+(det?'DETECTED':gated?'GATED':'SILENT')+'</span></td>'
+      +'<td style="font-family:var(--font-m);color:'+outCol+'">'+outLabel+'</td>'
+      +'<td title="Constellation: '+(e.constellation_agreement?e.constellation_agreement.agreement_label:'n/a')+'" style="font-family:var(--font-m);color:var(--dim);text-align:center">'+(e.constellation_agreement?(e.constellation_agreement.n_detecting+'/'+e.constellation_agreement.n_available):'--')+'</td>'
+      +'<td style="text-align:center;color:'+(e.dtec_corroborates?'var(--accent2)':'var(--dim)')+'" title="dTEC/dt corroboration">'+(e.dtec_corroborates?'\u25CF':'\u25CB')+'</td>'
+      +'<td style="text-align:center;color:'+(e.ionosonde_confirmed?'var(--accent2)':'var(--dim)')+'" title="Ionosonde foF2 confirmed">'+(e.ionosonde_confirmed?'\u25CF':'\u25CB')+'</td>'
+        +'<td style="text-align:center;font-size:11px;color:'+(e.dyfi_responses!=null&&e.dyfi_confirmed?'var(--accent2)':'var(--dim)')+'" title="DYFI felt reports'+(e.dyfi_responses!=null?' ('+e.dyfi_responses+' resp, MMI '+e.dyfi_maxmmi+')':' (no data)')+'"> '+(e.dyfi_responses!=null?String(e.dyfi_responses):'\u2014')+'</td>'
+      +'<td title="'+dTip+'" style="font-family:var(--font-m);color:'+dc+';text-align:center">'+di+'</td>'
+      +'<td style="font-family:var(--font-m);color:'+swCol+'">'+swTxt+'</td>'
+      +'</tr>';
+  }).join('');
+
+  el('events-body').innerHTML='<table class="data-table"><thead><tr>'
+    +'<th>Date (UTC)</th><th>Location</th><th>Mw</th>'
+    +'<th title="Multi-sensor fusion confidence (0=low, 1=high)">Confidence</th>'
+    +'<th>TEC</th><th>Outcome</th>'
+    +'<th title="DART buoy: \u25CF confirmed \u25CB negative ~ pending">DART</th>'
+    +'<th title="DYFI felt report count (crowdsourced, USGS)">DYFI</th>'
+    +'<th title="Space weather contamination score">Space Wx</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+loadSW();
+loadPipeline();
+async function loadDyfi(){try{const r=await fetch(BASE+'dyfi_pings.json');if(!r.ok)return;const d=await r.json();renderDyfiPings(d.pings||[]);}catch(e){}}
+loadDyfi();
+setInterval(loadDyfi,15*60*1000);
+setInterval(loadSW,5*60*1000);
+initMap();
+
+// ── Leaflet Pacific Basin Map ─────────────────────────────────────
+function renderDyfiPings(pings){
+  if(!svg||!proj)return;
+  svg.selectAll('.dyfi-ping').remove();
+  pings.forEach(function(ping){
+    var pt=proj([ping.lon,ping.lat]);
+    if(!pt)return;
+    var mmi=ping.dyfi_maxmmi||4;
+    var r=Math.max(4,Math.min(14,mmi*1.8));
+    var g=svg.append('g').attr('class','dyfi-ping');
+    g.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',r+5)
+      .attr('fill','none').attr('stroke','#ff9f43').attr('stroke-width',0.7)
+      .attr('class','dyfi-ping-ring').attr('opacity',0.45);
+    g.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',r)
+      .attr('fill','none').attr('stroke','#ff9f43').attr('stroke-width',1.6)
+      .attr('opacity',0.9);
+    g.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',2.5)
+      .attr('fill','#ff9f43').attr('opacity',0.95);
+    g.on('mouseover',function(e){
+      showTip('<b style="color:#ff9f43">DYFI Felt Shaking</b><br>Mw '
+        +ping.mag+' · '+ping.place+'<br>'
+        +(ping.dyfi_responses||0)+' felt reports'
+        +(ping.dyfi_maxmmi?' · MMI '+ping.dyfi_maxmmi.toFixed(1):''),e);
+    }).on('mouseout',hideTip);
+  });
+}
+function initMap() {
+  var W=960, H=500;
+  var svg=d3.select('#pmap').attr('viewBox','0 0 '+W+' '+H).attr('height',H);
+  var proj=d3.geoNaturalEarth1().rotate([150,0]).scale(160).translate([W/2,H/2]);
+  var path=d3.geoPath(proj);
+  var tt=document.getElementById('mtt');
+  var mapEl=document.getElementById('pmap');
+
+  function showTip(html,e){
+    tt.innerHTML=html; tt.style.display='block';
+    var r=mapEl.getBoundingClientRect();
+    var mx=e.clientX-r.left, my=e.clientY-r.top;
+    tt.style.left=(mx+12)+'px'; tt.style.top=(my-10)+'px';
+  }
+  function hideTip(){ tt.style.display='none'; }
+
+  var GPS=[
+    {id:'GUAM',lat:13.489,lon:144.868,note:'Guam \u00b7 83m',color:'#f9ca24',lx:7,ly:3},
+    {id:'MKEA',lat:19.801,lon:-155.456,note:'Mauna Kea HI \u00b7 3763m',color:'#00c8ff',lx:14,ly:18},
+    {id:'KOKB',lat:22.127,lon:-159.665,note:'Kokee Kauai HI \u00b7 1167m',color:'#54a0ff',lx:-52,ly:-14},
+    {id:'HNLC',lat:21.297,lon:-157.816,note:'Honolulu HI \u00b7 5m',color:'#48dbfb',lx:-52,ly:18},
+    {id:'CHAT',lat:-43.956,lon:-176.566,note:'Chatham Islands NZ \u00b7 63m',color:'#a55eea',lx:7,ly:3},
+    {id:'THTI',lat:-17.577,lon:-149.606,note:'Tahiti \u00b7 87m',color:'#fd79a8',lx:7,ly:3},
+    {id:'AUCK',lat:-36.602,lon:174.834,note:'Auckland NZ \u00b7 106m (V4)',color:'#00b894',lx:7,ly:3},
+    {id:'NOUM',lat:-22.270,lon:166.413,note:'Noumea NC \u00b7 69m (V4)',color:'#55efc4',lx:7,ly:3},
+    {id:'KWJ1',lat:8.722,lon:167.730,note:'Kwajalein \u00b7 39m (V4)',color:'#fdcb6e',lx:7,ly:13},
+    {id:'HOLB',lat:50.640,lon:-128.133,note:'Holberg BC \u00b7 180m (V4) \u00b7 Cascadia zone',color:'#ff7675',lx:7,ly:3},
+  ];
+    var IONO=[
+    {id:'RP536',name:'Okinawa',lat:26.3,lon:127.8},
+    {id:'TW637',name:'Zhongli',lat:24.97,lon:121.18},
+    {id:'GU513',name:'Guam',lat:13.49,lon:144.87},
+    {id:'WP937',name:'Wake Is.',lat:19.28,lon:166.65},
+    {id:'KJ609',name:'Kwajalein',lat:8.72,lon:167.73},
+    {id:'CH853',name:'Chatham Is.',lat:-43.93,lon:-176.57},
+    {id:'AT138',name:'Townsville',lat:-19.63,lon:146.85},
+  ];
+  var DART=[
+    [19.619,-154.063],[24.423,-162.058],[51.019,-154.059],[54.973,-162.071],
+    [53.618,-164.988],[57.845,-137.981],[45.858,-128.826],[59.676,-144.003],
+    [53.0,-129.8],[40.838,-129.079],[37.374,-129.803],[40.249,-134.063],
+    [48.754,-129.986],[30.518,152.116],[28.994,178.006],[19.276,136.329],
+    [-18.032,-86.485],[-20.671,-109.388],[-14.91,-105.172],[-22.81,-79.01],
+    [-1.877,-82.398],[-1.723,-90.289],[-18.861,-173.036],[-32.54,-177.58],[-9.924,99.562],
+  ];
+  var SZ=[
+    [[153,46],[147,43],[143,40],[141,37],[140,34],[141,31],[140,28],[142,26],[144,22],[147,18],[145,14],[142,11]],
+    [[180,52],[172,54],[163,55],[154,54],[148,52]],
+    [[-127,49],[-125,46],[-125,43]],
+    [[-104,18],[-92,15],[-84,10]],
+    [[-80,-2],[-79,-8],[-75,-15],[-70,-22],[-71,-28],[-72,-35],[-75,-43]],
+    [[-174,-15],[-175,-20],[-177,-25],[-178,-30],[-179.5,-35]],
+    [[157,-8],[166,-12],[168,-16],[169,-20]],
+  ];
+
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .then(function(r){return r.json();})
+  .then(function(world){
+    svg.append('rect').attr('width',W).attr('height',H).attr('fill','#040e1a');
+    var grat=d3.geoGraticule().step([30,30]);
+    svg.append('path').datum(grat()).attr('d',path).attr('fill','none').attr('stroke','#0e2a3f').attr('stroke-width',0.4);
+    svg.append('path').datum({type:'Sphere'}).attr('d',path).attr('fill','none').attr('stroke','#0e2a3f').attr('stroke-width',0.8);
+    svg.append('path').datum(topojson.feature(world,world.objects.countries)).attr('d',path).attr('fill','#0d2236').attr('stroke','#1e4060').attr('stroke-width',0.6);
+
+    SZ.forEach(function(coords){
+      svg.append('path').datum({type:'Feature',geometry:{type:'LineString',coordinates:coords}})
+        .attr('d',path).attr('fill','none').attr('stroke','#c0392b').attr('stroke-width',2).attr('opacity',0.72);
+    });
+
+    DART.forEach(function(b){
+      var p=proj([b[1],b[0]]);
+      if(!p)return;
+      svg.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',3.5)
+        .attr('fill','none').attr('stroke','#0abde3').attr('stroke-width',1.4).attr('opacity',0.8)
+        .style('cursor','pointer')
+        .on('mouseover',function(e){showTip('<b style="color:#0abde3">DART buoy</b><br><span style="color:#6a9cc0">NOAA NDBC pressure sensor</span>',e);})
+        .on('mouseout',hideTip);
+    });
+
+    IONO.forEach(function(io){
+      var p=proj([io.lon,io.lat]);
+      if(!p)return;
+      var s2=5;
+      svg.append('rect').attr('x',p[0]-s2/2).attr('y',p[1]-s2/2).attr('width',s2).attr('height',s2)
+        .attr('fill','none').attr('stroke','#ffd32a').attr('stroke-width',1.4)
+        .attr('transform','rotate(45,'+p[0]+','+p[1]+')').attr('opacity',0.85)
+        .style('cursor','pointer')
+        .on('mouseover',function(e){showTip('<b style="color:#ffd32a">'+io.id+'</b><br>'+io.name+'<br><span style="color:#6a9cc0">GIRO Digisonde foF2</span>',e);})
+        .on('mouseout',hideTip);
+    });
+
+    GPS.forEach(function(st){
+      var p=proj([st.lon,st.lat]);
+      if(!p)return;
+      svg.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',9).attr('fill',st.color).attr('opacity',0.15);
+      svg.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',4.5).attr('fill',st.color)
+        .style('cursor','pointer')
+        .on('mouseover',function(e){showTip('<b style="color:'+st.color+'">'+st.id+'</b><br>'+st.note+'<br><span style="color:#6a9cc0">GPS anchor station</span>',e);})
+        .on('mouseout',hideTip);
+      var lx=p[0]+(st.lx!=null?st.lx:7),ly=p[1]+(st.ly!=null?st.ly:3);
+      if(Math.abs(st.lx||0)>10||Math.abs(st.ly||0)>10){
+        svg.append('line').attr('x1',p[0]).attr('y1',p[1]).attr('x2',lx+(st.lx<0?st.id.length*5.5:0)).attr('y2',ly-3)
+          .attr('stroke',st.color).attr('stroke-width',0.8).attr('stroke-dasharray','2,3')
+          .attr('opacity',0.55).attr('pointer-events','none');
+      }
+      svg.append('text').attr('x',lx).attr('y',ly)
+        .attr('fill',st.color).attr('font-size',9).attr('font-weight',600)
+        .attr('font-family','JetBrains Mono,monospace').attr('pointer-events','none').text(st.id);
+    });
+
+    var hilo=proj([-155.087,19.730]);
+    if(hilo){
+      svg.append('circle').attr('cx',hilo[0]).attr('cy',hilo[1]).attr('r',5).attr('fill','none').attr('stroke','#00ff9d').attr('stroke-width',1.8)
+        .style('cursor','pointer')
+        .on('mouseover',function(e){showTip('<b style="color:#00ff9d">HILO</b><br>Primary tide gauge target<br>NOAA station 1617760',e);})
+        .on('mouseout',hideTip);
+      svg.append('circle').attr('cx',hilo[0]).attr('cy',hilo[1]).attr('r',2).attr('fill','#00ff9d').attr('pointer-events','none');
+    }
+
+    window._mapSvg=svg; window._mapProj=proj;
+  }).catch(function(){
+    svg.append('rect').attr('width',W).attr('height',H).attr('fill','#040e1a');
+    svg.append('text').attr('x',W/2).attr('y',H/2).attr('text-anchor','middle').attr('fill','#6a9cc0').attr('font-size',13).text('Could not load world geography');
+  });
+}
+
+function renderSeismicOnMap(rs) {
+  var svg=window._mapSvg, proj=window._mapProj;
+  if(!svg||!proj||!rs||!rs.length) return;
+  svg.selectAll('.seismic-marker').remove();
+  var now=Date.now();
+  rs.slice(-80).forEach(function(e){
+    if(e.lat==null||e.lon==null) return;
+    var p=proj([e.lon,e.lat]);
+    if(!p) return;
+    var mag=e.mag||5.5;
+    var r=Math.max(3,(mag-4.5)*4);
+    var age=(now-new Date(e.ts).getTime())/(1000*3600);
+    var op=Math.max(0.2,0.75-age/48);
+    var nearMiss=e.delta!=null&&e.delta>-0.5&&e.delta<=0;
+    var color=nearMiss?'#ffa726':'#c0702a';
+    svg.append('circle').attr('class','seismic-marker')
+      .attr('cx',p[0]).attr('cy',p[1]).attr('r',r)
+      .attr('fill','none').attr('stroke',color).attr('stroke-width',nearMiss?1.8:1.0).attr('opacity',op);
+    if(nearMiss){
+      svg.append('circle').attr('class','seismic-marker')
+        .attr('cx',p[0]).attr('cy',p[1]).attr('r',r+3)
+        .attr('fill','none').attr('stroke','#ffa726').attr('stroke-width',0.5).attr('opacity',op*0.35);
+    }
+  });
+}
+
+function renderActiveEvent(events){
+  var svg=window._mapSvg,proj=window._mapProj;
+  if(!svg||!proj)return;
+  svg.selectAll('.event-marker').remove();
+  events.forEach(function(ev){
+    if(ev.lat==null||ev.lon==null)return;
+    var p=proj([ev.lon,ev.lat]);
+    if(!p)return;
+    var g=svg.append('g').attr('class','event-marker');
+    g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',54)
+      .attr('fill','none').attr('stroke','#ff4a4a').attr('stroke-width',0.7).attr('class','ev-ring3');
+    g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',33)
+      .attr('fill','none').attr('stroke','#ff4a4a').attr('stroke-width',1.1).attr('class','ev-ring2');
+    g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',16)
+      .attr('fill','none').attr('stroke','#ff4a4a').attr('stroke-width',1.8).attr('class','ev-ring');
+    var arm=15;
+    g.append('line').attr('x1',p[0]-arm).attr('y1',p[1]).attr('x2',p[0]+arm).attr('y2',p[1])
+      .attr('stroke','#ff4a4a').attr('stroke-width',1.5).attr('opacity',0.9);
+    g.append('line').attr('x1',p[0]).attr('y1',p[1]-arm).attr('x2',p[0]).attr('y2',p[1]+arm)
+      .attr('stroke','#ff4a4a').attr('stroke-width',1.5).attr('opacity',0.9);
+    g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2.5).attr('fill','#ff4a4a');
+    var mw='Mw'+(ev.magnitude!=null?(+ev.magnitude).toFixed(1):'?');
+    g.append('text').attr('x',p[0]+20).attr('y',p[1]-6)
+      .attr('fill','#ff4a4a').attr('font-size',10).attr('font-weight',700)
+      .attr('font-family','JetBrains Mono,monospace').attr('pointer-events','none').text(mw);
+    g.append('text').attr('x',p[0]+20).attr('y',p[1]+7)
+      .attr('fill','#ff7675').attr('font-size',9)
+      .attr('font-family','JetBrains Mono,monospace').attr('pointer-events','none').text('ACTIVE');
+  });
+}
+
+function updateAlertBanner(queue){
+  var banner=document.getElementById('alert-banner');
+  if(!banner)return;
+  var events=(queue.events||[]).filter(function(e){return e.status&&e.status!=='scored';});
+  if(!events.length){banner.style.display='none';return;}
+  banner.style.display='block';
+  var ev=events[0];
+  var titleEl=document.getElementById('alert-title');
+  var detailEl=document.getElementById('alert-detail');
+  var zone=ev.zones&&ev.zones.length?ev.zones[0].toUpperCase()+' ZONE':'PACIFIC';
+  if(titleEl)titleEl.textContent='DETECTION ACTIVE — '+zone;
+  if(detailEl){
+    var mw='Mw'+(ev.magnitude!=null?(+ev.magnitude).toFixed(1):'?');
+    detailEl.textContent=mw+' · '+(ev.place||'Unknown')+' · '+(ev.status||'QUEUED').toUpperCase();
+  }
+  var badge=document.querySelector('.live-badge');
+  if(badge)badge.innerHTML='<div class="pulse" style="background:#ff4a4a;box-shadow:0 0 8px #ff4a4a"></div><span style="color:#ff4a4a">ALERT · FAST POLL</span>';
+  if(window._mapSvg&&window._mapProj){renderActiveEvent(events);}
+  else{setTimeout(function(){if(window._mapSvg&&window._mapProj)renderActiveEvent(events);},2500);}
+}
+
+// Hook into existing renderPoll to also update Leaflet seismic layer
+var _origRenderPoll = typeof renderPoll === 'function' ? renderPoll : null;
+
+</script>
+<footer style="margin-top:60px;padding:24px 32px;border-top:1px solid var(--border);text-align:center;font-family:var(--font-m);font-size:11px;color:var(--dim);line-height:1.7">
+  Built by one person using public APIs from NASA, NOAA, and USGS. Live-testing a novel hypothesis: that ionospheric GPS signals can provide earlier tsunami confirmation than existing methods. Backtested successfully against historical Pacific events. Research only &mdash; not an operational system.
+</footer>
 
 </body>
 </html>
- 
+
