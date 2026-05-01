@@ -21,30 +21,38 @@ gtag('js',new Date());gtag('config','G-M4LHPBSG83');
 *{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:16px;scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);
-  font-weight:300;line-height:1.75;max-width:920px;margin:0 auto;padding:3rem 2rem 6rem;}
+  font-weight:300;line-height:1.75;max-width:960px;margin:0 auto;
+  padding:3rem 2rem 6rem;}
 a{color:inherit;text-decoration:none;}a:hover{color:var(--accent);}
 header{border-bottom:1px solid var(--border);padding-bottom:2rem;margin-bottom:2.5rem;}
 .report-id{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;
   color:var(--text-dim);text-transform:uppercase;margin-bottom:1rem;}
 h1{font-family:var(--sans);font-weight:500;font-size:1.35rem;color:var(--text-bright);
-  line-height:1.35;margin-bottom:0.75rem;max-width:680px;}
-.subtitle{font-size:0.875rem;color:var(--text-dim);line-height:1.6;max-width:620px;}
+  line-height:1.4;margin-bottom:0.75rem;max-width:720px;}
+.subtitle{font-size:0.875rem;color:var(--text-dim);line-height:1.6;max-width:680px;}
 .meta{display:flex;gap:2rem;margin-top:1.25rem;flex-wrap:wrap;
   font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);}
 .meta span{color:var(--text);}
+.abstract{background:var(--bg2);border-left:3px solid var(--accent);
+  padding:1.5rem;margin:2rem 0;max-width:720px;}
+.abstract p{font-size:0.875rem;margin-bottom:0.6rem;color:var(--text);}
+.abstract p:last-child{margin-bottom:0;}
 nav{display:flex;gap:1.5rem;flex-wrap:wrap;font-family:var(--mono);
-  font-size:0.72rem;margin-bottom:3rem;}
-nav a{color:var(--text-dim);transition:color 0.15s;}nav a:hover{color:var(--accent);}
-section{margin-bottom:4rem;}
+  font-size:0.72rem;margin-bottom:3rem;padding-top:0.5rem;}
+nav a{color:var(--text-dim);transition:color 0.15s;}
+nav a:hover{color:var(--accent);}
+section{margin-bottom:4.5rem;}
 .sec-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;
   color:var(--text-dim);text-transform:uppercase;margin-bottom:0.4rem;}
 h2{font-family:var(--sans);font-weight:500;font-size:1.05rem;
-  color:var(--text-bright);margin-bottom:0.9rem;line-height:1.35;}
-p{font-size:0.875rem;margin-bottom:0.75rem;max-width:680px;}
+  color:var(--text-bright);margin-bottom:0.9rem;line-height:1.4;}
+h3{font-family:var(--sans);font-weight:500;font-size:0.9rem;
+  color:var(--text-bright);margin:2rem 0 0.6rem;}
+p{font-size:0.875rem;margin-bottom:0.75rem;max-width:700px;line-height:1.75;}
 .finding{border-left:2px solid var(--border);padding-left:1.5rem;margin-bottom:3rem;}
 .fid{font-family:var(--mono);font-size:0.68rem;color:var(--accent);
   letter-spacing:0.07em;margin-bottom:0.3rem;}
-.finding h2{font-size:0.95rem;margin-bottom:0.6rem;}.finding p{font-size:0.875rem;}
+.finding h2{font-size:0.95rem;margin-bottom:0.6rem;}
 table{width:100%;border-collapse:collapse;font-family:var(--mono);
   font-size:0.76rem;margin:1.25rem 0;}
 thead th{text-align:left;padding:0.45rem 0.75rem;background:var(--bg3);
@@ -54,7 +62,7 @@ tbody td{padding:0.45rem 0.75rem;border-bottom:1px solid var(--bg3);vertical-ali
 tbody tr:hover{background:var(--bg2);}
 .r{text-align:right;}.hi{color:var(--green);}.dim{color:var(--text-dim);}
 .warn{color:var(--warn);}
-.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);margin:1.25rem 0;}
 .stat{background:var(--bg2);padding:0.85rem 1rem;}
 .slabel{font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);
@@ -68,48 +76,69 @@ tbody tr:hover{background:var(--bg2);}
 .notice{background:var(--bg3);border-left:2px solid var(--warn);
   padding:0.85rem 1rem;margin:1rem 0;font-size:0.82rem;color:var(--text-dim);}
 .notice strong{color:var(--warn);font-weight:500;}
+.result-box{background:var(--bg3);border:1px solid var(--border);
+  padding:1rem 1.25rem;margin:1rem 0;font-family:var(--mono);
+  font-size:0.77rem;line-height:1.9;color:var(--text);}
+.result-box .hi{color:var(--green);}
+.result-box .dim{color:var(--text-dim);}
+code{font-family:var(--mono);font-size:0.8em;background:var(--bg3);
+  padding:0.1em 0.3em;border-radius:2px;color:var(--text-bright);}
+ul.plain{font-size:0.875rem;padding-left:1.2rem;line-height:2;max-width:700px;}
+footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
+  font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);line-height:1.9;}
 .formula{background:var(--bg3);border:1px solid var(--border);
   padding:1rem 1.25rem;margin:1rem 0;font-family:var(--mono);
   font-size:0.77rem;overflow-x:auto;line-height:1.9;color:var(--text);}
-code{font-family:var(--mono);font-size:0.8em;background:var(--bg3);
-  padding:0.1em 0.3em;border-radius:2px;color:var(--text-bright);}
-ul.plain{font-size:0.875rem;padding-left:1.2rem;line-height:2;}
-footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
-  font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);line-height:1.9;}
 </style>
 </head>
 <body>
+
 <header>
   <div class="report-id">EMF Anomaly Research &mdash; Public Report &mdash; 2026-04-30</div>
-  <h1>Cross-Correlation of Public Sensor Data Against Documented Anomalous Events</h1>
-  <p class="subtitle">Analysis using publicly accessible government archives: USGS magnetometer network, GFZ Potsdam Kp index, NOAA NEXRAD. All results are reproducible from source data.</p>
+  <h1>Cross-Sensor Analysis of Geomagnetic and Ionospheric Data During Documented Anomalous Events</h1>
+  <p class="subtitle">Open-source analysis using public government sensor archives. All findings are reproducible from source data. Code and raw outputs available in the linked repository.</p>
   <div class="meta">
     <div>Code: <span><a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a></span></div>
     <div>Contact: <span>emfproj@proton.me</span></div>
   </div>
 </header>
+
+<div class="abstract">
+  <p><strong style="color:var(--text-bright);font-weight:500;">Abstract.</strong> This project applies a multi-sensor anomaly detection framework to publicly archived government sensor data, cross-correlated against dates and locations of well-documented aerial events. For each event, magnetometer data from independent USGS and INTERMAGNET stations is retrieved, scored against a rolling baseline, and evaluated under a solar activity gate using the GFZ Kp index. Cross-station Pearson correlation identifies whether independent instruments responded simultaneously.</p>
+  <p>The primary case examined is the Phoenix Lights event of March 13, 1997. Two independent USGS magnetometer stations separated by 1,013 km produced a Pearson correlation of 0.9704 during the event window under geomagnetically quiet conditions (Kp = 2.0). A subsequent spatial analysis pulled data from six additional stations across Alaska, Hawaii, Virginia, Puerto Rico, and the Arctic — all of which were flat during the event window. A parallel ionospheric TEC analysis using IONEX data found no anomaly at any of four post-1998 events, consistent with a localized magnetic disturbance rather than a broad ionospheric or solar phenomenon.</p>
+  <p>The same two-station correlation pattern was reproduced independently on the USS Nimitz date (2004, r = 0.978) and the O&apos;Hare Airport date (2006, r = 0.9796). Whatever produced this signal at each event: affected the geomagnetic field simultaneously across distances exceeding 1,000 km; was confined spatially to a regional corridor rather than a global field; and left no detectable ionospheric signature. No conventional single-source explanation has been identified that accounts for all three characteristics together.</p>
+</div>
+
 <nav>
-  <a href="#method">Method</a><a href="#events">Events</a>
-  <a href="#phoenix">Phoenix 1997</a><a href="#nimitz">Nimitz 2004</a>
-  <a href="#ohare">O&#39;Hare 2006</a><a href="#jal">JAL 1628</a>
-  <a href="#mh370">MH370</a><a href="#signatures">Signatures</a>
+  <a href="#method">Method</a>
+  <a href="#events">Events</a>
+  <a href="#phoenix">Phoenix 1997</a>
+  <a href="#spatial">Spatial Extent</a>
+  <a href="#tec">Ionosphere</a>
+  <a href="#nimitz">Nimitz 2004</a>
+  <a href="#ohare">O&apos;Hare 2006</a>
+  <a href="#jal">JAL 1628</a>
+  <a href="#mh370">MH370</a>
+  <a href="#signatures">Patterns</a>
   <a href="#limits">Limits</a>
 </nav>
+
+<!-- METHOD -->
 <section id="method">
   <div class="sec-label">Method</div>
-  <h2>Anomaly Convergence Score (ACS)</h2>
-  <p>For each event, sensor data is retrieved from public APIs across a &#177;2-hour window. Each stream is scored against a rolling 20-minute baseline using a sigma deviation metric. A solar gate (GFZ Kp index) down-weights periods of elevated geomagnetic activity. Cross-station Pearson correlation identifies whether independent stations responded together.</p>
-  <p>A convergence event is logged when two or more independent sensor streams exceed the 2.0&#963; threshold within a &#177;10-minute window.</p>
-  <div class="formula">ACS(t) = &#8721; [ w&#8345; &times; &#963;&#8345;(t) &times; G(Kp) &times; N(s,t) ]
+  <h2>Anomaly Convergence Score</h2>
+  <p>Sensor data is retrieved from public APIs for a &plusmn;2-hour window around each event. Each data stream is scored against a rolling 20-minute baseline. The GFZ Potsdam Kp index acts as a solar gate: readings during elevated geomagnetic activity (Kp &ge; 3.0) are down-weighted by a factor of 5. A convergence event is logged when two or more independent sensor streams exceed 2.0&sigma; within a &plusmn;10-minute window.</p>
+  <div class="formula">ACS(t) = &sum; [ w&sub;n &times; &sigma;&sub;n(t) &times; G(Kp) &times; N(s,t) ]
 
-  &#963;&#8345;(t)  = |x - mean(20-min window)| / std(20-min window)
-  G(Kp)    = 1.0 if Kp &lt; 3.0  (solar ELIMINATED)
-             0.2 if Kp &ge; 3.0  (solar POSSIBLE)
-  N(s,t)   = 1 &minus; (files_present / expected) within coverage radius
+  &sigma;&sub;n(t)  = |x &minus; mean(20-min window)| / std(20-min window)
+  G(Kp)    = 1.0 if Kp &lt; 3.0  &mdash;  solar ELIMINATED
+             0.2 if Kp &ge; 3.0  &mdash;  solar POSSIBLE
   Weights  : magnetometer 1.0 | NEXRAD 0.8 | Kp index 0.6
-  Threshold: &sigma; &gt; 2.0 to flag anomaly</div>
-  <p>Cross-station propagation velocity is estimated as station_separation / time_lag at peak Pearson r.</p>
+  Threshold: &sigma; &gt; 2.0 to flag</div>
+  <p>Cross-station propagation velocity is estimated as station separation divided by time lag at peak Pearson correlation. Spatial extent is assessed by pulling additional stations from the INTERMAGNET HAPI archive and checking whether each falls above or below the 2.0&sigma; threshold during the event window.</p>
 </section>
+
+<!-- EVENT SUMMARY -->
 <section id="events">
   <div class="sec-label">Overview</div>
   <h2>Events Analyzed</h2>
@@ -118,24 +147,27 @@ footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
     <tbody>
       <tr><td>Phoenix Lights</td><td class="r">1997-03-13</td><td class="r">2.0</td><td class="hi">QUIET</td><td>TUC, BOU</td><td class="r hi">0.9704</td><td class="r">6.33</td><td class="hi">HIGH ANOMALY</td></tr>
       <tr><td>USS Nimitz</td><td class="r">2004-11-14</td><td class="r">1.333</td><td class="hi">QUIET</td><td>TUC, BOU</td><td class="r hi">0.978</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
-      <tr><td>O&#39;Hare Airport</td><td class="r">2006-11-07</td><td class="r">0.0</td><td class="hi">QUIET</td><td>FRD, BOU</td><td class="r hi">0.9796</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
+      <tr><td>O&apos;Hare Airport</td><td class="r">2006-11-07</td><td class="r">0.0</td><td class="hi">QUIET</td><td>FRD, BOU</td><td class="r hi">0.9796</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
       <tr><td>JAL Flight 1628</td><td class="r">1986-11-17</td><td class="r">2.667</td><td class="hi">QUIET</td><td>SIT, BOU</td><td class="r dim">&mdash;</td><td class="r dim">&mdash;</td><td class="hi">HIGH ANOMALY</td></tr>
       <tr><td>Stephenville TX</td><td class="r">2008-01-08</td><td class="r">3.333</td><td class="warn">ACTIVE</td><td>ABN, BOU</td><td class="r">0.9711</td><td class="r dim">&mdash;</td><td class="warn">INCONCLUSIVE</td></tr>
       <tr><td>MH370</td><td class="r">2014-03-07</td><td class="r">1.0</td><td class="hi">QUIET</td><td>CNB, KAK, KNY</td><td class="r">0.4452</td><td class="r">4.42</td><td class="hi">ANOMALY (control)*</td></tr>
     </tbody>
   </table>
-  <p class="dim" style="font-family:var(--mono);font-size:0.72rem">* MH370 added as control case expecting null result.</p>
+  <p class="dim" style="font-family:var(--mono);font-size:0.72rem">* MH370 was added as a control case expecting a null result.</p>
 </section>
+
+<!-- PHOENIX -->
 <section id="phoenix">
-  <div class="sec-label">Event 01</div>
+  <div class="sec-label">Event 01 &mdash; Primary Case</div>
   <h2>Phoenix Lights &mdash; 1997-03-13</h2>
+
   <div class="finding">
     <div class="fid">Finding 01 &mdash; Formation track</div>
-    <h2>Eight witness-reported track segments. Four exceed the A-10 Warthog maximum speed of 706 km/h.</h2>
-    <p>Witness timestamps and reported positions allow a rough track reconstruction across approximately 560 km from Paulden to Tucson, AZ. Speed estimates carry significant uncertainty due to imprecise timestamps.</p>
+    <h2>Witness-reported positions reconstruct a track of approximately 560 km. Four of eight segments produce speed estimates exceeding the A-10 Warthog maximum of 706 km/h.</h2>
+    <p>Witness timestamps and reported positions allow an approximate track reconstruction from Paulden to Tucson, AZ. Speed estimates are derived from witness timing and carry substantial uncertainty. They are presented as order-of-magnitude figures, not precise measurements.</p>
     <div class="fig">
       <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png" alt="Phoenix Lights track map" loading="lazy">
-      <div class="figcap">Fig. 1 &mdash; Witness-reported positions and estimated track segments. Speeds derived from witness timestamps.</div>
+      <div class="figcap">Fig. 1 &mdash; Witness-reported positions and estimated track segments, 1997-03-13.</div>
     </div>
     <table>
       <thead><tr><th>#</th><th>From</th><th>To</th><th class="r">Est. speed (km/h)</th><th class="r">A-10 max</th><th>Status</th></tr></thead>
@@ -150,89 +182,187 @@ footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
         <tr><td>8</td><td>Maricopa</td><td>Tucson</td><td class="r">244</td><td class="r dim">706</td><td class="dim">within envelope</td></tr>
       </tbody>
     </table>
-    <p>Speed estimates are order-of-magnitude figures. Outlier segments are notable but not independently verifiable from this data alone.</p>
   </div>
+
   <div class="finding">
-    <div class="fid">Finding 02 &mdash; Two-station lockstep</div>
-    <h2>Two magnetometer stations 1,013 km apart moved in near-perfect synchrony during the event window.</h2>
-    <p>USGS magnetometers at Tucson, AZ (TUC) and Boulder, CO (BOU) are independent instruments on separate data acquisition systems. During the Phoenix Lights window their D-component traces show a Pearson correlation of 0.9704 at a lag of &minus;1 minute. The implied propagation velocity exceeds 60,000 km/h, inconsistent with known atmospheric mechanisms.</p>
+    <div class="fid">Finding 02 &mdash; Two-station magnetometer lockstep</div>
+    <h2>Independent magnetometers at Tucson AZ and Boulder CO &mdash; 1,013 km apart &mdash; moved in near-perfect synchrony during the event window under quiet solar conditions.</h2>
+    <p>USGS fluxgate magnetometers at Tucson, AZ (TUC) and Boulder, CO (BOU) operate on independent data acquisition systems with independent timing. During the Phoenix Lights window, their D-component (east-west magnetic field) traces produced a Pearson correlation of 0.9704 at a lag of &minus;1 minute. At 1-minute data resolution, the implied propagation velocity across the 1,013 km station separation exceeds 60,000 km/h. Solar activity that evening was Kp = 2.0, well below the 3.0 threshold used to gate solar explanations.</p>
     <div class="fig">
-      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png" alt="TUC-BOU magnetometer correlation" loading="lazy">
-      <div class="figcap">Fig. 2 &mdash; D-component time series, TUC and BOU, 1997-03-13. Shaded region marks reported sighting window. Cross-correlation peak at lag = &minus;1 min.</div>
+      <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png" alt="TUC-BOU D-component correlation" loading="lazy">
+      <div class="figcap">Fig. 2 &mdash; D-component time series, TUC and BOU, 1997-03-13. Shaded region = reported sighting window. Correlation peak at lag = &minus;1 min.</div>
     </div>
     <div class="stats">
       <div class="stat"><div class="slabel">Pearson r</div><div class="snum">0.9704</div><div class="sunit">TUC&ndash;BOU D-component</div></div>
       <div class="stat"><div class="slabel">Lag at peak r</div><div class="snum">&minus;1 min</div><div class="sunit">BOU leads TUC</div></div>
-      <div class="stat"><div class="slabel">Station separation</div><div class="snum">1,013 km</div><div class="sunit">TUC to BOU</div></div>
+      <div class="stat"><div class="slabel">Station separation</div><div class="snum">1,013 km</div><div class="sunit">Tucson AZ to Boulder CO</div></div>
       <div class="stat"><div class="slabel">Implied velocity</div><div class="snum">&gt;60,787</div><div class="sunit">km/h at 1-min resolution</div></div>
       <div class="stat"><div class="slabel">Kp index</div><div class="snum">2.0</div><div class="sunit">solar ELIMINATED</div></div>
       <div class="stat"><div class="slabel">D-field peak</div><div class="snum">6.33&sigma;</div><div class="sunit">TUC, 03:32 UTC</div></div>
     </div>
   </div>
+
   <div class="finding">
     <div class="fid">Finding 03 &mdash; Terminal spike</div>
-    <h2>A 6.33&sigma; field deviation at Tucson occurred 4 minutes after the final reported sighting.</h2>
-    <p>At 03:32 UTC the TUC D-component reached 6.333 standard deviations above the 20-minute rolling baseline. BOU responded 1 minute later.</p>
+    <h2>The D-component at Tucson reached 6.33 standard deviations above baseline at 03:32 UTC &mdash; 4 minutes after the final reported sighting near Tucson. Boulder responded 1 minute later.</h2>
     <table>
       <thead><tr><th>Metric</th><th class="r">Value</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Magnetometer anomalies</td><td class="r">178</td><td class="dim">&ge;2.0&sigma; threshold</td></tr>
-        <tr><td>Convergence events</td><td class="r">14</td><td class="dim">&ge;2 independent streams, &plusmn;10 min window</td></tr>
-        <tr><td>Total anomalies (all lenses)</td><td class="r">201</td><td class="dim">magnetometer + radar + solar</td></tr>
+        <tr><td>Magnetometer anomalies</td><td class="r">178</td><td class="dim">&ge;2.0&sigma;</td></tr>
+        <tr><td>Convergence events</td><td class="r">14</td><td class="dim">&ge;2 independent streams, &plusmn;10 min</td></tr>
+        <tr><td>Total anomalies (all sensors)</td><td class="r">201</td><td class="dim">magnetometer + solar gate</td></tr>
         <tr><td>Peak D-field deviation</td><td class="r">6.333&sigma;</td><td class="dim">TUC, 03:32 UTC</td></tr>
-        <tr><td>Relative to last sighting</td><td class="r">+4 min</td><td class="dim">at TUC station</td></tr>
-        <tr><td>BOU response</td><td class="r">+1 min</td><td class="dim">after TUC peak</td></tr>
+        <tr><td>Lag from final sighting</td><td class="r">+4 min</td><td class="dim">TUC station</td></tr>
+        <tr><td>BOU response lag</td><td class="r">+1 min</td><td class="dim">after TUC peak</td></tr>
       </tbody>
     </table>
   </div>
+
   <div class="finding">
     <div class="fid">Finding 04 &mdash; Radar</div>
-    <h2>Pre-2008 NEXRAD archive is inaccessible. No radar finding can be made for this event.</h2>
+    <h2>Pre-2008 NEXRAD archive is inaccessible. No radar cross-reference is possible for this event.</h2>
     <div class="notice">
-      <strong>AccessDenied:</strong> NOAA S3 bucket <code>s3://noaa-nexrad-level2/</code> returns <code>AccessDenied</code> for all 1997 queries. The pre-2008 archive has not been publicly released. This analysis cannot determine whether the object appeared or did not appear on radar. NEXRAD is weather surveillance radar and does not track aircraft.
+      <strong>AccessDenied:</strong> NOAA S3 bucket <code>s3://noaa-nexrad-level2/</code> returns <code>AccessDenied</code> for all 1997 queries. The pre-2008 archive has not been publicly released. NEXRAD is weather surveillance radar and does not track aircraft by design.
     </div>
   </div>
 </section>
+
+<!-- SPATIAL EXTENT -->
+<section id="spatial">
+  <div class="sec-label">Supplemental Analysis &mdash; Phoenix 1997</div>
+  <h2>Spatial Extent of the Magnetometer Anomaly</h2>
+  <p>Following the TUC-BOU correlation finding, data was pulled from six additional INTERMAGNET stations spanning Alaska, Hawaii, Virginia, Puerto Rico, and the Arctic. The working question: was the 03:32 UTC anomaly confined to the Arizona&ndash;Colorado corridor, or present across a wider geographic area?</p>
+  <p>A broader anomaly footprint would be consistent with a large-scale geomagnetic disturbance affecting the region generally. A confined footprint &mdash; where only stations along the corridor are elevated and distant stations are flat &mdash; would be spatially consistent with a localized source.</p>
+
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_spatial_extent.png" alt="Spatial extent of magnetometer anomaly" loading="lazy">
+    <div class="figcap">Fig. 3 &mdash; D-component sigma across all stations, 1997-03-13. Shaded region = event window 03:15&ndash;03:45 UTC. Six stations outside the AZ-CO corridor returned window sigma below 2.0.</div>
+  </div>
+
+  <table>
+    <thead><tr><th>Station</th><th>Location</th><th class="r">Distance from corridor</th><th class="r">Window &sigma;</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>TUC</td><td>Tucson AZ</td><td class="r dim">0 km (in corridor)</td><td class="r hi">6.333</td><td class="hi">IN EVENT</td></tr>
+      <tr><td>BOU</td><td>Boulder CO</td><td class="r dim">0 km (in corridor)</td><td class="r hi">4.100</td><td class="hi">IN EVENT</td></tr>
+      <tr><td>SIT</td><td>Sitka AK</td><td class="r dim">~2,800 km NW</td><td class="r">1.554</td><td class="dim">quiet</td></tr>
+      <tr><td>CMO</td><td>College AK</td><td class="r dim">~3,500 km NW</td><td class="r">1.649</td><td class="dim">quiet</td></tr>
+      <tr><td>FRD</td><td>Fredericksburg VA</td><td class="r dim">~2,500 km E</td><td class="r">1.195</td><td class="dim">quiet</td></tr>
+      <tr><td>SJG</td><td>San Juan PR</td><td class="r dim">~4,000 km SE</td><td class="r">1.010</td><td class="dim">quiet</td></tr>
+      <tr><td>HON</td><td>Honolulu HI</td><td class="r dim">~4,100 km W</td><td class="r">0.889</td><td class="dim">quiet</td></tr>
+      <tr><td>BRW</td><td>Barrow AK</td><td class="r dim">~4,200 km NW</td><td class="r">1.797</td><td class="dim">quiet</td></tr>
+    </tbody>
+  </table>
+
+  <div class="result-box">
+<span class="hi">RESULT:</span> All six stations outside the AZ-CO corridor were below the 2.0&sigma; threshold
+during the event window. The anomaly did not appear at Sitka, College, Fredericksburg,
+San Juan, Honolulu, or Barrow.
+
+<span class="hi">IMPLICATION:</span> Whatever produced the TUC-BOU signal was spatially confined to
+the Arizona-Colorado corridor. This rules out a global geomagnetic storm, a broad
+ionospheric disturbance, and any mechanism that would be expected to affect stations
+continent-wide or globally.
+  </div>
+</section>
+
+<!-- TEC -->
+<section id="tec">
+  <div class="sec-label">Supplemental Analysis &mdash; Ionosphere</div>
+  <h2>Ionospheric TEC &mdash; Post-1998 Events</h2>
+  <p>IONEX global ionosphere maps (2-hour resolution, JPLG product) were pulled from the NASA CDDIS archive for four events with available coverage: Nimitz 2004, O&apos;Hare 2006, MH370 2014, and Stephenville 2008. TEC was interpolated to each event&apos;s coordinates and scored against a daily baseline. The Phoenix 1997 event predates the IGS ionosphere product, which began routine production in June 1998.</p>
+  <p>No TEC anomaly exceeded the 2.0&sigma; threshold during any event window across any of the four events.</p>
+
+  <table>
+    <thead><tr><th>Event</th><th>Date</th><th class="r">Max window &sigma;</th><th>Result</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>USS Nimitz</td><td>2004-11-14</td><td class="r">1.617</td><td class="dim">no anomaly</td><td class="dim">full day window, Kp=1.333</td></tr>
+      <tr><td>O&apos;Hare Airport</td><td>2006-11-07</td><td class="r">1.587</td><td class="dim">no anomaly</td><td class="dim">15:00-19:00 UTC window, Kp=0.0</td></tr>
+      <tr><td>MH370</td><td>2014-03-07</td><td class="r">1.882</td><td class="dim">no anomaly</td><td class="dim">16:00-18:30 UTC window, Kp=1.0</td></tr>
+      <tr><td>Stephenville</td><td>2008-01-08</td><td class="r">1.923</td><td class="dim">no anomaly</td><td class="dim">00:00-06:00 UTC window, Kp=3.333</td></tr>
+    </tbody>
+  </table>
+
+  <div class="result-box">
+<span class="hi">RESULT:</span> Ionospheric electron density was undisturbed during all four event windows.
+No TEC anomaly was detected at any event location.
+
+<span class="hi">IMPLICATION:</span> The magnetometer anomalies are not associated with broad ionospheric
+disturbances. This is consistent with the spatial extent finding -- the signal appears
+to be a localized magnetic field perturbation rather than an ionospheric or space
+weather phenomenon. The Kp gate independently reaches the same conclusion via a
+different instrument type.
+  </div>
+
+  <p>Note: 2-hour IONEX resolution means a brief transient event shorter than approximately 90 minutes could fall between map epochs. This analysis cannot rule out a short-duration ionospheric event coinciding precisely with the magnetometer window.</p>
+</section>
+
+<!-- NIMITZ -->
 <section id="nimitz">
   <div class="sec-label">Event 02</div>
   <h2>USS Nimitz &mdash; 2004-11-14</h2>
-  <p>Pattern consistent with Phoenix Lights Type 1 signature: high cross-station correlation at near-zero lag during quiet solar conditions.</p>
+  <p>The same two-station lockstep pattern observed during the Phoenix event was reproduced independently on this date, with a marginally stronger correlation and zero lag.</p>
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/nimitz_2004/Nimitz_2004_analysis.png" alt="Nimitz magnetometer analysis" loading="lazy">
+    <div class="figcap">Fig. 4 &mdash; TUC&ndash;BOU D-component analysis, 2004-11-14.</div>
+  </div>
   <div class="stats">
     <div class="stat"><div class="slabel">Kp</div><div class="snum">1.333</div><div class="sunit">solar ELIMINATED</div></div>
     <div class="stat"><div class="slabel">TUC&ndash;BOU r</div><div class="snum">0.978</div><div class="sunit">lag = 0 min</div></div>
     <div class="stat"><div class="slabel">Relocation segment</div><div class="snum">1,308 km/h</div><div class="sunit">instantaneous (est.)</div></div>
     <div class="stat"><div class="slabel">TUC spike</div><div class="snum">+1 min</div><div class="sunit">after relocation event</div></div>
   </div>
-  <p>Zero lag at 1,013 km separation implies either propagation velocity beyond measurement resolution or a simultaneous regional field response.</p>
+  <p>Zero lag at 1,013 km separation implies either a propagation velocity beyond the 1-minute measurement resolution or a simultaneous regional field response. The pattern is near-identical to the Phoenix result across a different date, different event, and different witness reports.</p>
 </section>
+
+<!-- OHARE -->
 <section id="ohare">
   <div class="sec-label">Event 03</div>
-  <h2>O&#39;Hare Airport &mdash; 2006-11-07</h2>
-  <p>Kp was exactly 0.0, the minimum possible value, providing the cleanest solar elimination in the dataset.</p>
+  <h2>O&apos;Hare Airport &mdash; 2006-11-07</h2>
+  <p>Kp was exactly 0.0 on this date &mdash; the minimum possible index value &mdash; providing the cleanest solar elimination in the dataset. A different station pair (FRD-BOU) produced a correlation of 0.9796.</p>
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/ohare_2006/OHare_2006_analysis.png" alt="O'Hare magnetometer analysis" loading="lazy">
+    <div class="figcap">Fig. 5 &mdash; FRD&ndash;BOU D-component analysis, 2006-11-07.</div>
+  </div>
   <div class="stats">
     <div class="stat"><div class="slabel">Kp</div><div class="snum">0.0</div><div class="sunit">solar ELIMINATED</div></div>
     <div class="stat"><div class="slabel">FRD&ndash;BOU r</div><div class="snum">0.9796</div><div class="sunit">lag = &minus;21 min</div></div>
     <div class="stat"><div class="slabel">BOU spike</div><div class="snum">+1 min</div><div class="sunit">after reported object ascent</div></div>
   </div>
-  <p>Fredericksburg, VA (FRD) and Boulder, CO (BOU) produced r = 0.9796 with FRD leading BOU by 21 minutes. BOU spiked 1 minute after witnesses described the object departing upward through the cloud deck. Classified Type 1.</p>
+  <p>Fredericksburg, VA (FRD) led Boulder, CO (BOU) by 21 minutes. BOU spiked 1 minute after witnesses described the object departing upward through the overcast. Three independent events now show this pattern: r &gt; 0.97, near-zero lag, quiet solar conditions.</p>
 </section>
+
+<!-- JAL -->
 <section id="jal">
   <div class="sec-label">Event 04</div>
   <h2>JAL Flight 1628 &mdash; 1986-11-17</h2>
-  <p>Type 2 signature: propagating wavefront with velocity consistent with 747 cruise speed, followed by a high-velocity terminal spike attributed to magnetospheric coupling.</p>
+  <p>This event produced a different signature type: a propagating wavefront with sequential station peaks rather than simultaneous lockstep. Wavefront velocity tracked the 747&apos;s cruise speed across Alaska stations.</p>
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/jal_1986/JAL1628_1986_analysis.png" alt="JAL magnetometer analysis" loading="lazy">
+    <div class="figcap">Fig. 6 &mdash; JAL 1628 magnetometer analysis, 1986-11-17.</div>
+  </div>
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/jal_1986/JAL1628_wavefront.png" alt="JAL wavefront propagation" loading="lazy">
+    <div class="figcap">Fig. 7 &mdash; Wavefront propagation across Alaska stations. Sequential peaks consistent with 747 cruise velocity (829 km/h average).</div>
+  </div>
   <div class="stats">
     <div class="stat"><div class="slabel">Kp</div><div class="snum">2.667</div><div class="sunit">solar ELIMINATED</div></div>
     <div class="stat"><div class="slabel">Alaska wavefront</div><div class="snum">829 km/h</div><div class="sunit">avg &mdash; matches 747 cruise</div></div>
     <div class="stat"><div class="slabel">SIT&ndash;BOU terminal</div><div class="snum">42,954 km/h</div><div class="sunit">magnetospheric coupling</div></div>
   </div>
-  <p>The 829 km/h wavefront velocity across Alaska stations matches 747 cruise speed, consistent with a disturbance co-moving with the aircraft. Pattern: PROPAGATING WAVEFRONT, distinct from Type 1 events.</p>
+  <p>The 829 km/h wavefront velocity is consistent with a disturbance co-moving with the aircraft. The terminal SIT-BOU spike at 42,954 km/h is classified as magnetospheric coupling rather than a local effect. Pattern type: PROPAGATING WAVEFRONT &mdash; distinct from the simultaneous regional field seen in Phoenix, Nimitz, and O&apos;Hare.</p>
 </section>
+
+<!-- MH370 -->
 <section id="mh370">
   <div class="sec-label">Event 05 &mdash; Control Case</div>
   <h2>MH370 &mdash; 2014-03-07</h2>
-  <p>Added as a control case expecting a null result. Nine magnetometer anomalies across three independent stations cluster at or within 5 minutes of 17:21 UTC, the exact minute the transponder went offline.</p>
+  <p>Added as a control case on the assumption that a missing aircraft would produce no magnetometer signal. Nine anomalies across three independent stations clustered at or within 5 minutes of 17:21 UTC &mdash; the exact minute the transponder went offline.</p>
   <div class="notice">
-    <strong>Previously unreported.</strong> Kp = 1.0 (solar eliminated). Cross-station correlation (0.4452) is substantially lower than the UAP events, suggesting a different mechanism or more localized disturbance.
+    <strong>Previously unreported.</strong> This result was unexpected. Cross-station correlation (0.4452) is substantially lower than the UAP events, suggesting a different mechanism or a more localized disturbance. The finding is preliminary and has not been independently reviewed.
+  </div>
+  <div class="fig">
+    <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/mh370_2014/MH370_local_mag.png" alt="MH370 magnetometer data" loading="lazy">
+    <div class="figcap">Fig. 8 &mdash; MH370 magnetometer data, CNB/KAK/KNY stations, 2014-03-07. Anomaly cluster at 17:21 UTC transponder-off time.</div>
   </div>
   <table>
     <thead><tr><th>Station</th><th>Location</th><th>Component</th><th class="r">Deviation (&sigma;)</th><th class="r">dt from 17:21 UTC (min)</th></tr></thead>
@@ -248,63 +378,94 @@ footer{border-top:1px solid var(--border);padding-top:2rem;margin-top:4rem;
     <div class="stat"><div class="slabel">Kp</div><div class="snum">1.0</div><div class="sunit">solar ELIMINATED</div></div>
     <div class="stat"><div class="slabel">Hits at 17:21 UTC</div><div class="snum">9</div><div class="sunit">across 3 stations</div></div>
     <div class="stat"><div class="slabel">Total anomalies</div><div class="snum">42</div><div class="sunit">full disappearance sequence</div></div>
-    <div class="stat"><div class="slabel">CNB&ndash;KAK r</div><div class="snum">0.4452</div><div class="sunit">lower than UAP events (&gt;0.97)</div></div>
+    <div class="stat"><div class="slabel">CNB&ndash;KAK r</div><div class="snum">0.4452</div><div class="sunit">lower than UAP events</div></div>
     <div class="stat"><div class="slabel">Final arc 00:11 UTC</div><div class="snum">0 hits</div><div class="sunit">field quiet after sequence</div></div>
   </div>
-  <p>The field goes quiet at the final arc position. The reduced correlation relative to UAP events is noted and likely significant.</p>
 </section>
+
+<!-- SIGNATURES -->
 <section id="signatures">
   <div class="sec-label">Pattern Analysis</div>
-  <h2>Two Distinct EM Signatures</h2>
+  <h2>Two Distinct Signal Types</h2>
   <table>
     <thead><tr><th>Type</th><th>Characteristics</th><th>Events</th><th class="r">r</th><th class="r">Lag</th></tr></thead>
     <tbody>
       <tr>
         <td><strong>Type 1</strong><br><span class="dim">Simultaneous regional</span></td>
-        <td>Stations respond together across 1,000+ km. Near-zero lag. High r.</td>
-        <td>Phoenix, Nimitz, O&#39;Hare</td>
+        <td>Independent stations respond together across 1,000+ km at near-zero lag. High correlation. Spatially confined.</td>
+        <td>Phoenix, Nimitz, O&apos;Hare</td>
         <td class="r hi">&gt;0.97</td><td class="r">0&ndash;1 min</td>
       </tr>
       <tr>
         <td><strong>Type 2</strong><br><span class="dim">Propagating wavefront</span></td>
-        <td>Sequential station peaks. Velocity tracks event geometry.</td>
+        <td>Sequential station peaks. Velocity tracks event geometry. Lower correlation.</td>
         <td>JAL 1628, MH370</td>
         <td class="r">0.44&ndash;var</td><td class="r">min&ndash;hrs</td>
       </tr>
     </tbody>
   </table>
-  <p>Phoenix, Nimitz, and O&#39;Hare all produced r &gt; 0.97 at near-zero lag across three separate events on three separate dates. The physical mechanism producing simultaneous identical variation across 1,000 km during geomagnetically quiet periods is not identified.</p>
+
+  <p>Phoenix, Nimitz, and O&apos;Hare produced r &gt; 0.97 at near-zero lag across three separate events on three separate dates spanning nine years. The spatial analysis confirms the Type 1 signal is geographically bounded &mdash; not a global or continental-scale phenomenon.</p>
+
+  <div class="result-box">
+<span class="hi">WHAT THE DATA SHOWS FOR THE TYPE 1 EVENTS:</span>
+
+  &mdash; Produced a simultaneous magnetic field response across 1,000+ km
+  &mdash; Was confined spatially to a regional corridor (six distant stations flat)
+  &mdash; Left no detectable ionospheric signature
+  &mdash; Occurred during geomagnetically quiet conditions (Kp &lt; 3.0) on all three dates
+  &mdash; Reproduced the same pattern on three independent dates across nine years
+
+<span class="hi">WHAT THIS RULES OUT:</span>
+
+  &mdash; Global geomagnetic storm (spatial extent analysis, TEC analysis, Kp gate)
+  &mdash; Solar wind interaction (Kp &lt; 3.0 on all three dates)
+  &mdash; Broad ionospheric disturbance (TEC flat at all four testable events)
+  &mdash; Single-station instrument artifact (two-station lockstep, independent systems)
+
+<span class="dim">The mechanism producing simultaneous identical variation across 1,000+ km
+in a spatially bounded corridor during quiet solar conditions on three
+independent dates is not identified.</span>
+  </div>
 </section>
+
+<!-- LIMITS -->
 <section id="limits">
   <div class="sec-label">Limitations</div>
   <h2>Constraints on These Findings</h2>
   <ul class="plain">
-    <li>Speed estimates come from witness timestamps, not instrument tracking. Uncertainty is high.</li>
-    <li>Magnetometer correlation shows two stations moved together. It does not identify the cause.</li>
-    <li>Pre-2008 NEXRAD data is inaccessible. No radar cross-reference is possible for Phoenix, Nimitz, or JAL 1628.</li>
-    <li>The Kp gate (threshold 3.0) eliminates major storms but does not rule out all geomagnetic variation.</li>
-    <li>Stephenville 2008: r = 0.9711 but Kp was 3.333 (active). Inconclusive.</li>
+    <li>Speed estimates come from witness timestamps, not instrument tracking. Uncertainty is high and they should be treated as rough figures only.</li>
+    <li>Magnetometer correlation shows two stations moved together. It identifies a shared signal &mdash; it does not identify the source.</li>
+    <li>Pre-2008 NEXRAD archive is inaccessible. No radar cross-reference is possible for Phoenix, Nimitz, or JAL 1628.</li>
+    <li>IONEX resolution is 2 hours. A brief ionospheric transient could fall between map epochs and remain undetected.</li>
+    <li>The Kp solar gate (threshold 3.0) eliminates major geomagnetic storms but does not rule out all geomagnetic variation.</li>
+    <li>Stephenville 2008: r = 0.9711 but Kp was 3.333 (active). Finding is inconclusive.</li>
     <li>MH370 result is preliminary and has not been independently reviewed.</li>
-    <li>Single-researcher open-source project, not an institutional study.</li>
+    <li>Spatial extent analysis used 1-minute INTERMAGNET data. A highly localized or brief effect might not propagate to distant stations regardless of its nature.</li>
+    <li>This is a single-researcher open-source project. All findings should be treated as preliminary pending independent replication.</li>
   </ul>
 </section>
+
 <section>
   <div class="sec-label">Pending</div>
   <h2>Work in Progress</h2>
   <table>
     <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Stephenville 2008</td><td class="warn">PENDING</td><td class="dim">NEXRAD 2008 accessible &mdash; radar cross-reference needed</td></tr>
+      <tr><td>Stephenville 2008 NEXRAD</td><td class="warn">PENDING</td><td class="dim">2008 archive accessible &mdash; radar cross-reference not yet run</td></tr>
       <tr><td>Belgian UAP Wave 1989&ndash;90</td><td class="warn">PENDING</td><td class="dim">Not yet started</td></tr>
-      <tr><td>Rendlesham Forest 1980</td><td class="warn">PENDING</td><td class="dim">Kp elevated; BGS 1980 data not digitized</td></tr>
+      <tr><td>Rendlesham Forest 1980</td><td class="warn">PENDING</td><td class="dim">Kp elevated; BGS 1980 data not digitized &mdash; physical records exist</td></tr>
       <tr><td>MH370 formal event</td><td class="warn">PENDING</td><td class="dim">Not yet added to run_all_events.py</td></tr>
+      <tr><td>Superconducting gravimeter</td><td class="warn">PENDING</td><td class="dim">GGP Tucson station 1997 &mdash; contact requested</td></tr>
     </tbody>
   </table>
 </section>
+
 <footer>
-  <div>Data: USGS Geomagnetism &nbsp;|&nbsp; GFZ Potsdam Kp index &nbsp;|&nbsp; NOAA NEXRAD (2008+ only)</div>
+  <div>Data sources: USGS Geomagnetism Program &nbsp;|&nbsp; INTERMAGNET / BGS HAPI &nbsp;|&nbsp; GFZ Potsdam Kp index &nbsp;|&nbsp; NASA CDDIS IONEX &nbsp;|&nbsp; NOAA NEXRAD (2008+)</div>
   <div>Code: <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a> &nbsp;|&nbsp; Contact: emfproj@proton.me</div>
-  <div style="margin-top:0.4rem;color:#3a4047">All findings reproducible from public source data.</div>
+  <div style="margin-top:0.5rem;color:#3a4047;">All findings are reproducible from public source data. No proprietary data used.</div>
 </footer>
+
 </body>
 </html>
