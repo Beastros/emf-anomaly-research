@@ -1,6 +1,6 @@
 # EMF Anomaly Research — UAP Sniffer
 
-A multi-sensor anomaly detection framework that cross-correlates independent public government sensor archives against dates and locations of documented anomalous aerial events. Built on the same rolling-baseline sigma architecture as the GPS Tsunami Detection project.
+A multi-sensor anomaly detection framework that cross-correlates independent public government sensor archives against dates and locations of documented anomalous aerial events.
 
 **Independent research project.** All data sourced from free public APIs. All results reproducible from source code.
 
@@ -212,34 +212,6 @@ numpy scipy matplotlib requests unlzw3
 ```
 pip install numpy scipy matplotlib requests unlzw3
 ```
-
----
-
-## Pending Work
-
-- [ ] Stephenville 2008 — NEXRAD radar cross-reference (archive accessible)
-- [ ] Belgian UAP Wave 1989–90 — magnetometer analysis not yet started
-- [ ] Rendlesham Forest 1980 — BGS physical records, contact initiated
-- [ ] MH370 — add as formal event in run_all_events.py
-- [ ] Superconducting gravimeter — GGP Tucson 1997, contact requested
-- [ ] Ionosonde data (pre-1998) — NOAA NGDC for Phoenix 1997 window
-- [ ] Galileo Project submission
-- [ ] AARO submission
-
----
-
-## Status
-
-- [x] Core magnetometer cross-correlation validated (Phoenix, Nimitz, O'Hare)
-- [x] Solar gate (GFZ Kp) — eliminates solar wind explanations
-- [x] Spatial extent analysis — 8-station continental check (6 quiet, 2 in event)
-- [x] Ionospheric TEC check — IONEX JPLG, 4 events, no anomaly detected
-- [x] Two signal type taxonomy (simultaneous regional vs propagating wavefront)
-- [x] MH370 control case — unexpected result, preliminary
-- [x] Public report with full methodology and limitations
-- [ ] Independent replication
-- [ ] Peer review
-- [ ] Pre-1998 ionosonde data for Phoenix 1997
 
 ---
 
