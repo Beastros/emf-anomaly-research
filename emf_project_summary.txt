@@ -1,0 +1,124 @@
+EMF ANOMALY RESEARCH -- PROJECT SUMMARY
+========================================
+Upload this + claude_code_rules_emfproject.txt at start of every new chat.
+Last updated: April 30 2026
+
+WHAT WE BUILT
+-------------
+A multi-sensor anomaly detection framework ("UAP Sniffer") that cross-correlates
+independent public government sensor datasets against documented anomalous events.
+Core idea: point every available sensor at the same event and ask what each one
+independently recorded. When unconnected instruments flag the same moment from
+different locations, that convergence is physically meaningful.
+
+Repo: https://github.com/Beastros/emf-anomaly-research
+Live report: https://beastros.github.io/emf-anomaly-research/
+Contact: emfproj@proton.me
+Google Analytics: G-M4LHPBSG83
+
+THE CORE EQUATION
+-----------------
+ACS(t, p) = sum_n [ w_n * sigma_n(t,p) * G(Kp) * N(s,t) ]
+
+sigma_n = rolling 20-min baseline sigma score for lens n
+G(Kp)   = 1.0 if Kp < 3 (solar gate), 0.2 if Kp >= 3
+N(s,t)  = null-return score for radar station s
+w_n     = lens weight (magnetometer=1.0, nexrad=0.8, kp=0.6)
+
+ALGORITHMS
+----------
+1. Rolling baseline: sigma_i = |x_i - mean(window)| / std(window), window=20min, flag >2.0
+2. Kp solar gate: Kp < 3.0 -> solar ELIMINATED
+3. Null return scorer: N(s) = 1 - (files/expected) within coverage radius
+4. Cross-station wavefront: Pearson correlation with time lag; velocity = distance/best_lag
+5. Convergence engine: flag if >=2 independent lenses anomalous within +-10min window
+
+CONFIRMED FINDINGS
+------------------
+
+PHOENIX LIGHTS 1997-03-13 -- HIGH ANOMALY
+- Kp=2.0 QUIET -- solar eliminated
+- TUC-BOU correlation: 0.9704 at lag=-1min, implied velocity >60,787 km/h
+- D-field peak: 6.333 sigma at 03:32 UTC (4min after last sighting)
+- 178 mag anomalies, 14 convergence events, 201 total anomalies
+- 4/8 track segments exceed A-10 max (855 km/h peak vs 706 km/h max)
+- NEXRAD: AccessDenied for pre-2008 archive -- no civilian detection on record
+- Key images: output/wavefront_plot.png and results/phoenix_1997/phoenix_lights_map.png
+
+USS NIMITZ 2004-11-14 -- HIGH ANOMALY
+- Kp=1.333 QUIET
+- TUC-BOU correlation: 0.978 lag=0
+- 1,308 km/h instantaneous relocation segment
+- TUC spikes 1min after relocation event
+- Pattern consistent with Phoenix Lights
+
+O'HARE AIRPORT 2006-11-07 -- HIGH ANOMALY
+- Kp=0.0 perfectly quiet
+- FRD-BOU correlation: 0.9796 lag=-21min
+- BOU spikes 1min after object shot through cloud layer
+- Pattern consistent with Phoenix Lights
+
+JAL FLIGHT 1628 1986-11-17
+- Kp=2.667 QUIET
+- Alaska wavefront: 829 km/h average matching 747 cruise speed
+- SIT-BOU terminal spike: 42,954 km/h magnetospheric coupling
+- Pattern type: PROPAGATING WAVEFRONT (different from Phoenix/Nimitz/OHare)
+
+STEPHENVILLE 2008-01-08 -- INCONCLUSIVE
+- Kp=3.333 ACTIVE -- solar possible
+- Correlation 0.9711 but elevated Kp weakens finding
+- NEXRAD 2008 IS accessible -- cross-reference pending
+
+MH370 2014-03-07 -- MOST UNEXPECTED FINDING
+- Added as CONTROL CASE expecting nothing -- result was unexpected
+- Kp=1.0 QUIET -- solar eliminated
+- Stations: CNB (Canberra), KAK (Kakioka Japan), KNY (Kanoya Japan)
+- 9 primary hits AT EXACT TRANSPONDER OFF MINUTE (17:21 UTC):
+  KAK X: 2.481 sigma at dt_min=0.0
+  KAK Y: 3.813 sigma at dt_min=0.0
+  KNY X: 2.765 sigma at dt_min=0.0
+  CNB Y: 4.418 sigma at dt_min=+3
+  KAK Z: 4.391 sigma at dt_min=+5
+- 42 total anomalies across full disappearance sequence
+- Final arc (00:11 UTC): ZERO hits -- field quiet after sequence
+- Correlation CNB-KAK: 0.4452 (lower than UAP events -- different pattern type)
+- Previously unreported finding
+
+TWO DISTINCT EM SIGNATURES
+---------------------------
+Type 1 -- Simultaneous Regional Field: Phoenix, Nimitz, OHare
+  Correlation >0.97, near-zero lag, simultaneous across 1000s of km
+
+Type 2 -- Propagating Wavefront: JAL, MH370
+  Sequential station peaks, velocity tracks event geometry
+
+RENDLESHAM 1980 -- PENDING
+- Kp=3.667 elevated
+- BGS/INTERMAGNET 1980 data not digitized
+- Email gwsg@bgs.ac.uk for physical HAD/ESK records
+
+CURRENT STATE OF PUBLIC REPORT
+--------------------------------
+URL: https://beastros.github.io/emf-anomaly-research/
+File: docs\index.html
+
+AS OF END OF SESSION April 30 2026:
+The correct new report (visual-first, map first, Finding 01 structure) was built
+but is NOT yet live. The old version (cutoff stat boxes) is still showing.
+
+The correct report content is encoded in a base64 deploy script.
+First task next session: deploy the correct report using base64 method.
+
+CORRECT REPORT IDENTIFIES AS:
+- Contains "Finding 01" in HTML
+- Does NOT contain "stat-value" class
+- Does NOT contain "land_grad" (that's the tsunami dashboard)
+- Has Google Analytics tag G-M4LHPBSG83
+- Map image appears before magnetometer chart
+- Honest radar section says "AccessDenied" not "null return"
+
+SEISMIC DATA NOTE
+-----------------
+Mike has rinex_haida_gwaii_2012 and rinex_chile_2010 on his machine.
+Same rolling baseline cross-station correlation applies to seismic precursor research.
+Potential separate project direction.

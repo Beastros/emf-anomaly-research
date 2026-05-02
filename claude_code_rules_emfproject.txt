@@ -1,0 +1,165 @@
+CLAUDE CODE RULES — EMF ANOMALY RESEARCH PROJECT
+=================================================
+Upload this file at the start of every new chat session.
+Last updated: April 30 2026
+
+ENVIRONMENT
+-----------
+- Windows 11, PowerShell (NOT cmd, NOT bash)
+- Python 3.12 at C:\Users\Mike\AppData\Local\Programs\Python\Python312\python.exe
+- Working directory: C:\Users\Mike\uap_sniffer\uap_sniffer\
+- GitHub repo: https://github.com/Beastros/emf-anomaly-research (user: Beastros)
+- GitHub Pages live URL: https://beastros.github.io/emf-anomaly-research/
+- Public report file: docs\index.html (this is what GitHub Pages serves)
+- Contact email: emfproj@proton.me
+- Google Analytics ID: G-M4LHPBSG83
+
+POWERSHELL RULES
+----------------
+1. NEVER use copy /Y -- use Copy-Item ... -Force
+2. NEVER put dashes in git commit messages inside here-strings
+3. NEVER write tokens into files that get committed
+4. ALWAYS Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process before .ps1 files
+5. NEVER paste multiple lines of output back into PowerShell as commands
+6. Use @'...'@ | Out-File -FilePath filename -Encoding utf8 for multi-line files
+
+HTML FILE DEPLOYMENT -- THE ONLY RELIABLE METHOD
+-------------------------------------------------
+Claude download links serve CACHED old versions. Do not use them for HTML.
+PowerShell here-strings break on special characters.
+Python -c breaks on newlines in strings.
+
+THE ONLY THING THAT WORKS:
+1. Claude writes a base64-encoded Python deploy script with a UNIQUE NEW FILENAME each time
+2. User downloads it (new filename = no cache problem)
+3. User copies to working dir and runs: python deploy_UNIQUENAME.py
+4. Script decodes base64 and writes both phoenix_report.html AND docs\index.html simultaneously
+5. VERIFY immediately: findstr "Finding 01" docs\index.html
+6. If correct: git add docs\index.html phoenix_report.html && git commit && git push
+7. NEVER push if findstr returns wrong/empty content
+
+VERIFY BEFORE EVERY PUSH:
+  findstr "Finding 01" docs\index.html
+  Correct: returns lines with "Finding 01 -- Formation track"
+  Wrong: returns nothing, or returns "stat-value" (old report), or returns "land_grad" (tsunami dashboard)
+
+GITHUB PAGES
+------------
+- Source: main branch / docs folder
+- docs\index.html is the homepage
+- Changes take 1-3 minutes after push
+- Hard refresh: Ctrl+Shift+R
+- Correct report has: "Finding 01" in HTML, dark terminal aesthetic, map image first
+- Old broken report has: "stat-value" class, cutoff numbers in boxes
+- Tsunami dashboard has: "land_grad" in HTML -- completely wrong file
+
+TOKEN SECURITY
+--------------
+- NEVER paste tokens into committed files
+- Use token directly in remote URL: https://TOKEN@github.com/Beastros/...
+- Revoke every token immediately after use
+- Two tokens were already exposed in chat history -- both revoked
+
+GIT WORKFLOW
+------------
+- Always verify file content before committing
+- If "nothing to commit" but content is wrong:
+    Add-Content "docs\index.html" " "
+    git add docs\index.html
+    git commit -m "Force update"
+    git push origin main
+- If push rejected fetch first: git pull origin main --rebase then push
+
+REPO STRUCTURE
+--------------
+C:\Users\Mike\uap_sniffer\uap_sniffer\
+docs\index.html         <- GitHub Pages homepage -- THE IMPORTANT FILE
+output\wavefront_plot.png
+results\phoenix_1997\phoenix_lights_map.png
+results\phoenix_1997\wavefront_plot.png
+results\mh370_2014\MH370_local_mag.png
+results\mh370_2014\MH370_final.json
+event_outputs\          <- raw per-event analysis
+core\                   <- anomaly.py, report.py, track.py
+lenses\                 <- magnetometer.py, nexrad.py, spaceweather.py etc
+events\                 <- phoenix_lights_1997.json, nimitz_2004.json
+sniffer.py              <- main CLI
+run_all_events.py
+wavefront.py
+read_local_mag.py       <- reads INTERMAGNET HAPI CSV format
+get_mh370_data.ps1
+
+KEY IMAGES IN REPORT (pulled from GitHub raw)
+----------------------------------------------
+https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/output/wavefront_plot.png
+https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png
+
+DATA SOURCES
+------------
+USGS: https://geomag.usgs.gov/ws/data/
+GFZ Kp: https://kp.gfz-potsdam.de/app/files/Kp_ap_Ap_SN_F107_since_1932.txt
+INTERMAGNET HAPI: https://imag-data.bgs.ac.uk/GIN_V1/hapi/data?id=STATION/definitive/PT1M/xyzf
+NEXRAD S3: s3://noaa-nexrad-level2/ (2008+ only)
+
+REPORT ACCURACY RULES
+---------------------
+- NEXRAD 1997: AccessDenied on S3 -- NEVER say "null radar return" -- say "archive inaccessible"
+- NEXRAD is weather radar NOT ATC -- does not track aircraft
+- Speed figures are ESTIMATES from witness timestamps -- always say estimated
+- Magnetometer cross-correlation is the strongest finding
+- Do NOT add back the "A-10s appear on radar" claim -- it was removed for accuracy
+
+CORRECT REPORT STRUCTURE
+------------------------
+1. Hero header (minimal)
+2. Finding 01: Formation track -- MAP IMAGE first, explanation, why interesting
+3. Finding 02: Two-station lockstep -- WAVEFRONT IMAGE first, explanation, why weird
+4. Finding 03: Terminal spike -- stat grid properly sized
+5. Finding 04: Radar -- honest about AccessDenied
+6. Honest limits -- brief
+7. Speculative UAP section -- timeline + object profile table
+
+FIRST PRIORITY NEXT SESSION
+-----------------------------
+Get the correct report live at https://beastros.github.io/emf-anomaly-research/
+Use base64 deploy script method with a new unique filename.
+Verify with findstr "Finding 01" docs\index.html before pushing.
+
+Then post to r/UFOs.
+
+REDDIT POST READY TO GO
+------------------------
+TITLE: The Phoenix Lights were 29 years ago. The government sensor data has been sitting in public archives the whole time.
+
+BODY:
+I've been building algo stacks for fun little projects and decided to apply the same architecture to the UAP stuff.
+
+Wrote a tool that cross-correlates public sensor data against documented events. Phoenix Lights was the first test.
+
+What came back:
+- Two independent USGS magnetometer stations 1,013 km apart -- Tucson AZ and Boulder CO -- moved in near-perfect lockstep during the event window. Correlation: 0.9704 out of 1.0. No connection to each other.
+- Solar activity that night was Kp 2.0. Quiet. The sun didn't do this.
+- The magnetic field spike -- 6.333 standard deviations above baseline -- landed 4 minutes after the last reported sighting near Tucson.
+- Four of eight tracked speed segments exceeded the A-10's maximum of 706 km/h. Peak: 855 km/h.
+
+Everything is from public government APIs. USGS, NOAA, GFZ Potsdam. Been sitting there since 1997.
+
+Full report with charts: https://beastros.github.io/emf-anomaly-research/
+Code -- reproduce it yourself: https://github.com/Beastros/emf-anomaly-research
+
+Full results for Nimitz, O'Hare, JAL 1628, and MH370 are in the repo.
+
+SUBMISSION STATEMENT (paste as first comment immediately):
+This is a reproducible open-source analysis using only public government data -- USGS magnetometers, NOAA NEXRAD radar, and GFZ Potsdam Kp index. No proprietary data, no interpretation beyond what the instruments recorded. The two-station magnetometer correlation of 0.9704 across 1,013km during confirmed quiet solar conditions is the core finding. Every number in the report can be independently verified by running the code in the repo.
+
+PENDING WORK
+------------
+1. Get correct report live (first priority)
+2. Post to r/UFOs
+3. Post to r/dataisbeautiful
+4. Email Galileo Project: https://projects.iq.harvard.edu/galileo/contact
+5. AARO submission: aaro.mil
+6. Stephenville 2008 -- pull NEXRAD files (2008 IS accessible)
+7. Belgian UAP Wave 1989-90
+8. Rendlesham 1980 -- email gwsg@bgs.ac.uk
+9. Add MH370 as formal event in run_all_events.py
