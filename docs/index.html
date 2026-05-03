@@ -1,172 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phoenix Lights 1997 | UAP Sniffer Report</title>
-  <style>
-    :root {
-      --bg: #0b0f14;
-      --panel: #121923;
-      --text: #dde7f3;
-      --muted: #97a9be;
-      --line: #243445;
-      --accent: #56b2ff;
-      --accent-2: #5ee3a1;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
-    .wrap {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 20px 64px;
-    }
-    h1, h2, h3 { margin: 0 0 10px; line-height: 1.25; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.25rem; margin-top: 26px; }
-    h3 { font-size: 1.05rem; margin-top: 20px; }
-    p { margin: 0 0 12px; color: var(--text); }
-    .muted { color: var(--muted); }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 16px;
-      margin: 14px 0;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 10px;
-    }
-    .metric {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.01);
-    }
-    .k { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
-    .v { font-weight: 700; font-size: 1.1rem; margin-top: 4px; }
-    a { color: var(--accent); }
-    code {
-      background: #0c141d;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 1px 5px;
-      font-family: Consolas, Monaco, monospace;
-      font-size: 0.92em;
-    }
-    ul { margin: 8px 0 10px 18px; }
-    li { margin: 6px 0; }
-    .figure {
-      margin-top: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #0c141d;
-    }
-    .figure img { width: 100%; display: block; }
-    .figure figcaption {
-      padding: 10px 12px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      border-top: 1px solid var(--line);
-    }
-    .status-ok { color: var(--accent-2); }
-    .status-note { color: #ffd27d; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phoenix Lights 1997 - Instrument Signal Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0e0f;--bg2:#131618;--bg3:#1a1e21;
+  --border:#252a2e;--text:#cac6bc;--text-dim:#6a6760;
+  --text-bright:#e8e4d8;--accent:#5a91c0;--green:#6fa87a;--warn:#b89555;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.72;max-width:980px;margin:0 auto;padding:2.7rem 2rem 5rem;}
+a{color:inherit;text-decoration:none;}a:hover{color:var(--accent);}
+header{border-bottom:1px solid var(--border);padding-bottom:1.8rem;margin-bottom:2.2rem;}
+.report-id{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.11em;color:var(--text-dim);text-transform:uppercase;margin-bottom:0.9rem;}
+h1{font-family:var(--sans);font-weight:500;font-size:1.42rem;color:var(--text-bright);line-height:1.35;margin-bottom:0.7rem;max-width:760px;}
+.subtitle{font-size:0.89rem;color:var(--text-dim);line-height:1.6;max-width:760px;}
+.meta{display:flex;gap:1.8rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);margin-top:1rem;}
+section{margin-bottom:3.6rem;}
+.sec-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--text-dim);text-transform:uppercase;margin-bottom:0.35rem;}
+h2{font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--text-bright);margin-bottom:0.85rem;}
+h3{font-family:var(--sans);font-weight:500;font-size:0.94rem;color:var(--text-bright);margin:1.7rem 0 0.5rem;}
+p{font-size:0.885rem;margin-bottom:0.75rem;max-width:760px;}
+.abstract{background:var(--bg2);border-left:3px solid var(--accent);padding:1.2rem 1.25rem;margin:1.6rem 0 1.9rem;}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.2rem 0;}
+.stat{background:var(--bg2);padding:0.78rem 0.9rem;}
+.slabel{font-family:var(--mono);font-size:0.61rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.25rem;}
+.snum{font-family:var(--mono);font-size:1.02rem;color:var(--text-bright);font-weight:500;}
+.sunit{font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);margin-top:0.12rem;}
+.fig{margin:1.2rem 0;background:var(--bg2);border:1px solid var(--border);}
+.fig img{width:100%;display:block;}
+.figcap{padding:0.55rem 0.9rem;font-family:var(--mono);font-size:0.67rem;color:var(--text-dim);border-top:1px solid var(--border);}
+.result-box{background:var(--bg3);border:1px solid var(--border);padding:0.95rem 1.1rem;margin:1rem 0;font-family:var(--mono);font-size:0.77rem;line-height:1.8;color:var(--text);}
+.result-box .hi{color:var(--green);}
+.notice{background:var(--bg3);border-left:2px solid var(--warn);padding:0.8rem 0.95rem;margin:0.9rem 0;font-size:0.82rem;color:var(--text-dim);}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.76rem;margin:1.1rem 0;}
+thead th{text-align:left;padding:0.45rem 0.7rem;background:var(--bg3);color:var(--text-dim);font-weight:400;letter-spacing:0.04em;border-bottom:1px solid var(--border);}
+tbody td{padding:0.45rem 0.7rem;border-bottom:1px solid var(--bg3);}
+.r{text-align:right;}.hi{color:var(--green);}.dim{color:var(--text-dim);}
+ul{font-size:0.88rem;padding-left:1.2rem;line-height:1.8;max-width:760px;}
+footer{border-top:1px solid var(--border);padding-top:1.7rem;margin-top:3.5rem;font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);line-height:1.8;}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <p class="muted">Public report page</p>
-    <h1>Phoenix Lights (1997): Public Instrument Signal Report</h1>
-    <p>
-      This project tests a simple idea: when a well-documented event has a known timeline and route,
-      do independent public sensor archives show unusual behavior in the same window?
-    </p>
 
-    <div class="card">
-      <h2>What this project is</h2>
-      <p>
-        <strong>UAP Sniffer</strong> is a reproducible multi-lens analysis pipeline that combines:
-        witness track timing + magnetometer streams + weather/radar/space-weather context to score
-        event-window anomalies.
-      </p>
-      <ul>
-        <li>Event tracks are modeled from reported positions/timestamps.</li>
-        <li>Sensor streams are normalized with rolling-baseline sigma scoring.</li>
-        <li>Cross-lens overlap windows are extracted as convergence markers.</li>
-      </ul>
-    </div>
+<header>
+  <div class="report-id">UAP Sniffer - Public Phoenix Report</div>
+  <h1>Phoenix Lights (1997): public instrument signals in event context</h1>
+  <p class="subtitle">Built for open discussion: this page shows what the sensors returned, where they line up with the event timeline, and what that does (and does not) imply.</p>
+  <div class="meta">
+    <div>Repo: <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a></div>
+    <div>Canonical markdown: <a href="../outputs/phoenix_lights_report.md">outputs/phoenix_lights_report.md</a></div>
+  </div>
+</header>
 
-    <div class="card">
-      <h2>Why this is interesting</h2>
-      <p>
-        The goal is not to prove mechanism claims from one dataset. The goal is to locate and preserve
-        timestamped, reproducible markers in public archives that align with event timing.
-      </p>
-      <p class="muted">
-        For Phoenix 1997, the primary marker is a strong event-window geomagnetic/radar coincidence.
-      </p>
-    </div>
+<section>
+  <div class="sec-label">Project Intent</div>
+  <h2>What this project is trying to do</h2>
+  <div class="abstract">
+    <p>This is not a debunk page and not a proof page. It is a reproducible marker-hunt using public archives.</p>
+    <p>For a historical event with known timeline/route, the pipeline checks independent instrument streams (magnetometer + context lenses) and asks: do anomaly windows cluster near event timing?</p>
+    <p>For Phoenix 1997, the strongest marker is a high-sigma geomagnetic signal with event-window overlap.</p>
+  </div>
+</section>
 
-    <div class="card">
-      <h2>Phoenix 1997 key outputs</h2>
-      <div class="grid">
-        <div class="metric"><div class="k">Witness points</div><div class="v">9</div></div>
-        <div class="metric"><div class="k">Timeline span</div><div class="v">155 min</div></div>
-        <div class="metric"><div class="k">Mag anomalies</div><div class="v">178</div></div>
-        <div class="metric"><div class="k">Total convergence windows</div><div class="v">14</div></div>
-        <div class="metric"><div class="k">Top peak</div><div class="v">6.333 sigma</div></div>
-        <div class="metric"><div class="k">Top timestamp</div><div class="v">1997-03-14 03:25 UTC</div></div>
-      </div>
-      <p style="margin-top:12px">
-        Canonical markdown report:
-        <a href="../outputs/phoenix_lights_report.md">outputs/phoenix_lights_report.md</a><br>
-        Short share note:
-        <a href="../outputs/phoenix_lights_signal_share_note.md">outputs/phoenix_lights_signal_share_note.md</a>
-      </p>
-    </div>
+<section>
+  <div class="sec-label">Methods In Plain English</div>
+  <h2>How the signal is scored</h2>
+  <ul>
+    <li>Event points and witness times define a modeled timeline window.</li>
+    <li>Each sensor stream is baseline-normalized with rolling sigma.</li>
+    <li>Spikes above threshold are logged as anomalies.</li>
+    <li>When multiple lenses spike near the same minute, that becomes a convergence marker.</li>
+  </ul>
+  <div class="notice">
+    This flags timing alignments in public data. It does not by itself identify mechanism.
+  </div>
+</section>
 
-    <div class="card">
-      <h2>Visual evidence section</h2>
-      <p>
-        This page is configured to host your report figures directly once they are committed.
-      </p>
-      <p class="status-note">
-        Add your PNG outputs under <code>docs/assets/</code> and they will appear here.
-      </p>
+<section>
+  <div class="sec-label">Phoenix 1997</div>
+  <h2>Core numbers from the run</h2>
+  <div class="stats">
+    <div class="stat"><div class="slabel">Witness points</div><div class="snum">9</div><div class="sunit">modeled timeline inputs</div></div>
+    <div class="stat"><div class="slabel">Timeline span</div><div class="snum">155 min</div><div class="sunit">event window</div></div>
+    <div class="stat"><div class="slabel">Mag anomalies</div><div class="snum">178</div><div class="sunit">sigma-threshold hits</div></div>
+    <div class="stat"><div class="slabel">Convergence windows</div><div class="snum">14</div><div class="sunit">multi-lens overlaps</div></div>
+    <div class="stat"><div class="slabel">Top peak</div><div class="snum">6.333 sigma</div><div class="sunit">highest merged window</div></div>
+    <div class="stat"><div class="slabel">Top timestamp</div><div class="snum">03:25 UTC</div><div class="sunit">1997-03-14</div></div>
+  </div>
 
-      <figure class="figure">
-        <img src="../results/phoenix_1997/tuc_diagnostic.png" alt="Phoenix event-window diagnostic plot">
-        <figcaption>Phoenix event-window diagnostic (TUC focus).</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="../results/phoenix_1997/phoenix_rinex_control_comparison.png" alt="Phoenix control comparison plot">
-        <figcaption>Phoenix control comparison output from the run.</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="./assets/phoenix_emf_spike.png" alt="Optional custom Phoenix EMF spike plot">
-        <figcaption>Optional: replace with your preferred publish graphic in <code>docs/assets/phoenix_emf_spike.png</code>.</figcaption>
-      </figure>
-    </div>
+  <table>
+    <thead><tr><th>Top windows</th><th>Lenses</th><th class="r">Peak sigma</th></tr></thead>
+    <tbody>
+      <tr><td>1997-03-14 03:25 UTC</td><td>magnetometer + nexrad lens</td><td class="r hi">6.333</td></tr>
+      <tr><td>1997-03-14 03:31 UTC</td><td>magnetometer + nexrad lens</td><td class="r hi">6.333</td></tr>
+      <tr><td>1997-03-14 02:30 UTC</td><td>magnetometer + nexrad + spaceweather lens</td><td class="r">4.121</td></tr>
+    </tbody>
+  </table>
+</section>
 
-    <div class="card">
-      <h2>Reproduce locally</h2>
-      <p><code>python sniffer.py --event phoenix_lights_1997 --lenses all</code></p>
-      <p><code>python phoenix_run_models.py --event phoenix_lights_1997</code></p>
-      <p class="muted">
-        Data sources are public where available. Some high-value corroboration layers are not publicly accessible.
-      </p>
-    </div>
+<section>
+  <div class="sec-label">Visuals</div>
+  <h2>What the plots show</h2>
 
-    <p class="muted">Status: <span class="status-ok">GitHub Pages landing rewritten for Phoenix report use.</span></p>
-  </main>
+  <div class="fig">
+    <img src="../results/phoenix_1997/tuc_diagnostic.png" alt="Phoenix TUC diagnostic plot" loading="lazy">
+    <div class="figcap">Phoenix event-window diagnostic (TUC focus). This visual tracks where the spike intensity concentrates inside the run window.</div>
+  </div>
+
+  <div class="fig">
+    <img src="../results/phoenix_1997/phoenix_rinex_control_comparison.png" alt="Phoenix control comparison" loading="lazy">
+    <div class="figcap">Phoenix control comparison output. This helps separate corridor-local behavior from broader ambient baseline behavior.</div>
+  </div>
+
+  <div class="result-box">
+<span class="hi">Read this as:</span>
+  - there are timestamped anomaly windows in public data
+  - those windows overlap the modeled event timeline
+  - the strongest marker is concentrated, not spread everywhere
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">Context</div>
+  <h2>What this means for discussion</h2>
+  <p>For public discussion (Reddit, forums, etc.), this gives a concrete artifact: a reproducible signal marker with timestamps, figures, and method notes.</p>
+  <p>It is evidence of a coincident instrument signature, not a full explanation of cause. That distinction matters.</p>
+  <p>
+    Short version note:
+    <a href="../outputs/phoenix_lights_signal_share_note.md">outputs/phoenix_lights_signal_share_note.md</a>
+  </p>
+</section>
+
+<section>
+  <div class="sec-label">Reproduce</div>
+  <h2>Run it yourself</h2>
+  <p><code>python sniffer.py --event phoenix_lights_1997 --lenses all</code></p>
+  <p><code>python phoenix_run_models.py --event phoenix_lights_1997</code></p>
+</section>
+
+<footer>
+  <div>Data sources: public geomagnetic and related archives used by the repo pipeline.</div>
+  <div>All values shown here are generated from repository outputs for this event run.</div>
+</footer>
+
 </body>
 </html>
