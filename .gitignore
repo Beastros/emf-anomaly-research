@@ -3,3 +3,8 @@
 *.pyo
 .env
 *.log
+
+# Keep share artifacts visible; avoid committing noisy generated outputs by default.
+outputs/*
+!outputs/phoenix_lights_report.md
+!outputs/phoenix_lights_signal_share_note.md
