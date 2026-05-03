@@ -11,7 +11,7 @@ import os
 from typing import List
 
 
-def generate_report(track, convergence_engine, output_dir: str = "reports") -> dict:
+def generate_report(track, convergence_engine, output_dir: str = "outputs") -> dict:
     os.makedirs(output_dir, exist_ok=True)
 
     vel   = track.velocity_summary()
@@ -39,6 +39,11 @@ def generate_report(track, convergence_engine, output_dir: str = "reports") -> d
         "convergence": {
             "events":         conv["convergence_events"],
             "top":            conv["top_convergences"],
+        },
+        # Full anomaly rows per lens (what the algorithms actually flagged).
+        # convergence.top[] bundles only anomalies near multi-lens windows.
+        "lens_findings": {
+            name: anoms for name, anoms in convergence_engine.lens_results.items()
         },
         "null_return": convergence_engine.lens_results.get("nexrad", []),
         "verdict": _verdict(vel, conv),
@@ -114,7 +119,15 @@ def _to_markdown(report: dict) -> str:
     for lens, count in r["lenses"].items():
         lines.append(f"- **{lens}**: {count} anomalies")
 
-    lines += ["\n## Convergence Events"]
+    lines += [
+        "\n## Where the detailed hits live",
+        "Open **`outputs/<slug>_report.json`** (same folder as this file).",
+        "- **`lens_findings`** — every anomaly row per lens (time, σ, station/field, etc.).",
+        "- **`convergence.top`** — ranked multi-lens clusters; each item has an **`anomalies`** array for that window.",
+        "- **`null_return`** — Nexrad lens rows only (legacy key name).",
+        "",
+        "## Convergence Events",
+    ]
     conv = r["convergence"]
     lines.append(f"Total multi-dataset convergence events: **{conv['events']}**\n")
     for c in conv.get("top", [])[:3]:

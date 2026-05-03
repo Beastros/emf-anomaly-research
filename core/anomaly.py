@@ -7,11 +7,20 @@ multi-axis convergence analysis. Dataset-agnostic.
 
 import numpy as np
 import datetime
-from typing import List, Dict, Optional, Tuple
+from typing import Callable, List, Dict, Optional, Tuple
 
 # PRE-REGISTERED 2026-04-30 -- do not change between runs
 MIN_BASELINE_POINTS = 15   # warmup guard -- prevents artifact spikes from thin windows
 BASELINE_WINDOW     = 20   # rolling baseline window in minutes
+
+
+def _naive_utc(dt: datetime.datetime) -> datetime.datetime:
+    """Convergence compares times — force naive UTC for stable ordering."""
+    if not isinstance(dt, datetime.datetime):
+        return dt
+    if dt.tzinfo is not None:
+        return dt.astimezone(datetime.timezone.utc).replace(tzinfo=None)
+    return dt
 
 
 def rolling_baseline(arr: np.ndarray, window: int = BASELINE_WINDOW) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
@@ -132,37 +141,59 @@ class ConvergenceEngine:
     def add_lens(self, lens_name: str, anomalies: List[dict]):
         self.lens_results[lens_name] = anomalies
 
-    def find_convergence(self, min_lenses: int = 2) -> List[dict]:
+    def find_convergence(
+        self,
+        min_lenses: int = 2,
+        lens_family_fn: Optional[Callable[[str, dict], str]] = None,
+    ) -> List[dict]:
         if not self.lens_results:
             return []
         all_times = []
         for lens, anomalies in self.lens_results.items():
             for a in anomalies:
-                all_times.append((a["time"], lens, a))
+                all_times.append((_naive_utc(a["time"]), lens, a))
         all_times.sort(key=lambda x: x[0])
         convergences = []
         window = datetime.timedelta(minutes=self.window_minutes)
         for i, (t_center, lens_i, anom_i) in enumerate(all_times):
-            nearby = [(t, l, a) for t, l, a in all_times
-                      if abs((t - t_center).total_seconds()) <= window.total_seconds()]
-            lenses_hit = list(set(l for _, l, _ in nearby))
-            if len(lenses_hit) >= min_lenses:
+            tc = _naive_utc(t_center)
+            nearby = [
+                (t, l, a)
+                for t, l, a in all_times
+                if abs((t - tc).total_seconds()) <= window.total_seconds()
+            ]
+            raw_lenses = sorted(set(l for _, l, _ in nearby))
+            if lens_family_fn:
+                families = sorted(
+                    set(lens_family_fn(l, a) for _, l, a in nearby)
+                )
+                fam_count = len(families)
+                strength_n = fam_count
+            else:
+                families = raw_lenses
+                fam_count = len(raw_lenses)
+                strength_n = fam_count
+            if fam_count >= min_lenses:
                 already = any(
-                    abs((c["time"] - t_center).total_seconds()) < window.total_seconds() / 2
+                    abs((_naive_utc(c["time"]) - tc).total_seconds())
+                    < window.total_seconds() / 2
                     for c in convergences
                 )
                 if not already:
                     pos = self.track.interpolate(t_center)
-                    max_sigma = max(a.get("sigma", 0) for _, _, a in nearby)
-                    convergences.append({
-                        "time":       t_center,
-                        "lenses":     lenses_hit,
-                        "lens_count": len(lenses_hit),
-                        "max_sigma":  round(max_sigma, 3),
-                        "position":   {"lat": pos[0], "lon": pos[1]} if pos else None,
-                        "anomalies":  [a for _, _, a in nearby],
-                        "strength":   round(len(lenses_hit) * max_sigma, 2),
-                    })
+                    max_sigma = max((a.get("sigma", 0) for _, _, a in nearby), default=0)
+                    convergences.append(
+                        {
+                            "time": t_center,
+                            "lenses": raw_lenses,
+                            "lens_families": families,
+                            "lens_count": fam_count,
+                            "max_sigma": round(max_sigma, 3),
+                            "position": {"lat": pos[0], "lon": pos[1]} if pos else None,
+                            "anomalies": [a for _, _, a in nearby],
+                            "strength": round(strength_n * max_sigma, 2),
+                        }
+                    )
         return sorted(convergences, key=lambda x: x["strength"], reverse=True)
 
     def summary(self) -> dict:

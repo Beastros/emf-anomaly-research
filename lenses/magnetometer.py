@@ -20,6 +20,9 @@ STATIONS = {
     "HON": {"lat": 21.316, "lon": -158.000, "name": "Honolulu HI"},
 }
 
+# Always attempt these INTERMAGNET observatories for regional context (treasure-hunt mesh).
+NETWORK_ANCHORS = ("TUC", "BOU", "FRD", "SIT")
+
 
 def fetch_hapi(station, start, end):
     """
@@ -90,20 +93,24 @@ def run(track, **kwargs):
     bbox = track.bounding_box(pad_deg=3.0)
 
     nearby = {
-        sid: info for sid, info in STATIONS.items()
+        sid: info
+        for sid, info in STATIONS.items()
         if bbox["min_lat"] <= info["lat"] <= bbox["max_lat"]
         and bbox["min_lon"] <= info["lon"] <= bbox["max_lon"]
     }
     if not nearby:
         nearby = {"TUC": STATIONS["TUC"]}
 
-    print(f"    [magnetometer] Stations in range: {list(nearby.keys())}")
+    stations_to_fetch = sorted(set(nearby.keys()) | set(NETWORK_ANCHORS))
+
+    print(f"    [magnetometer] Bbox hits: {list(nearby.keys())}")
+    print(f"    [magnetometer] Fetching mesh: {stations_to_fetch}")
     print(f"    [magnetometer] Source: INTERMAGNET HAPI (has 1990s data)")
 
     all_results   = {}
     all_anomalies = []
 
-    for station in nearby:
+    for station in stations_to_fetch:
         print(f"    Fetching {station}...")
         hapi = fetch_hapi(station, t_start, t_end)
         if hapi is None:

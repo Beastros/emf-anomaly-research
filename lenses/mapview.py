@@ -80,7 +80,7 @@ def speed_color(speed_kmh, ref_max=706):
         return RED
 
 
-def load_report(event_name, reports_dir="reports"):
+def load_report(event_name, reports_dir="outputs"):
     path = os.path.join(reports_dir, f"{event_name}_report.json")
     if not os.path.exists(path):
         raise FileNotFoundError(f"Report not found: {path}\nRun sniffer first.")
@@ -94,7 +94,7 @@ def load_event(event_name, events_dir="events"):
         return json.load(f)
 
 
-def generate_map(event_name, reports_dir="reports", events_dir="events",
+def generate_map(event_name, reports_dir="outputs", events_dir="events",
                  mag_data=None, convergence_events=None):
     """
     Generate full multi-panel map visualization.
@@ -368,7 +368,7 @@ def run(track, mag_data=None, convergence_events=None, **kwargs):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate UAP track map")
     parser.add_argument("--event",       required=True, help="Event name")
-    parser.add_argument("--reports-dir", default="reports")
+    parser.add_argument("--reports-dir", default="outputs")
     parser.add_argument("--events-dir",  default="events")
     args = parser.parse_args()
 

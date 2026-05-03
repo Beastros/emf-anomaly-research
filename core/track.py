@@ -11,6 +11,12 @@ import numpy as np
 from typing import List, Optional, Tuple, Dict
 
 
+def naive_utc(dt: datetime.datetime) -> datetime.datetime:
+    if dt.tzinfo is not None:
+        return dt.astimezone(datetime.timezone.utc).replace(tzinfo=None)
+    return dt
+
+
 def haversine_km(lat1, lon1, lat2, lon2) -> float:
     R = 6371.0
     dlat = math.radians(lat2 - lat1)
@@ -84,10 +90,14 @@ class EventTrack:
     def interpolate(self, t: datetime.datetime) -> Optional[Tuple[float, float]]:
         """Return (lat, lon) at time t via linear interpolation."""
         ws = [w for w in self.witnesses if w.get("conf", 1) >= 0]
-        if not ws or t < ws[0]["time"] or t > ws[-1]["time"]:
+        if not ws:
+            return None
+        t = naive_utc(t)
+        t_min, t_max = naive_utc(ws[0]["time"]), naive_utc(ws[-1]["time"])
+        if t < t_min or t > t_max:
             return None
         for i in range(len(ws) - 1):
-            t0, t1 = ws[i]["time"], ws[i+1]["time"]
+            t0, t1 = naive_utc(ws[i]["time"]), naive_utc(ws[i + 1]["time"])
             if t0 <= t <= t1:
                 f = (t - t0).total_seconds() / (t1 - t0).total_seconds()
                 lat = ws[i]["lat"] + (ws[i+1]["lat"] - ws[i]["lat"]) * f

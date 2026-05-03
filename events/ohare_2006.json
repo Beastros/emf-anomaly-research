@@ -1,0 +1,32 @@
+{
+  "name": "OHare 2006",
+  "date": "2006-11-07",
+  "description": "United ramp employees and flight crews reported a disc-like object hovering near Concourse C at Chicago O'Hare; FAA noted airline-filed unusual incident. Popular culture tie-in: punch-hole cloud debates.",
+  "witnesses": [
+    {
+      "time": "2006-11-07T22:15:00Z",
+      "lat": 41.9786,
+      "lon": -87.9048,
+      "desc": "O'Hare ramp — craft below cloud base",
+      "conf": 0.9
+    },
+    {
+      "time": "2006-11-07T22:35:00Z",
+      "lat": 41.9795,
+      "lon": -87.9045,
+      "desc": "Concourse C vicinity — metallic disc, hovering",
+      "conf": 0.92
+    },
+    {
+      "time": "2006-11-07T22:55:00Z",
+      "lat": 41.9778,
+      "lon": -87.902,
+      "desc": "Terminal area — rapid vertical departure / hole-punch cloud lore",
+      "conf": 0.78
+    }
+  ],
+  "notes": [
+    "Witness times anchored ~4:15–4:55 PM CST Nov 7 2006 (UTC +6); exact minute splits vary by retelling.",
+    "Ideal instrument playground: KORD METAR, Chicagoland Nexrad, dense ADS-B era (still imperfect vs 2025)."
+  ]
+}

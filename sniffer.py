@@ -20,15 +20,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from core.track import EventTrack
 from core.anomaly import ConvergenceEngine
+from core.lens_tiers import collapse_magnetometer_family
 from core.report import generate_report
+from core.treasure_hunt_summary import write_summary_file
 
 EVENTS_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "events")
-REPORTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports")
+OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 
 AVAILABLE_LENSES = {
     "nexrad":       "lenses.nexrad",
     "magnetometer": "lenses.magnetometer",
     "spaceweather": "lenses.spaceweather",
+    "omni":         "lenses.omni",
+    "asos":         "lenses.asos",
     "lightning":    "lenses.lightning",
     "infrasound":   "lenses.infrasound",
     "ionosphere":   "lenses.ionosphere",
@@ -198,12 +202,18 @@ def main():
 
     # ── Convergence ──────────────────────────────────────────────
     print("\n── CONVERGENCE ─────────────────────────────────────────")
-    conv_events = convergence.find_convergence(min_lenses=args.convergence)
-    print(f"  Multi-dataset convergence events: {len(conv_events)}")
+    conv_events = convergence.find_convergence(
+        min_lenses=args.convergence,
+        lens_family_fn=collapse_magnetometer_family,
+    )
+    print(f"  Multi-dataset convergence events (mag=X/Y/Z one family): {len(conv_events)}")
     for c in conv_events[:5]:
         pos = c.get("position")
         pos_str = f"({pos['lat']:.2f}, {pos['lon']:.2f})" if pos else ""
-        print(f"  {str(c['time'])[:19]}  lenses={c['lenses']}  peak={c['max_sigma']}σ  {pos_str}")
+        fam = c.get("lens_families", c["lenses"])
+        print(
+            f"  {str(c['time'])[:19]}  families={fam}  peak={c['max_sigma']}σ  {pos_str}"
+        )
 
     # ── Summary ──────────────────────────────────────────────────
     print("\n── SUMMARY ─────────────────────────────────────────────")
@@ -215,10 +225,22 @@ def main():
 
     # ── Report ───────────────────────────────────────────────────
     print("\n── REPORT ──────────────────────────────────────────────")
-    os.makedirs(REPORTS_DIR, exist_ok=True)
-    report = generate_report(track, convergence, REPORTS_DIR)
+    os.makedirs(OUTPUTS_DIR, exist_ok=True)
+    report = generate_report(track, convergence, OUTPUTS_DIR)
     print(f"\n  Flags: {report['verdict']['flags']}")
     print(f"  Conclusion: {report['verdict']['conclusion']}")
+    slug = track.name.lower().replace(" ", "_")
+    write_summary_file(
+        track,
+        lens_results,
+        OUTPUTS_DIR,
+        artifact_paths={
+            "report_json": os.path.join(OUTPUTS_DIR, f"{slug}_report.json"),
+            "report_md": os.path.join(OUTPUTS_DIR, f"{slug}_report.md"),
+        },
+        window_minutes=10.0,
+        print_to_stdout=True,
+    )
     print("\n✓ Done.")
 
 
