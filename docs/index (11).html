@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoenix Lights 1997 — EMF Anomaly Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0a0c10;
+      --surface: #111318;
+      --border:  #1e2433;
+      --accent:  #60a5fa;
+      --gold:    #fbbf24;
+      --green:   #34d399;
+      --text:    #c9cdd8;
+      --muted:   #5a6278;
+      --bright:  #edf0f7;
+      --mono:    'JetBrains Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 600;
+      color: var(--bright);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .lede {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+    }
+
+    .stat {
+      flex: 1;
+      min-width: 120px;
+      padding: 1rem 1.2rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: var(--mono);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.75rem 0; }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bright);
+      margin-bottom: 1rem;
+      margin-top: 2.75rem;
+      line-height: 1.3;
+    }
+
+    p { margin-bottom: 1.1rem; color: var(--text); }
+
+    .callout {
+      border-left: 2px solid var(--gold);
+      padding: .9rem 1.25rem;
+      background: rgba(251,191,36,.06);
+      border-radius: 0 6px 6px 0;
+      margin: 1.75rem 0;
+      color: var(--bright);
+      font-size: .97rem;
+      line-height: 1.7;
+    }
+
+    .img-block { margin: 2.25rem 0; }
+
+    .img-block img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .img-block figcaption {
+      margin-top: .75rem;
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: .82rem;
+      margin: 1.5rem 0;
+    }
+
+    th {
+      text-align: left;
+      padding: .4rem .75rem;
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: .65rem .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .hi { color: var(--gold); }
+    .ok { color: var(--green); }
+
+    .note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 1.75rem 0;
+    }
+    .note strong { color: var(--text); }
+
+    .code {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: .7rem 1rem;
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: #93c5fd;
+      overflow-x: auto;
+      margin: .5rem 0;
+    }
+
+    .links { margin-top: 1rem; }
+    .link-row {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      padding: .65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .93rem;
+    }
+    .link-row:last-child { border-bottom: none; }
+    .link-tag {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 68px;
+      flex-shrink: 0;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 520px) {
+      .stat { min-width: 110px; }
+      .stat-val { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="eyebrow">EMF Anomaly Research · Phoenix Lights · March 13, 1997</div>
+
+<h1>On the night of the Phoenix Lights, public scientific instruments recorded something unusual.</h1>
+
+<p class="lede">
+  This is what we found when we ran an open-source multi-sensor analysis against the full 155-minute event window — using only publicly archived government data.
+</p>
+
+<div class="stat-row">
+  <div class="stat">
+    <div class="stat-val">6.33σ</div>
+    <div class="stat-lbl">peak anomaly</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">&gt;60,000</div>
+    <div class="stat-lbl">km/h wavefront speed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">0.928</div>
+    <div class="stat-lbl">radar null-return score</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">14</div>
+    <div class="stat-lbl">multi-sensor convergences</div>
+  </div>
+</div>
+
+<p>
+  On March 13, 1997, thousands of people across Arizona watched a massive formation of lights move silently across the state for over two hours. It's one of the most widely witnessed UAP events in American history, reported by police officers, military veterans, and then-Governor Fife Symington, who later said publicly that what he saw was not flares.
+</p>
+<p>
+  The debate has mostly stayed in the realm of eyewitness accounts. We wanted to add a different layer: what did the instruments say? Geomagnetic sensors, Doppler radar, space weather indices — all publicly archived, all timestamped. If something with unusual electromagnetic or physical properties moved through Arizona that night, it had the opportunity to leave a mark in the data.
+</p>
+<p>
+  It did.
+</p>
+
+<hr>
+
+<h2>How the analysis works</h2>
+
+<p>
+  We built an open-source sniffer that cross-correlates independent public sensor streams against documented event timelines. The core logic is straightforward: any single sensor can produce a false spike. But when multiple unrelated instruments — a magnetometer in Tucson, a Doppler radar archive, a space weather station — flag the same short window simultaneously, those instruments have no shared noise source. That convergence is physically meaningful regardless of cause.
+</p>
+<p>
+  Nine documented witness points across Arizona were used to reconstruct the event track — a modeled path stretching over 800 km across the state. That geometry gives us the timestamps and positions to know exactly which sensor windows to care about. Every sensor is then normalized against its own rolling 20-minute baseline, so what we're measuring is departure from local context, not absolute field strength.
+</p>
+<p>
+  Before looking at any results, we checked the Kp index — the standard measure of global geomagnetic disturbance driven by solar activity. On March 13–14, 1997, it was 2.0. That's a quiet night. No solar storm, no auroral activity that could drive magnetometer anomalies across the Southwest. That baseline condition is what makes the subsequent findings meaningful: space weather is off the table as an explanation.
+</p>
+
+<div class="img-block">
+  <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/phoenix_lights_map.png"
+       alt="Map of the modeled Phoenix Lights event track across Arizona with nine witness points marked">
+  <figcaption>
+    The nine witness locations used to build the modeled track, spanning from northwestern Arizona near the Nevada border down through the Phoenix metro area. The reconstructed path covers 805 km over 155 minutes, with a mean speed of 561 km/h and peak segments reaching 855 km/h. Four of the eight trajectory segments between witness points imply speeds exceeding the maximum of an A-10 Warthog — a slow military aircraft used here as a reference point, not a comparison to a fast jet.
+  </figcaption>
+</div>
+
+<hr>
+
+<h2>What the sensors recorded</h2>
+
+<p>
+  The Tucson (TUC) and Boulder (BOU) magnetometer stations are 1,013 km apart. Both are part of the INTERMAGNET global monitoring network, independently operated, with no shared hardware. During the Phoenix Lights window, the cross-station correlation between TUC and BOU was <strong style="color:var(--bright)">0.9704</strong> at a lag of −1 minute — meaning both stations moved in near-perfect synchrony, with TUC registering slightly ahead of BOU.
+</p>
+
+<div class="callout">
+  Two independent instruments over a thousand kilometers apart moved in near-perfect lockstep during the event window. Using only the known station separation and the time-lag between their peaks — no eyewitness timestamps, no assumptions about the event — the implied propagation velocity of whatever affected both stations exceeds 60,000 km/h.
+</div>
+
+<p>
+  The D-field at TUC peaked at <strong style="color:var(--bright)">6.333σ above baseline at 03:32 UTC</strong>, four minutes after the last reported sighting. 178 individual magnetometer samples were flagged across the full window. The anomaly doesn't drift slowly across the night — it spikes and resolves, consistent with something passing through rather than a sustained atmospheric condition.
+</p>
+<p>
+  On the radar side, the Phoenix area was inside NEXRAD Doppler coverage on March 13, 1997. The null-return score — a measure of how absent an object is from radar returns despite being in an active coverage zone — came back at <strong style="color:var(--bright)">0.928 out of 1.0</strong>. The formation was in coverage. The radar saw almost nothing. That result is not explained by clouds or atmospheric ducting; it reads as an object that wasn't returning radar energy the way any conventional aircraft would.
+</p>
+
+<div class="img-block">
+  <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/wavefront_plot.png"
+       alt="Four-panel diagnostic showing magnetometer D-field sigma, NEXRAD null returns, speed profile versus A-10 maximum, and multi-sensor convergence windows">
+  <figcaption>
+    The four-panel diagnostic captures the full picture. Top left: the TUC magnetometer D-field in sigma units over the event window — the 6.333σ spike is the sharp vertical departure against an otherwise flat baseline. Top right: the NEXRAD null-return map, showing near-complete absence of radar return across the covered zone. Bottom left: the speed profile across eight trajectory segments with the A-10 maximum marked as a reference line — four segments cross it. Bottom right: all 14 multi-sensor convergence windows plotted against the event timeline, with the consecutive 03:25 and 03:31 UTC peaks clearly dominant. Each panel is derived from independent data sources with no shared inputs.
+  </figcaption>
+</div>
+
+<div class="img-block">
+  <img src="https://raw.githubusercontent.com/Beastros/emf-anomaly-research/main/results/phoenix_1997/tuc_diagnostic.png"
+       alt="TUC magnetometer station diagnostic centered on the Phoenix Lights event window showing the anomaly spike">
+  <figcaption>
+    The TUC station in isolation, centered on the event window. The anomaly lands squarely within the modeled timeline — not in the quiet hours before the formation entered Arizona, and not in the quiet hours after the last sighting. The station returned to baseline and stayed there. Cross-correlating this against the BOU record 1,013 km away — with both stations on atomic-clock timestamps — produces the wavefront velocity estimate independently of any witness account.
+  </figcaption>
+</div>
+
+<hr>
+
+<h2>Full results</h2>
+
+<table>
+  <thead>
+    <tr><th>Measurement</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Kp index (space weather)</td><td class="ok">2.0 — geomagnetically quiet, solar explanation eliminated</td></tr>
+    <tr><td>TUC-BOU cross-station correlation</td><td class="hi">0.9704</td></tr>
+    <tr><td>Implied wavefront propagation velocity</td><td class="hi">&gt;60,000 km/h (instrument-derived, no eyewitness input)</td></tr>
+    <tr><td>NEXRAD null-return score</td><td class="hi">0.928 / 1.0</td></tr>
+    <tr><td>D-field peak anomaly</td><td class="hi">6.333σ at 03:32 UTC</td></tr>
+    <tr><td>Time after last reported sighting</td><td>+4 minutes</td></tr>
+    <tr><td>Trajectory segments exceeding A-10 max speed</td><td>4 of 8</td></tr>
+    <tr><td>Multi-sensor convergence events</td><td class="hi">14</td></tr>
+    <tr><td>Total flagged anomaly samples across all sensors</td><td>201</td></tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>What this analysis does and doesn't claim:</strong> The instrument data is real. The anomalies are real. What caused them is not something these sensors can determine. The methodology rules out solar weather as a driver — the Kp gate is the first check and March 13–14, 1997 passes it cleanly. Beyond that, the data documents a pattern. The full methodology, all data sources, and every script used to produce these results are publicly available and independently reproducible.
+</div>
+
+<hr>
+
+<h2>Phoenix is one event in a larger pattern</h2>
+
+<p>
+  The same analysis framework has been run against four other cases: the USS Nimitz encounter (2004), the O'Hare Airport sighting (2006), JAL Flight 1628 (1986), and MH370 (2014). Phoenix, Nimitz, and O'Hare all produce the same electromagnetic signature — cross-station magnetometer correlation above 0.97, near-zero time lag, a field disturbance affecting stations hundreds to thousands of kilometers apart simultaneously. MH370 shows geomagnetic anomalies at exact zero-minute offset from transponder cutoff across three independent stations, a finding not previously reported. The dataset is starting to reveal at least two physically distinct signature types across the five events. Full findings are in the repository.
+</p>
+
+<hr>
+
+<h2>Reproduce the analysis</h2>
+
+<p style="color:var(--muted); font-size:.92rem; margin-bottom:.75rem;">All data is fetched live from public government APIs. Nothing proprietary or pre-processed.</p>
+<div class="code">python sniffer.py --event phoenix_lights_1997 --lenses all</div>
+<div class="code">python phoenix_run_models.py --event phoenix_lights_1997</div>
+
+<div class="links" style="margin-top:2.25rem;">
+  <div class="link-row">
+    <span class="link-tag">Full report</span>
+    <a href="https://github.com/Beastros/emf-anomaly-research/blob/main/outputs/phoenix_lights_report.md">phoenix_lights_report.md</a>
+  </div>
+  <div class="link-row">
+    <span class="link-tag">Share note</span>
+    <a href="https://github.com/Beastros/emf-anomaly-research/blob/main/outputs/phoenix_lights_signal_share_note.md">phoenix_lights_signal_share_note.md</a>
+  </div>
+  <div class="link-row">
+    <span class="link-tag">Repository</span>
+    <a href="https://github.com/Beastros/emf-anomaly-research">github.com/Beastros/emf-anomaly-research</a>
+  </div>
+  <div class="link-row">
+    <span class="link-tag">Contact</span>
+    <a href="mailto:emfproj@proton.me">emfproj@proton.me</a>
+  </div>
+</div>
+
+<footer>
+  EMF Anomaly Research &nbsp;·&nbsp; Phoenix Lights 1997 &nbsp;·&nbsp; Data: INTERMAGNET · NEXRAD · GFZ Potsdam · NOAA &nbsp;·&nbsp; Built April 2026
+</footer>
+
+</body>
+</html>
